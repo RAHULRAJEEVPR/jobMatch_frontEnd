@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route,Routes } from 'react-router-dom'
-import Register from '../components/user/Register'
-import Login from '../components/user/Login'
+import Register from '../pages/user/Register'
+import Login from '../pages/user/Login'
 
 export default function UserRoutes() {
   return (
