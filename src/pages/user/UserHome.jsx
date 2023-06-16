@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
+import { isUserAuth } from '../../Services/userApi';
+
 
 export default function UserHome() {
-    const getData = async () => {
+    const getData =
+
+    async () => {
         try {
-          const response = await axios.get(
-            "http://localhost:8000/user/userinfo",
+         isUserAuth().then((res)=>{
+          console.log(res.data);
+         })
+         
+        
           
-            {
-              headers: {
-                Authorization: "Bearer " + localStorage.getItem("userJwt"),
-              },
-            }
-          );
-          console.log(response.data);
         } catch (err) {
           console.log(err);
         }

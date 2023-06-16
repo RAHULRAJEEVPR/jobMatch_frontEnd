@@ -44,7 +44,7 @@ export default function LandingPage() {
         </div>
         <div className=" grid md:grid-cols-3 gap-3 flex-row m-5 p-5 ">
           <div className="flex justify-center">
-            <div className="flex flex-col items-center text-green-500 shadow-xl  w-2/4  p-5 rounded-3xl  border-gray-500  bg-white ">
+            <div className="flex flex-col items-center text-green-500 shadow-xl  md:w-3/4 lg:w-2/4  p-5 rounded-3xl  border-gray-500  bg-white ">
               <h1 className="text-4xl">
                 <FaUserCircle />
               </h1>
@@ -54,7 +54,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="flex justify-center">
-            <div className="flex flex-col items-center text-yellow-500 shadow-xl  w-2/4  p-5 rounded-3xl  border-gray-500  bg-white text-3xl">
+            <div className="flex flex-col items-center text-yellow-500 shadow-xl  md:w-3/4 lg:w-2/4  p-5 rounded-3xl  border-gray-500  bg-white text-3xl">
               <h1 className="text-4xl">
                 <HiSearchCircle />
               </h1>
@@ -62,7 +62,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="flex justify-center">
-            <div className="flex flex-col items-center shadow-xl  w-2/4  p-5 rounded-3xl  border-gray-500  bg-white text-3xl">
+            <div className="flex flex-col items-center shadow-xl  md:w-3/4 lg:w-2/4  p-5 rounded-3xl  border-gray-500  bg-white text-3xl">
               <h1 className="text-blue-600 text-5x">
                 <MdOutlineWork />
               </h1>
@@ -83,7 +83,7 @@ export default function LandingPage() {
                 I'm Interested In A Tech Job
               </h1>
               <Link className="bg-blue-950 w-4/6 mb-3 rounded-2xl" to="/user/login">
-              <div c>
+              <div >
             <h1 className="text-white font-bold text-md p-1  ">Exploer Jobs</h1>
           </div>
           </Link>
@@ -98,7 +98,7 @@ export default function LandingPage() {
               </h1>
               <Link className="bg-blue-950 w-4/6 mb-3 rounded-2xl" to="/employer/login">
 
-              <div className="bg-blue-950 w-4/6 mb-3 rounded-2xl">
+              <div >
             <h1 className="text-white font-bold text-md p-1  ">Find Talents</h1>
           </div>
           </Link>

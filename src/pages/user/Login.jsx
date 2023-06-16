@@ -7,9 +7,10 @@ import {showLoading,hideLoading} from "../../Redux/alertSlice"
 
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
-
+import { userLogin } from "../../Services/userApi";
 export default function Login() {
   const dispatch = useDispatch();
+ 
   // const { loading } = useSelector((state) => state.alerts);
   // console.log(loading);
 
@@ -27,16 +28,7 @@ export default function Login() {
     console.log("kerunindo", values);
     try {
       dispatch(showLoading());
-
-      await axios
-        .post(
-          "http://localhost:8000/user/login",
-          {
-            ...values,
-          },
-          { withCredentials: true }
-        )
-        .then((res) => {
+         userLogin({...values}).then((res) => {
           dispatch(hideLoading());
           console.log(res);
           localStorage.setItem("userJwt", res.data.token);
