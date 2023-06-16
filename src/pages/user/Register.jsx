@@ -1,18 +1,30 @@
 import React from "react";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
 
 export default function Register() {
   const [values, setValues] = useState({ email: "", password: "", name: "" });
+  const dispatch = useDispatch()
 
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (values.email.trim() == "") {
+      return toast.warn("email should't be empty");
+    } else if (values.password.trim() == "") {
+      return toast.warn("password should't be empty");
+    } else if (values.name.trim() == "") {
+      return toast.warn("name should't be empty");
+    }
     console.log("kerunindo", values);
     try {
+      dispatch(showLoading());
+
       const response = await axios
         .post(
           "http://localhost:8000/user/register",
@@ -22,14 +34,25 @@ export default function Register() {
           { withCredentials: true }
         )
         .then((res) => {
+          dispatch(hideLoading());
+
           console.log(res);
-          toast.success("registred.");
+          if (res.data.created) {
+            toast.success("registred succesfully please login now");
+            navigate("/user/login");
+          } else if (res.data.exists) {
+            toast.warn("account alredy exists");
+          }
         })
         .catch((error) => {
+          dispatch(hideLoading());
+
           console.log(error.message);
           toast.error("something went worng");
         });
     } catch (error) {
+      dispatch(hideLoading());
+
       // Handle any error that occurred during the request
       console.error(error);
       toast.error("An error occurred. Please try again.");
@@ -103,7 +126,9 @@ export default function Register() {
               </div>
             </div>
             <div className="w-full">
-              <div className="w-full justify-center text-center  mb-1 font-bold ">OR</div>
+              <div className="w-full justify-center text-center  mb-1 font-bold ">
+                OR
+              </div>
               <div className="w-full">
                 <button
                   type="submit"
@@ -115,8 +140,8 @@ export default function Register() {
                   <span className="ml-2 text-xl">Google</span>
                 </button>
               </div>
-              <div  className="text-end">
-                <span > have an account?</span>
+              <div className="text-end">
+                <span> have an account?</span>
                 <Link
                   to="/user/login"
                   className="text-sm text-blue-500 hover:text-blue-700"
