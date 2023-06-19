@@ -1,60 +1,101 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import {showLoading,hideLoading} from "../../Redux/alertSlice"
-
+import { showLoading, hideLoading } from "../../Redux/alertSlice";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
-import { userLogin } from "../../Services/userApi";
+import { userLogin, userLoginWithGoogle } from "../../Services/userApi";
+import {
+  useGoogleLogin,
+  googleLogout,
+} from "@react-oauth/google";
+
 export default function Login() {
   const dispatch = useDispatch();
- 
-  // const { loading } = useSelector((state) => state.alerts);
-  // console.log(loading);
+  const [user, setUser] = useState(null);
 
   const [values, setValues] = useState({ email: "", password: "" });
   const navigate = useNavigate();
+
+  const login = useGoogleLogin({
+    onSuccess: (codeResponse) => setUser(codeResponse),
+    onError: (error) => console.log("Login Failed:", error),
+  });
+
+  useEffect(() => {
+    if (user) {
+      axios
+        .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
+          headers: {
+            Authorization: `Bearer ${user.access_token}`,
+            Accept: "application/json",
+          },
+        })
+        .then((res) => {
+          const userProfile = res.data;
+          console.log(userProfile);
+          userLoginWithGoogle(userProfile)
+            .then((res) => {
+              dispatch(hideLoading());
+              console.log(res);
+              if (res.data.login) {
+                localStorage.setItem("userJwt", res.data.token);
+               navigate("/user/home");
+                toast.success("registered successfully, please login now");
+              } else if (res.data.exists) {
+                toast.warn("account already exists");
+              }
+            })
+            .catch((error) => {
+              dispatch(hideLoading());
+              console.log(error.message);
+              toast.error(error.response.data.message);
+            });
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [user]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(values);
 
-    if (values.email.trim() == "") {
-      return toast.warn("email should't be empty");
-    } else if (values.password.trim() == "") {
-      return toast.warn("password should't be empty");
+    if (values.email.trim() === "") {
+      return toast.warn("email should not be empty");
+    } else if (values.password.trim() === "") {
+      return toast.warn("password should not be empty");
     }
     console.log("kerunindo", values);
     try {
       dispatch(showLoading());
-         userLogin({...values}).then((res) => {
+      userLogin({ ...values })
+        .then((res) => {
           dispatch(hideLoading());
           console.log(res);
           localStorage.setItem("userJwt", res.data.token);
           if (res.data.login) {
-            toast.success("login succesfull");
+            toast.success("login successful");
             navigate("/user/home");
           }
         })
         .catch((error) => {
           dispatch(hideLoading());
-
           console.log(error);
           toast.error(error.response.data.message);
         });
     } catch (error) {
       dispatch(hideLoading());
-
       // Handle any error that occurred during the request
       console.error(error);
       toast.error("An error occurred. Please try again.");
     }
   };
+
   return (
     <div className="bg-white ">
       <div className="flex justify-center items-center h-screen  ">
-        <div className="bg-white p-8  rounded-md w-2/6 shadow-xl  ">
+        <div className="bg-white p-8  rounded-md  md:w-3/4 lg:w-2/6 shadow-xl  ">
           <h1 className="text-4xl text-blue-950 font-bold mb-10 text-center">
             Welcome on Board
           </h1>
@@ -73,9 +114,9 @@ export default function Login() {
                 type="email"
                 className="w-full border border-gray-300 shadow-md px-3 py-2 rounded-md mb-3 "
                 placeholder="Enter your email"
-                onChange={(e) => {
-                  setValues({ ...values, [e.target.name]: e.target.value });
-                }}
+                onChange={(e) =>
+                  setValues({ ...values, [e.target.name]: e.target.value })
+                }
               />
             </div>
             <div className="mb-4">
@@ -88,9 +129,9 @@ export default function Login() {
                 type="password"
                 className="w-full border border-gray-300 px-3 py-2 rounded-md shadow-md mb-3 "
                 placeholder="Enter your password"
-                onChange={(e) => {
-                  setValues({ ...values, [e.target.name]: e.target.value });
-                }}
+                onChange={(e) =>
+                  setValues({ ...values, [e.target.name]: e.target.value })
+                }
               />
             </div>
             <div className="w-full mb-3">
@@ -108,21 +149,24 @@ export default function Login() {
                 OR
               </div>
               <div className="w-full">
-                <button
-                  type="submit"
-                  className="w-full border-2 bg-white hover:bg-blue-950  hover:text-white text-black border-gray-300 shadow-md font-bold py-2 px-4 flex items-center justify-center backdrop-filter backdrop-blur-md backdrop-opacity-70"
+              <button
+                  type="button"
+                  onClick={()=>{
+                    login()
+                  }}
+                  className="w-full border-2 bg-white hover:bg-gray-200 text-black border-gray-300 shadow-md font-bold py-2 px-4 flex items-center justify-center backdrop-filter backdrop-blur-md backdrop-opacity-70"
                 >
                   <div className="text-3xl">
-                    <FcGoogle />
+                    <FcGoogle  />
                   </div>
                   <span className="ml-2 text-xl">Google</span>
                 </button>
               </div>
               <div className="text-end">
-                <span> not a member</span>
+                <span>not a member? </span>
                 <Link
                   to="/user/register"
-                  className="text-sm text-blue-500 hover:text-blue-700"
+                  className="text-sm text-blue-700 hover:text-blue-700"
                 >
                   signup
                 </Link>
