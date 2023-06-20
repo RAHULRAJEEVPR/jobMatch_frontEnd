@@ -6,18 +6,15 @@ import { showLoading, hideLoading } from "../../Redux/alertSlice";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogin, userLoginWithGoogle } from "../../Services/userApi";
-import {
-  useGoogleLogin,
-  googleLogout,
-} from "@react-oauth/google";
+import { useGoogleLogin, googleLogout } from "@react-oauth/google";
 
 export default function Login() {
   const dispatch = useDispatch();
   const [user, setUser] = useState(null);
-
   const [values, setValues] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
+//.. goolge login
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => setUser(codeResponse),
     onError: (error) => console.log("Login Failed:", error),
@@ -26,12 +23,15 @@ export default function Login() {
   useEffect(() => {
     if (user) {
       axios
-        .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
-          headers: {
-            Authorization: `Bearer ${user.access_token}`,
-            Accept: "application/json",
-          },
-        })
+        .get(
+          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.access_token}`,
+              Accept: "application/json",
+            },
+          }
+        )
         .then((res) => {
           const userProfile = res.data;
           console.log(userProfile);
@@ -41,7 +41,7 @@ export default function Login() {
               console.log(res);
               if (res.data.login) {
                 localStorage.setItem("userJwt", res.data.token);
-               navigate("/user/home");
+                navigate("/user/home");
                 toast.success("registered successfully, please login now");
               } else if (res.data.exists) {
                 toast.warn("account already exists");
@@ -56,7 +56,7 @@ export default function Login() {
         .catch((err) => console.log(err));
     }
   }, [user]);
-
+//. email login
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(values);
@@ -149,15 +149,15 @@ export default function Login() {
                 OR
               </div>
               <div className="w-full">
-              <button
+                <button
                   type="button"
-                  onClick={()=>{
-                    login()
+                  onClick={() => {
+                    login();
                   }}
                   className="w-full border-2 bg-white hover:bg-gray-200 text-black border-gray-300 shadow-md font-bold py-2 px-4 flex items-center justify-center backdrop-filter backdrop-blur-md backdrop-opacity-70"
                 >
                   <div className="text-3xl">
-                    <FcGoogle  />
+                    <FcGoogle />
                   </div>
                   <span className="ml-2 text-xl">Google</span>
                 </button>

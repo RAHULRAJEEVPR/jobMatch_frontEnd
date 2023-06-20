@@ -79,8 +79,8 @@ useEffect(
 
           console.log(res);
           if (res.data.created) {
-            toast.success("registered successfully, please login now");
-            navigate("/user/login");
+            toast.success(res.data.message);
+            // navigate("/user/login");
           } else if (res.data.exists) {
             toast.warn("account already exists");
           }
@@ -89,7 +89,7 @@ useEffect(
           dispatch(hideLoading());
 
           console.log(error.message);
-          toast.error("something went wrong");
+          toast.error(error.message);
         });
     } catch (error) {
       dispatch(hideLoading());
