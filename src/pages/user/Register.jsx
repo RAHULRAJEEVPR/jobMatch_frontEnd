@@ -80,7 +80,7 @@ useEffect(
           console.log(res);
           if (res.data.created) {
             toast.success(res.data.message);
-            // navigate("/user/login");
+             navigate("/user/login");
           } else if (res.data.exists) {
             toast.warn("account already exists");
           }

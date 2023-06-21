@@ -1,5 +1,6 @@
 import axios from "axios"
-import { userBaseUrl } from "../constants/constants";
+import { userBaseUrl,empBaseUrl } from "../constants/constants";
+
 
 const createAxiosClient=(baseURL)=>{
     const client =axios.create({
@@ -23,5 +24,10 @@ userAxiosInstence.interceptors.request.use(async(req)=>{
     const modifiedReq=attachToken(req,"userJwt")
     return modifiedReq;
 })
+const empAxiosInstence=createAxiosClient(empBaseUrl)
+userAxiosInstence.interceptors.request.use(async(req)=>{
+    const modifiedReq=attachToken(req,"empJwt")
+    return modifiedReq;
+})
 
-export {userAxiosInstence}
+export {userAxiosInstence,empAxiosInstence}
