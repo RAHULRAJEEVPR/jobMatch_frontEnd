@@ -1,5 +1,5 @@
 import axios from "axios"
-import { userBaseUrl,empBaseUrl } from "../constants/constants";
+import { userBaseUrl,empBaseUrl,adminBaseUrl} from "../constants/constants";
 
 
 const createAxiosClient=(baseURL)=>{
@@ -29,5 +29,10 @@ userAxiosInstence.interceptors.request.use(async(req)=>{
     const modifiedReq=attachToken(req,"empJwt")
     return modifiedReq;
 })
+const adminAxiosInstence=createAxiosClient(adminBaseUrl)
+adminAxiosInstence.interceptors.request.use(async(req)=>{
+    const modifiedReq=attachToken(req,"adminJwt")
+    return modifiedReq;
+})
 
-export {userAxiosInstence,empAxiosInstence}
+export {userAxiosInstence,empAxiosInstence,adminAxiosInstence}

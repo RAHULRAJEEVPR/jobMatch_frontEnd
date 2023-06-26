@@ -23,9 +23,13 @@ const empLogin=(value)=>{
         withCredentials:true
     })
 }
+const isEmpAuth=()=>{
+    return empAxiosInstence.get("/empAuth",value,{withCredentials:true})
+}
 
 export{empSignUp,
 empSignupWithGoogle,
 empLogin,
-empLoginWithGoogle
+empLoginWithGoogle,
+isEmpAuth
 }

@@ -31,7 +31,7 @@ useEffect(
                   }
               })
               .then((res) => {
-                  setProfile(res.data);
+                  // setProfile(res.data);
                   console.log(res.data);
                   userSignupWithGoogle(res.data)
                   .then((res) => {

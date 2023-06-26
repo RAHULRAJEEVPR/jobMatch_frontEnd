@@ -22,7 +22,7 @@ const userLoginWithGoogle=(value)=>{
 }
 
 const isUserAuth=()=>{
-    return userAxiosInstence.get("/userinfo",
+    return userAxiosInstence.get("/userAuth",
    { withCredentials:true});
 }
 

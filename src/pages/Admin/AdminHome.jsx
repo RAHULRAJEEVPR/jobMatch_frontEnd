@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function EmpHome() {
+export default function AdminHome() {
   return (
     <div>
-      employert home
+      admin home
     </div>
   )
-}
+} 

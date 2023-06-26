@@ -34,15 +34,15 @@ export default function Login() {
         )
         .then((res) => {
           const userProfile = res.data;
-          console.log(userProfile);
+          // console.log(userProfile);
           userLoginWithGoogle(userProfile)
             .then((res) => {
               dispatch(hideLoading());
-              console.log(res);
+              // console.log(res);
               if (res.data.login) {
                 localStorage.setItem("userJwt", res.data.token);
                 navigate("/user/home");
-                toast.success("registered successfully, please login now");
+                toast.success(res.data.message);
               } else if (res.data.exists) {
                 toast.warn("account already exists");
               }
@@ -75,7 +75,7 @@ export default function Login() {
           console.log(res);
           localStorage.setItem("userJwt", res.data.token);
           if (res.data.login) {
-            toast.success("login successful");
+            toast.success(res.data.message);
             navigate("/user/home");
           }
         })

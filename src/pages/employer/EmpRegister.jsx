@@ -187,7 +187,7 @@ export default function EmpRegister() {
             <div className="text-end">
               <span>Already have an account?</span>
               <Link
-                to="/user/login"
+                to="/employer/login"
                 className="text-sm text-blue-500 hover:text-blue-700"
                 >
                 Login

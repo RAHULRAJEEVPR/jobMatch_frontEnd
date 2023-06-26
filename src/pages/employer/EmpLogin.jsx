@@ -41,8 +41,8 @@ export default function EmpLogin() {
               console.log(res);
               if (res.data.login) {
                 localStorage.setItem("empJwt", res.data.token);
-                navigate("/user/home");
-                toast.success("registered successfully, please login now");
+                navigate("/employer/home");
+                toast.success(res.data.message);
               } else if (res.data.exists) {
                 toast.warn("account already exists");
               }
@@ -75,8 +75,8 @@ export default function EmpLogin() {
           console.log(res);
           localStorage.setItem("empJwt", res.data.token);
           if (res.data.login) {
-            toast.success("login successful");
-            navigate("/user/home");
+            navigate("/employer/home");
+            toast.success(res.data.message);
           }
         })
         .catch((error) => {
@@ -165,7 +165,7 @@ export default function EmpLogin() {
               <div className="text-end">
                 <span>not a member? </span>
                 <Link
-                  to="/user/register"
+                  to="/employer/register"
                   className="text-sm text-blue-700 hover:text-blue-700"
                 >
                   signup
