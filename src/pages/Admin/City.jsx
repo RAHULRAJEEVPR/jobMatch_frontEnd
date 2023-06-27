@@ -14,7 +14,6 @@ export default function City() {
   const fetchData = () => {
     adminCityDetails()
       .then((res) => {
-      
         setCitys(res.data.cityData);
       })
       .catch((err) => {
@@ -39,7 +38,7 @@ export default function City() {
       }
       adminAddCity({ city })
         .then((res) => {
-          toast.success(res.data.message);
+          toast.success(res.data.message)
           fetchData()
         })
         .catch((error) => {
@@ -52,7 +51,7 @@ export default function City() {
   };
   return (
     <div>
-      <AddCity state={city} set={setCity} addSkillFun={handleSubmit} />
+      <AddCity set={setCity} addSkillFun={handleSubmit} />
       <CityTable CityData={citys} />
     </div>
   );

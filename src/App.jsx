@@ -6,6 +6,7 @@ import AdminRoutes from './routes/AdminRoutes'
 import './App.css'
 import { useSelector } from 'react-redux'
 import Loaders from './components/Loaders'
+import NotFoundPage from './pages/NotFoundPage'
 
 
 
@@ -22,6 +23,7 @@ const {loading}=useSelector(state=>state.alerts)
    <Routes>
     
     <Route path="/" element={<LandingPage/>}/>
+    <Route path="*" element={<NotFoundPage/>}/>
     <Route path="/user/*" element={<UserRoutes/>}/>
     <Route path="/employer/*" element={<EmpRoutes/>}/>
     <Route path="/admin/*" element={<AdminRoutes/>}/>

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { adminAddCity } from "../../Services/adminApi";
 
-export default function AddCity({addSkillFun,state,set}) {
+export default function AddCity({addSkillFun,set}) {
   const [showModal, setShowModal] = useState(false);
   const handleSubmit = addSkillFun
-  const city=state
+  
   const setCity=set
   return (
     <>

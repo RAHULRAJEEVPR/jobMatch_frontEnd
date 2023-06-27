@@ -11,12 +11,14 @@ export default function PrivateRoutes({ role, route }) {
       isUserAuth()
         .then((res) => {
           setVerify(res.data.success);
-          console.log(res.data.success, "aaa");
+          console.log(res.data.success, "aaa")
         })
         .catch((err) => {
-          setVerify(false);
-          console.log(err);
-        });
+          setVerify(false)
+          localStorage.removeItem("userJwt");
+
+          console.log(err)
+        })
     } else if (role === "emp") {
         isEmpAuth()
         .then((res) => {
@@ -24,6 +26,8 @@ export default function PrivateRoutes({ role, route }) {
         })
         .catch((err) => {
           setVerify(false);
+          localStorage.removeItem("empJwt");
+
           console.log(err);
         });
     } else if (role === "admin") {
@@ -33,7 +37,10 @@ export default function PrivateRoutes({ role, route }) {
           setVerify(res.data.success);
         })
         .catch((err) => {
+
           setVerify(false);
+          localStorage.removeItem("adminJwt");
+
           console.log(err);
         });
     }

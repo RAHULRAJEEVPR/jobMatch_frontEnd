@@ -9,10 +9,13 @@ import Employers from "../pages/Admin/Employers";
 import Skills from "../pages/Admin/Skills";
 import City from "../pages/Admin/city";
 import PrivateRoutes from "../protectedRoutes/PrivateRoutes";
+import NotFoundPage from "../pages/NotFoundPage";
 
 export default function AdminRoutes() {
   return (
     <Routes>
+      <Route path="*" element={<NotFoundPage />} />
+
       <Route path="/login" element={<AdminLogin />} />
       <Route path="/home" element={<AdminHome />} />
       <Route element={<PrivateRoutes role={"admin"} route={"/admin/login"} />}>
