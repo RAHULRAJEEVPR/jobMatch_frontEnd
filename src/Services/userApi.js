@@ -25,6 +25,15 @@ const isUserAuth=()=>{
     return userAxiosInstence.get("/userAuth",
    { withCredentials:true});
 }
+const userGetAllPost=()=>{
+    return userAxiosInstence.get("getallpost",{withCredentials:true})
+}
+const userGetCityDetails=()=>{
+    return userAxiosInstence.get("/citydetails",{withCredentials:true})
+}
+const userGetSkillsData=()=>{
+    return userAxiosInstence.get("/skilldata",{withCredentials:true})
+}
 
 
 export{
@@ -32,5 +41,8 @@ export{
     isUserAuth,
     userSignup,
     userSignupWithGoogle,
-    userLoginWithGoogle
+    userLoginWithGoogle,
+    userGetAllPost,
+    userGetCityDetails,
+    userGetSkillsData
 }

@@ -7,7 +7,11 @@ export default {
 
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        "main_bg":"#F2EFEF"
+      }
+    },
   },
   plugins: [
     require('flowbite/plugin')

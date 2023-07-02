@@ -41,7 +41,7 @@ export default function Login() {
               // console.log(res);
               if (res.data.login) {
                 localStorage.setItem("userJwt", res.data.token);
-                navigate("/user/home");
+                navigate("/user");
                 toast.success(res.data.message);
               } else if (res.data.exists) {
                 toast.warn("account already exists");

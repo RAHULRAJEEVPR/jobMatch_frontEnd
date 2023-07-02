@@ -24,15 +24,15 @@ userAxiosInstence.interceptors.request.use(async(req)=>{
     const modifiedReq=attachToken(req,"userJwt")
     return modifiedReq;
 })
-const empAxiosInstence=createAxiosClient(empBaseUrl)
-userAxiosInstence.interceptors.request.use(async(req)=>{
-    const modifiedReq=attachToken(req,"empJwt")
-    return modifiedReq;
-})
+const empAxiosInstance = createAxiosClient(empBaseUrl);
+empAxiosInstance.interceptors.request.use(async (req) => {
+  const modifiedReq = attachToken(req, "empJwt");
+  return modifiedReq;
+});
 const adminAxiosInstence=createAxiosClient(adminBaseUrl)
 adminAxiosInstence.interceptors.request.use(async(req)=>{
     const modifiedReq=attachToken(req,"adminJwt")
     return modifiedReq;
 })
 
-export {userAxiosInstence,empAxiosInstence,adminAxiosInstence}
+export {userAxiosInstence,empAxiosInstance,adminAxiosInstence}

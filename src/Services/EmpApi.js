@@ -1,35 +1,50 @@
-import { empAxiosInstence } from "../utils/axious-utils";
+import { empAxiosInstance } from "../utils/axious-utils";
 
 
 const empSignUp=(value)=>{
-    return empAxiosInstence.post("/register",value,{
+    return empAxiosInstance.post("/register",value,{
         withCredentials:true
     })
 }
 
 const empSignupWithGoogle=(value)=>{
-    return  empAxiosInstence.post("/googleRegister",value,{
+    return  empAxiosInstance.post("/googleRegister",value,{
         withCredentials:true
     })
 }
 
 const empLogin=(value)=>{
-    return empAxiosInstence.post("/login",value,{
+    return empAxiosInstance.post("/login",value,{
      withCredentials:true
  })}
 
  const empLoginWithGoogle=(value)=>{
-    return empAxiosInstence.post("/googlelogin",value,{
+    return empAxiosInstance.post("/googlelogin",value,{
         withCredentials:true
     })
 }
 const isEmpAuth=()=>{
-    return empAxiosInstence.get("/empAuth",value,{withCredentials:true})
+    return empAxiosInstance.get("/empAuth",value,{withCredentials:true})
 }
-
+const skillData=()=>{
+    return empAxiosInstance.get("/skillData",{withCredentials:true})
+}
+const cityData=()=>{
+    return empAxiosInstance.get("/cityData",{withCredentials:true})
+}
+const createPost=(value)=>{
+    return empAxiosInstance.post("/createPost",value,{withCredentials:true})
+}
+const getPostData=()=>{
+    return empAxiosInstance.get("/getpostdata",{withCredentials:true})
+}
 export{empSignUp,
 empSignupWithGoogle,
 empLogin,
 empLoginWithGoogle,
-isEmpAuth
+isEmpAuth,
+skillData,
+cityData,
+createPost,
+getPostData
 }

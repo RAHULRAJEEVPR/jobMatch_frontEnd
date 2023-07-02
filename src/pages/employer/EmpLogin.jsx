@@ -41,7 +41,7 @@ export default function EmpLogin() {
               console.log(res);
               if (res.data.login) {
                 localStorage.setItem("empJwt", res.data.token);
-                navigate("/employer/home");
+                navigate("/employer/");
                 toast.success(res.data.message);
               } else if (res.data.exists) {
                 toast.warn("account already exists");
@@ -49,7 +49,7 @@ export default function EmpLogin() {
             })
             .catch((error) => {
               dispatch(hideLoading());
-              console.log(error.message);
+              console.log(error);
               toast.error(error.response.data.message);
             });
         })
@@ -75,7 +75,7 @@ export default function EmpLogin() {
           console.log(res);
           localStorage.setItem("empJwt", res.data.token);
           if (res.data.login) {
-            navigate("/employer/home");
+            navigate("/employer");
             toast.success(res.data.message);
           }
         })
@@ -93,7 +93,7 @@ export default function EmpLogin() {
   };
 
   return (
-    <div className="bg-white ">
+    <div className="bg-white w-screen ">
       <div className="flex justify-center items-center h-screen  ">
         <div className="bg-white p-8  rounded-md  md:w-3/4 lg:w-2/6 shadow-xl  ">
           <h1 className="text-4xl text-blue-950 font-bold mb-10 text-center">
