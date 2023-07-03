@@ -3,9 +3,10 @@ import { DASHBOARD_SIDEBAR_LINKS } from '../../lib/sideConstants'
 import { Link, useLocation } from 'react-router-dom'
 import classNames from "classnames"
 
-const linkClass="flex items-center gap-2 font-light px-3    py-2 hover:bg-neutral-700 active:bg-neutral-600 rounded-sm text-base "
+const linkClass="flex items-center gap-2 font-light px-3     py-2 hover:bg-neutral-700 active:bg-neutral-600 rounded-sm text-base "
 export default function SideBar() {
   return (
+   
     <div className='bg-blue-950 text-white flex   flex-col w-60 p-3'>
  <div className=" flex items-center gap-2 px-2 py-3  ">
     <span>JobMATCH</span>
@@ -15,6 +16,7 @@ export default function SideBar() {
  ))}</div>
  <div className="">bottom part</div>
     </div>
+    
   )
 }
 

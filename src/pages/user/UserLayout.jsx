@@ -8,7 +8,7 @@ import NavBar from '../../components/user/navbar/NavBar';
 export default function UserHome() {
 
   return (
-    <div className=" bg-main_bg w-screen overflow-hidden  ">
+    <div className=" bg-main_bg overflow-hidden ">
     <NavBar/>
     <div>{<Outlet />}</div>
     </div>

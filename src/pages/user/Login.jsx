@@ -76,7 +76,8 @@ export default function Login() {
           localStorage.setItem("userJwt", res.data.token);
           if (res.data.login) {
             toast.success(res.data.message);
-            navigate("/user/home");
+            navigate("/user");
+
           }
         })
         .catch((error) => {

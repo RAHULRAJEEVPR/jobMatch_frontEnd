@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/job-match-high-resolution-color-logo 1.png";
+import logo from "../assets/job-match-high-resolution-color-logo 1.png"; 
 import homeImg from "../assets/home logo.jpg";
 import employerLogo from "../assets/employer home.png";
 import jobSeekerLogo from "../assets/jobSeeker.png";

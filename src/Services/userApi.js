@@ -34,7 +34,9 @@ const userGetCityDetails=()=>{
 const userGetSkillsData=()=>{
     return userAxiosInstence.get("/skilldata",{withCredentials:true})
 }
-
+const jobDetailedView=(id)=>{
+    return userAxiosInstence.get(`/jobdetaileview/${id}`,{withCredentials:true})
+}
 
 export{
     userLogin,
@@ -44,5 +46,6 @@ export{
     userLoginWithGoogle,
     userGetAllPost,
     userGetCityDetails,
-    userGetSkillsData
+    userGetSkillsData,
+    jobDetailedView
 }

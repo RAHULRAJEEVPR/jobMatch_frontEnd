@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import ViewDetailsButton from "./ViewDetailsButton";
 
 export default function JobPost({ posts }) {
+  console.log(posts);
   const [currentPage, setCurrentpage] = useState(1);
   const postPerPage = 3;
   const lastIndex = currentPage * postPerPage;
@@ -24,10 +26,11 @@ setCurrentpage(id)
   }
   return (
     <>
+    <div className="">
       {records.map((post, index) => (
         <div
           key={index}
-          className="bg-white md:mx-24 border grid md:grid-cols-2 m-3 md:p-4 p-3 shadow-xl border-gray-400 rounded-xl"
+          className="bg-white md:mx-24 border  grid md:grid-cols-2 m-3 md:p-4 p-3 shadow-xl border-gray-400 rounded-xl"
         >
           <div className="flex flex-col">
             <div className="my-1">
@@ -36,8 +39,8 @@ setCurrentpage(id)
               </span>
             </div>
             <div className="my-1">
-              <span className="md:text-2xl text-blue-600  font-bold">
-                <span className="text-black">Company :</span>{" "}
+              <span className="md:text-2xl text-blue-600 cursor-pointer hover:text-blue-800 font-bold">
+                <span className="text-black cursor-default">Company :</span>{" "}
                 {post.empId.cmpName}
               </span>
             </div>
@@ -68,9 +71,7 @@ setCurrentpage(id)
           </div>
           <div className="flex flex-col">
             <div className="flex md:justify-end">
-              <button className="bg-blue-900 text-white md:text-lg md:p-3 p-2 md:px-5 font-bold rounded-md">
-                VIEW DETAILS
-              </button>
+              <ViewDetailsButton id={post._id}/>
             </div>
             <div className="flex md:justify-end mt-auto me-9 ">
               <span className="md:text-xl font-bold">
@@ -80,20 +81,21 @@ setCurrentpage(id)
           </div>
         </div>
       ))}
-<div className="flex justify-end md:me-20 font-black">
+      </div>
+<div className="flex justify-end  md:me-20 font-black">
       <nav aria-label="Page navigation example">
-        <ul class="inline-flex -space-x-px m-5">
+        <ul className="inline-flex -space-x-px m-5">
           <li>
             <button
               onClick={prevPage}
-              class={`px-3 ${currentPage===1?"hidden":""} py-2 ml-0 leading-tight  text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+              className={`px-3 ${currentPage===1?"hidden":""} py-2 ml-0 leading-tight  text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
             >
               Prev
             </button>
           </li>
           {numbers.map((n, i) => (
-            <li>
-              <button onClick={()=>{changeCPage(n)}} key={i} class={`px-3 ${currentPage===n ?'bg-yellow-300':''} py-2 leading-tight text-gray-500 bg-white border border-gray-300  hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}>
+            <li key={i}>
+              <button onClick={()=>{changeCPage(n)}} key={i} className={`px-3 ${currentPage===n ?'bg-yellow-300':''} py-2 leading-tight text-gray-500 bg-white border border-gray-300  hover:text-gray-700 `}>
                {n}
               </button>
             </li>
@@ -102,7 +104,7 @@ setCurrentpage(id)
           <li>
             <button
               onClick={nextPage}
-              class={`px-3 ${currentPage===nPage?"hidden":""} py-2 ml-0 leading-tight  text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+              className={`px-3 ${currentPage===nPage?"hidden":""} py-2 ml-0 leading-tight  text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
             >
               Next
             </button>

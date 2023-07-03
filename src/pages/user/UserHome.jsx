@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import JobSearch from '../../components/user/JobSearch'
-import JobPost from '../../components/user/JobPost'
+import JobPost from '../../components/user/userJobPost/JobPost'
 import { userGetAllPost } from '../../Services/userApi';
 import { showLoading,hideLoading } from "../../Redux/alertSlice";
 import { useSelector,useDispatch } from "react-redux";
@@ -47,7 +47,7 @@ export default function UserHome() {
       });
   }, []);
   return ( 
-    <div>
+    <div className="">
      <div className=''>
       <JobSearch setSearch={setSearch} handleSearch={handleSearch} />
       </div>   

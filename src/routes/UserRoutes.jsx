@@ -8,7 +8,8 @@ import PrivateRoutes from "../protectedRoutes/PrivateRoutes";
 import Formik from "../pages/user/Formik";
 import NotFoundPage from "../pages/NotFoundPage";
 import UserHome from "../pages/user/UserHome";
-
+import UserProfile from "../pages/user/UserProfile";
+import PostDetailedView from "../pages/user/PostDetailedView";
 
 export default function UserRoutes() {
   return (
@@ -21,10 +22,9 @@ export default function UserRoutes() {
       <Route path="/formik" element={<Formik />} />
       <Route element={<PrivateRoutes role={"user"} route={"/user/login"} />}>
         <Route path="/" element={<Layout />}>
-        <Route index element={<UserHome/>} />
-
-
-
+          <Route index element={<UserHome />} />
+          <Route path="/jobdetailedview" element={<PostDetailedView/>} /> 
+          <Route path="/profile" element={<UserProfile />} /> 
         </Route>
       </Route>
     </Routes>
