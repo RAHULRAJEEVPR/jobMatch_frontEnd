@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { jobDetailedView } from "../../Services/userApi";
 import { showLoading, hideLoading } from "../../Redux/alertSlice";
 import { useDispatch } from "react-redux";
+import ApplyJobModal from "../../components/user/userJobPost/ApplyJobModal";
 
 export default function PostDetailedView() {
   const dispatch = useDispatch();
@@ -25,12 +26,12 @@ export default function PostDetailedView() {
   }, []);
   if (Object.keys(postDetails).length === 0) return;
   return (
-    <div className=" h-screen flex justify-center items-center">
-      <div className="bg-white text-gray-900 border border-gray-300 rounded-2xl shadow-2xl m-9 lg:my-28 lg:m-52  md:m-14">
-        <div className="md:flex md:flex-wrap p-6">
-          <div className="md:w-3/4  ">
+    <div className="  flex justify-center  items-center">
+      <div className="bg-white text-gray-900 border border-gray-300 rounded-2xl shadow-2xl my-20 lg:my-28 lg:m-52  md:m-14">
+        <div className="md:flex md:flex-wrap  p-6">
+          <div className="md:w-4/6  ">
             <div>
-              <h1 className="font-extrabold text-blue-950  text-xl md:text-4xl ps-3 ">
+              <h1 className="font-extrabold  text-blue-950  text-xl md:text-4xl ps-3 ">
                 Role : {postDetails.role}{" "}
               </h1>
             </div>
@@ -88,12 +89,8 @@ export default function PostDetailedView() {
               </h2>
             </div>
           </div>
-          <div className="md:w-1/4  ">
-            <div>
-              <button className="font-bold bg-blue-950 text-white md:text-xl rounded-lg hover:bg-blue-800 flex mx-auto md:p-3 p-1 md:px-3">
-                APPLY NOW
-              </button>
-            </div>
+          <div className="md:w-2/6   ">
+           <ApplyJobModal id={postDetails._id}/>
           </div>
         </div>
       </div>

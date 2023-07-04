@@ -38,6 +38,10 @@ const jobDetailedView=(id)=>{
     return userAxiosInstence.get(`/jobdetaileview/${id}`,{withCredentials:true})
 }
 
+const applyJob=(data)=>{
+    return userAxiosInstence.post("/applyjob",data,{withCredentials:true})
+}
+
 export{
     userLogin,
     isUserAuth,
@@ -47,5 +51,6 @@ export{
     userGetAllPost,
     userGetCityDetails,
     userGetSkillsData,
-    jobDetailedView
+    jobDetailedView,
+    applyJob
 }
