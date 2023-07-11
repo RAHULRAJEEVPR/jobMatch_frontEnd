@@ -11,9 +11,14 @@ const links = [
 
 export default function NavBar() {
   const navigate = useNavigate();
-
+ 
+ const  logout =()=>{
+  console.log("logout called");
+  localStorage.removeItem("userJwt");
+  navigate("/user/login");
+  }
   return (
-    <nav className="bg-blue-950 w-screen">
+    <nav className="bg-blue-950 w-screen  ">
       <div className="bg-blue-950 p-5 flex items-center">
         <span onClick={()=>navigate("/user/")} className="text-white font-black text-4xl cursor-pointer">JobMatch</span>
         <div className="flex ml-auto me-4">
@@ -40,7 +45,9 @@ export default function NavBar() {
                   <Menu.Item key={link.key}>
                     {({ active }) => (
                       <span
-                        onClick={() => navigate(link.path)} // Wrap navigate in an arrow function or a callback function
+                        onClick={() => {
+                          link.path =="/user/profile"?  navigate(link.path) : logout()
+                        }} // Wrap navigate in an arrow function or a callback function
                         className={`${
                           active && "bg-blue-900 text-white"
                         } block px-4 border font-bold py-2 text-lg text-gray-700`}

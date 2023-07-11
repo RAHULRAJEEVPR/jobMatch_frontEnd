@@ -42,6 +42,34 @@ const applyJob=(data)=>{
     return userAxiosInstence.post("/applyjob",data,{withCredentials:true})
 }
 
+const updateUserAbout=(data)=>{
+return userAxiosInstence.post("/updateUserAbout",data,{withCredentials:true})
+}
+const addUserExp=(data)=>{
+return userAxiosInstence.post("/addUserExp",data,{withCredentials:true})
+}
+const addUserSkill=(data)=>{
+return userAxiosInstence.post("/addUserSkill",data,{withCredentials:true})
+}
+const dropUserSkill=(data)=>{
+return userAxiosInstence.post("/dropUserSkill",data,{withCredentials:true})
+}
+const addUserEdu=(data)=>{
+return userAxiosInstence.post("/addUserEdu",data,{withCredentials:true})
+}
+const dropUserExp=(data)=>{
+return userAxiosInstence.post("/dropUserExp",data,{withCredentials:true})
+}
+const dropUserEdu=(data)=>{
+return userAxiosInstence.post("/dropUserEdu",data,{withCredentials:true})
+}
+const updateUserBasicInfo=(data)=>{
+return userAxiosInstence.post("/updateUserBasicInfo",data,{withCredentials:true})
+}
+const changeUserPassword=(data)=>{
+return userAxiosInstence.post("/changeUserPassword",data,{withCredentials:true})
+}
+
 export{
     userLogin,
     isUserAuth,
@@ -52,5 +80,15 @@ export{
     userGetCityDetails,
     userGetSkillsData,
     jobDetailedView,
-    applyJob
+    applyJob,
+    updateUserAbout,
+    addUserExp ,
+    addUserSkill,
+    dropUserSkill,
+    addUserEdu,
+    dropUserExp,
+    dropUserEdu,
+    updateUserBasicInfo,
+    changeUserPassword
 }
+

@@ -9,7 +9,10 @@ export default function UserHome() {
 
   return (
     <div className=" bg-main_bg overflow-hidden ">
-    <NavBar/>
+      <div className='z-100'>
+
+    < NavBar/>
+      </div>
     <div>{<Outlet />}</div>
     </div>
   )

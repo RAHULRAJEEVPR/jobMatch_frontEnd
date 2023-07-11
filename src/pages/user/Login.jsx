@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogin, userLoginWithGoogle } from "../../Services/userApi";
 import { useGoogleLogin, googleLogout } from "@react-oauth/google";
+import { updateUserDetails } from "../../Redux/user/userSlice";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -40,6 +41,9 @@ export default function Login() {
               dispatch(hideLoading());
               // console.log(res);
               if (res.data.login) {
+                console.log(res.data.userData);
+                dispatch(updateUserDetails(res.data.userData))
+
                 localStorage.setItem("userJwt", res.data.token);
                 navigate("/user");
                 toast.success(res.data.message);
@@ -72,6 +76,7 @@ export default function Login() {
       userLogin({ ...values })
         .then((res) => {
           dispatch(hideLoading());
+          dispatch(updateUserDetails(res.data.userData))
           console.log(res);
           localStorage.setItem("userJwt", res.data.token);
           if (res.data.login) {
