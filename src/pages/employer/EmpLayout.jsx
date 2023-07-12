@@ -3,7 +3,7 @@ import EmpNavbar from '../../components/employer/navBat/EmpNavbar'
 import { Outlet } from 'react-router-dom'
 export default function EmpLayout() {
   return (
-    <div className=" bg-main_bg w-screen overflow-hidden  ">
+    <div className=" bg-main_bg   ">
      <EmpNavbar/> 
      <div>{<Outlet/>}</div>
     </div>

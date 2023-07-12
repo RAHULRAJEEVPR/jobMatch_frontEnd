@@ -24,6 +24,7 @@ if(currentPage!==1){
   const changeCPage=(id)=>{
 setCurrentpage(id)
   }
+  
   return (
     <>
     <div className="">

@@ -16,7 +16,7 @@ console.log(userData);
  
   if (userData == null) return;
   return (
-    <div className="grid lg:grid-cols-4 mt-6 ms-9 me-9 md:me-2 mb-5 ">
+    <div className="grid lg:grid-cols-4 mt-6 lg:mx-9 mx-4 md:me-2 mb-5 ">
       <div className="col-span-4 lg:col-span-1 ">
         <ProPicComp userData={userData}/>
         <div className="bg-white p-3 rounded-xl md:mx-10 flex mb-3 border border-gray-500 cursor-pointer hover:bg-gray-300 shadow-md ">

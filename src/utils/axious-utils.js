@@ -5,7 +5,7 @@ import { userBaseUrl,empBaseUrl,adminBaseUrl} from "../constants/constants";
 const createAxiosClient=(baseURL)=>{
     const client =axios.create({
         baseURL,
-        timeout:6000,
+        timeout:8000,
         timeoutErrorMessage:"Request timeout Please Try Again!!!"
     })
     return client;

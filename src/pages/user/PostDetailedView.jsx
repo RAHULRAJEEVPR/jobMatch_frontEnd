@@ -20,7 +20,6 @@ export default function PostDetailedView() {
       })
       .catch((err) => {
         dispatch(hideLoading());
-
         console.log(err);
       });
   }, []);

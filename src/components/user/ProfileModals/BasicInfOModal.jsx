@@ -13,7 +13,7 @@ export default function BasicInfOModal({userData}) {
 
 
   const dispatch = useDispatch();
-  const [info, setInfo] = useState({ Location: userData.location, Phone: userData.phone });
+  const [info, setInfo] = useState({ Location: userData.location, Phone: userData.phone,name:userData.name });
   const [showModal, setShowModal] = useState(false);
 
   const handleChange = (e) => {
@@ -24,6 +24,9 @@ export default function BasicInfOModal({userData}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (info.name.trim() == "") {
+      return toast.warn("location is needed");
+    }
     if (info.Location.trim() == "") {
       return toast.warn("location is needed");
     }
@@ -70,7 +73,24 @@ export default function BasicInfOModal({userData}) {
                     <form onSubmit={handleSubmit}>
                       <div className="mb-4">
                         <label
-                          htmlFor="role"
+                          htmlFor="name"
+                          className="block text-2xl font-semibold text-black"
+                        >
+                          Name
+                        </label>
+                        <input
+                          type="text"
+                          value={info.name}
+                          id="name"
+                          name="name"
+                          className="mt-1 p-2   block w-full font-semibold shadow-sm md:text- border-gray-300 rounded-md"
+                          placeholder="Enter the Location"
+                          onChange={handleChange}
+                        />
+                      </div>
+                      <div className="mb-4">
+                        <label
+                          htmlFor="Location "
                           className="block text-2xl font-semibold text-black"
                         >
                           Location

@@ -9,7 +9,7 @@ export default function UserAbout({userAbout,set}) {
     <div className="bg-white border border-gray-500 shadow-md rounded-xl ">
     <div className="p-4">
       <div className="flex">
-        <span className="text-3xl  font-semibold">ABOUT</span>
+        <span className="lg:text-3xl text-2xl font-semibold">ABOUT</span>
       <AboutModal userAbout={userAbout} set={set} />
        
 

@@ -69,6 +69,9 @@ return userAxiosInstence.post("/updateUserBasicInfo",data,{withCredentials:true}
 const changeUserPassword=(data)=>{
 return userAxiosInstence.post("/changeUserPassword",data,{withCredentials:true})
 }
+const changeUserImage=(data)=>{
+return userAxiosInstence.post("/changeUserImage",data,{withCredentials:true})
+}
 
 export{
     userLogin,
@@ -89,6 +92,7 @@ export{
     dropUserExp,
     dropUserEdu,
     updateUserBasicInfo,
-    changeUserPassword
+    changeUserPassword,
+    changeUserImage
 }
 

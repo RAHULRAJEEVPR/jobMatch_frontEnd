@@ -5,6 +5,22 @@ import { getPostData } from "../../Services/EmpApi";
 
 export default function  NewJobPost({ skills, citys ,setPosts}) {
   const [showModal, setShowModal] = useState(false);
+  const [additionalSkills, setAdditionalSkills] = useState([]);
+  const [newSkill, setNewSkill] = useState("");
+
+
+  const handleAddSkill = () => {
+    if (newSkill.trim() !== "") {
+      setAdditionalSkills([...additionalSkills, newSkill.trim()]);
+      setNewSkill("");
+    }
+  };
+
+  const handleRemoveSkill = (index) => {
+    const updatedSkills = [...additionalSkills];
+    updatedSkills.splice(index, 1);
+    setAdditionalSkills(updatedSkills);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,6 +82,8 @@ export default function  NewJobPost({ skills, citys ,setPosts}) {
       document.querySelectorAll('input[name="skills"]:checked')
     ).map((checkbox) => checkbox.value);
     jobData.skills = selectedSkills;
+    jobData.skills.push(...additionalSkills)
+    // jobData.additionalSkills = additionalSkills;
     if (jobData.skills.length === 0) {
       toast.error("Please select skill");
       return;
@@ -76,6 +94,11 @@ export default function  NewJobPost({ skills, citys ,setPosts}) {
       console.log(res);
       getPostData().then((res)=>{
         setPosts(res.data.postData);
+        setAdditionalSkills([]);
+        setNewSkill("");
+    
+      }).catch((err)=>{
+        toast.success("something went worng")
       })
     })
     console.log("Job data:", jobData);
@@ -97,12 +120,12 @@ export default function  NewJobPost({ skills, citys ,setPosts}) {
         </button>
         {showModal ? (
           <>
-            <div className="justify-center  items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+            <div className="justify-center pt-20   items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
               <div className="relative md:w-2/6 my-6 mx-auto max-w-3xl">
                 {/*content*/}
                 <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                   {/*header*/}
-                  <div className="flex items-center justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                  <div className="flex items-center justify-between pt-36 p-5 border-b border-solid border-slate-200 rounded-t">
                     <h3 className="text-3xl   font-bold">Create Job Offer</h3>
 
                     <button
@@ -262,6 +285,51 @@ export default function  NewJobPost({ skills, citys ,setPosts}) {
                           ))}
                         </div>
                       </div>
+
+                      <div className="mb-2">
+                <label
+                  htmlFor="additionalSkills"
+                  className="block text-xl font-bold text-gray-900"
+                >
+                  Additional Skills
+                </label>
+                <div className="flex items-center">
+                  <input
+                    type="text"
+                    id="additionalSkills"
+                    name="additionalSkills"
+                    value={newSkill}
+                    onChange={(e) => setNewSkill(e.target.value)}
+                    className="mt-1 p-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-lg border-gray-300 rounded-md"
+                    placeholder="Enter additional skills"
+                  />
+                  <button
+                    type="button"
+                    className="ml-2 bg-emerald-500 text-white font-bold px-3 py-2 rounded shadow hover:shadow-lg"
+                    onClick={handleAddSkill}
+                  >
+                    Add
+                  </button>
+                </div>
+                <div className="mt-2 flex flex-wrap">
+                  {additionalSkills.map((skill, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center mr-2 mb-2 bg-gray-100 p-1 rounded"
+                    >
+                      <span className="mr-1">{skill}</span>
+                      <button
+                        type="button"
+                        className="text-red-500 font-bold"
+                        onClick={() => handleRemoveSkill(index)}
+                      >
+                        x
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
 
                       {/*footer*/}
                       <div className="flex items-center justify-end p-2 border-t border-solid border-slate-200 rounded-b">

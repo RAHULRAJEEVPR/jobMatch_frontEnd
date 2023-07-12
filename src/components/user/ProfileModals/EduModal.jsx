@@ -30,9 +30,12 @@ export default function EduModal() {
     addUserEdu({...edu}).then((res)=>{
         toast.success("added successfully")
         dispatch(updateUserDetails(res.data.userData))
+        setShowModal(false)
     }).catch((err) => {
         toast.error("something went wrong")
+        setShowModal(false)
         console.log(err);
+
       });
   };
 
