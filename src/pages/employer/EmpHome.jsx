@@ -48,7 +48,7 @@ export default function EmpHome() {
       </div>
       <ViewAllPostTab  />
       <div>
-        <EmpPostCard posts={posts} />
+        <EmpPostCard posts={posts} skills={skills} citys={citys} setPosts={setPosts} />
       </div>
     </div>
   );
