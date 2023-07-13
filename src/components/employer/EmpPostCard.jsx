@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import EditJobPost from "./EditJobPost";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+ faTrash
+} from "@fortawesome/free-solid-svg-icons";
+import { deletePost } from "../../Services/EmpApi";
+import { toast } from "react-toastify";
 
 export default function EmpPostCard({ posts ,skills, citys ,setPosts }) {
   console.log(posts);
@@ -24,6 +30,16 @@ export default function EmpPostCard({ posts ,skills, citys ,setPosts }) {
   const changeCPage = (id) => {
     setCurrentpage(id);
   };
+
+const deletePostt=(id)=>{
+deletePost({id:id}).then((res)=>{
+  setPosts(res.data.postData)
+  toast.success("deleted")
+}).catch((err)=>{
+  console.log(err);
+toast.error("something went wrong")
+})
+}
 
   return (
     <>
@@ -75,10 +91,19 @@ export default function EmpPostCard({ posts ,skills, citys ,setPosts }) {
           <div className="flex flex-col">
             <div className="flex md:justify-end">
               <button className="bg-blue-900 text-white text-sm md:text-lg md:p-3 p-2 md:px-5 font-semibold rounded-md">
-                VIEW DETAILS
+                VIEW
+              </button>
+              <EditJobPost post={post} skills={skills} citys={citys} setPosts={setPosts} />
+              <button
+              onClick={(id)=>deletePostt(post._id)}
+               className=" text-lg md:text-2xl  ms-4 text-red-700 font-semibold rounded-md">
+              <FontAwesomeIcon
+                className="me-2 mt-1"
+                color=""
+                icon={faTrash}
+              />
               </button>
 
-              <EditJobPost post={post} skills={skills} citys={citys} setPosts={setPosts} />
             </div>
           </div>
         </div>

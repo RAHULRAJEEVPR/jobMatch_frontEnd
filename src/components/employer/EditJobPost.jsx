@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { editPost } from "../../Services/EmpApi";
 import { getPostData } from "../../Services/EmpApi";
+import { showLoading, hideLoading } from "../../Redux/alertSlice";
+import { useDispatch } from "react-redux";
 
 
 export default function  EditJobPost({post, skills, citys ,setPosts}) {
-
+const dispatch=useDispatch()
     const [postData,setPostData]=useState(post)
     const [isChecked, setIsChecked] = useState(post.skills);
   const [showModal, setShowModal] = useState(false);
- console.log(postData);
+ 
   const [additionalSkills, setAdditionalSkills] = useState([...post.additionalSkills]);
   
   const [newSkill, setNewSkill] = useState("");
@@ -34,7 +36,7 @@ let id=postData._id
   const handleAddSkill = () => {
     if (newSkill.trim() !== "") {
       setAdditionalSkills([...additionalSkills, newSkill.trim()]);
-      console.log(additionalSkills);
+
       setNewSkill("");
     }
   };
@@ -116,16 +118,17 @@ let id=postData._id
     // Perform form submission logic
     editPost({...jobData,id: postData._id}).then((res)=>{ 
       console.log(res);
-      getPostData().then((res)=>{
+      dispatch(showLoading())
+     
         setPosts(res.data.postData);
+        console.log(res);
+        dispatch(hideLoading())
         setAdditionalSkills([]);
         setNewSkill("");
         toast.success("updated")
-    
-      }).catch((err)=>{
-        console.log(err);
-        toast.success("something went worng")
-      })
+    }).catch((err)=>{
+      console.log(err);
+      toast.error("something went wrong")
     })
     console.log("Job data:", jobData);
     e.target.reset(); 
