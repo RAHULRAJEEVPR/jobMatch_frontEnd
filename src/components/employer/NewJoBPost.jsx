@@ -107,7 +107,7 @@ export default function  NewJobPost({ skills, citys ,setPosts}) {
     // Close the modal
     setShowModal(false);
   };
-
+ 
   return (
     <>
       <div className="flex justify-end ">

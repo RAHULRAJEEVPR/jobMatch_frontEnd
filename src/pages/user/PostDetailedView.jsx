@@ -9,7 +9,7 @@ export default function PostDetailedView() {
   const dispatch = useDispatch();
   const [postDetails, setPostDetails] = useState({});
   const location = useLocation();
-  const { id } = location.state || {};
+  const { id } = location.state  || {};
 
   useEffect(() => {
     dispatch(showLoading());

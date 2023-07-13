@@ -35,6 +35,10 @@ const cityData=()=>{
 const createPost=(value)=>{
     return empAxiosInstance.post("/createPost",value,{withCredentials:true})
 }
+const editPost=(value,id)=>{
+    console.log(id,"api");
+    return empAxiosInstance.post(`/editPost/${id}`,value,{withCredentials:true})
+}
 const getPostData=()=>{
     return empAxiosInstance.get("/getpostdata",{withCredentials:true})
 }
@@ -46,5 +50,6 @@ isEmpAuth,
 skillData,
 cityData,
 createPost,
-getPostData
+getPostData,
+editPost
 }
