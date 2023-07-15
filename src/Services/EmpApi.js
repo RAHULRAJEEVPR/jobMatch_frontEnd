@@ -45,7 +45,17 @@ const editPost=(value,id)=>{
 const getPostData=()=>{
     return empAxiosInstance.get("/getpostdata",{withCredentials:true})
 }
-export{empSignUp,
+const getSinglePostData=(postId)=>{
+    return empAxiosInstance.get(`/getsinglepostdata/${postId}`,{withCredentials:true})
+}
+const getUserData=(userId)=>{
+    return empAxiosInstance.get(`/getuserdata/${userId}`,{withCredentials:true})
+}
+const changeApplicationStatus=(postId,userId,newStatus)=>{
+    return empAxiosInstance.get(`/changeapplicationstatus/${postId}/${userId}/${newStatus}`,{withCredentials:true})
+}
+export{
+empSignUp,
 empSignupWithGoogle,
 empLogin,
 empLoginWithGoogle,
@@ -55,5 +65,8 @@ cityData,
 createPost,
 getPostData,
 editPost,
-deletePost
+deletePost,
+getSinglePostData,
+getUserData,
+changeApplicationStatus
 }

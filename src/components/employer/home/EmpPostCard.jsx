@@ -4,18 +4,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
  faTrash
 } from "@fortawesome/free-solid-svg-icons";
-import { deletePost } from "../../Services/EmpApi";
+import { deletePost } from "../../../Services/EmpApi";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function EmpPostCard({ posts ,skills, citys ,setPosts }) {
-  console.log(posts);
+  // const [postData,setPostData]=useState([])
+  
+  const navigate=useNavigate()
+  
   const [currentPage, setCurrentpage] = useState(1);
   const postPerPage = 3;
   const lastIndex = currentPage * postPerPage;
   const firstIndex = lastIndex - postPerPage;
   const records = posts.slice(firstIndex, lastIndex);
   const nPage = Math.ceil(posts.length / postPerPage);
-  const numbers = [...Array(nPage + 1).keys()].slice(1);
+  const numbers = [...Array(nPage + 1).keys()].slice(1)
 
   const nextPage = () => {
     if (currentPage !== nPage) {
@@ -41,9 +45,16 @@ toast.error("something went wrong")
 })
 }
 
+const navigateToApplicants = (postId) => {
+  
+  navigate(`/employer/applicants`,{state:{postId}});
+};
   return (
     <>
-      {records.map((post, index) => (
+    
+      {posts.length!=0 ?
+      records.map((post, index) => (
+        
         <div
           key={index}
           className="bg-white md:mx-14 border grid md:grid-cols-2 m-3 md:p-4 p-3 shadow-xl border-gray-400 rounded-xl"
@@ -90,7 +101,9 @@ toast.error("something went wrong")
           </div>
           <div className="flex flex-col">
             <div className="flex md:justify-end">
-              <button className="bg-blue-900 text-white text-sm md:text-lg md:p-3 p-2 md:px-5 font-semibold rounded-md">
+              <button
+              onClick={() => navigateToApplicants(post._id)}
+               className="bg-blue-900 text-white   md:px-5 font-bold rounded-md">
                 VIEW
               </button>
               <EditJobPost post={post} skills={skills} citys={citys} setPosts={setPosts} />
@@ -107,7 +120,7 @@ toast.error("something went wrong")
             </div>
           </div>
         </div>
-      ))}
+      )):<div></div>}
       <div className="flex justify-end  md:me-20 font-black">
         <nav aria-label="Page navigation example">
           <ul className="inline-flex -space-x-px m-5">

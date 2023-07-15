@@ -27,7 +27,7 @@ const dispatch =useDispatch()
 
   return (
     <div className="bg-white border border-gray-500 shadow-md mt-6 rounded-xl ">
-          <div className="px-4">
+          <div className="px-4 py-2">
             <div className="text-2xl lg:text-3xl flex font-semibold">
               {" "}
               <FontAwesomeIcon

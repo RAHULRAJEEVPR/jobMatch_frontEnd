@@ -17,7 +17,7 @@ export default function UserSkills({ userData }) {
       .catch((err) => {
         toast.error("something went wrong");
         console.log(err);
-      });
+      })
   };
   return (
     <div className="bg-white border border-gray-500 shadow-xl mt-5 rounded-xl">

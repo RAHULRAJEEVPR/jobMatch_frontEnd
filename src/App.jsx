@@ -1,5 +1,5 @@
 import { BrowserRouter,Route,Routes } from 'react-router-dom'
-import UserRoutes from './routes/Userroutes'
+import UserRoutes from './routes/UserRoutes'
 import EmpRoutes from './routes/EmpRoutes'
 import LandingPage from './pages/LandingPage'
 import AdminRoutes from './routes/AdminRoutes'

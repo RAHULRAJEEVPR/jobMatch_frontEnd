@@ -6,17 +6,22 @@ import EmpLogin from "../pages/employer/empLogin";
 import EmpLayout from "../pages/employer/EmpLayout";
 import NotFoundPage from "../pages/NotFoundPage";
 import EmpHome from "../pages/employer/EmpHome";
+import JobApplications from "../pages/employer/JobApplications";
+import UserProfileView from "../pages/employer/UserProfileView";
+import AllPost from "../pages/employer/AllPost";
 
 export default function EmpRoutes() {
   return (
     <Routes>
       <Route path="*" element={<NotFoundPage />} />
-
       <Route path="/register" element={<EmpRegister />} />
       <Route path="/login" element={<EmpLogin />} />
       <Route path="/:id/verify/:token" element={<EmpEmailVerify />} />
       <Route path="/" element={<EmpLayout />}>
         <Route index element={<EmpHome />} />
+        <Route path="/applicants" element={<JobApplications/>}/>
+        <Route path="/applicants/profile" element={<UserProfileView/>}/>
+        <Route path="/allposts" element={<AllPost/>}/>
       </Route>
     </Routes>
   );
