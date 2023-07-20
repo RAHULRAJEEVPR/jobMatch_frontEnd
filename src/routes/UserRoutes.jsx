@@ -10,6 +10,10 @@ import NotFoundPage from "../pages/NotFoundPage";
 import UserHome from "../pages/user/UserHome";
 import UserProfile from "../pages/user/UserProfile";
 import PostDetailedView from "../pages/user/PostDetailedView";
+import UserEmpProfileview from "../pages/user/UserEmpProfileview";
+import JobRequests from "../pages/user/JobRequests";
+import Invites from "../pages/user/Invites";
+
 
 export default function UserRoutes() {
   return (
@@ -25,6 +29,12 @@ export default function UserRoutes() {
           <Route index element={<UserHome />} />
           <Route path="/jobdetailedview" element={<PostDetailedView/>} /> 
           <Route path="/profile" element={<UserProfile />} /> 
+          <Route path="/employer/profile" element={<UserEmpProfileview />} /> 
+          <Route path="/jobrequests" element={<JobRequests />} /> 
+          <Route path="/invites" element={<Invites/>}/>
+
+          
+          
         </Route>
       </Route>
     </Routes>

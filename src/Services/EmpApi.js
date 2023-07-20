@@ -38,9 +38,15 @@ const createPost=(value)=>{
 const deletePost=(value)=>{
     return empAxiosInstance.post("/deletePost",value,{withCredentials:true})
 }
+const completePost=(value)=>{
+    return empAxiosInstance.post("/completePost",value,{withCredentials:true})
+}
 const editPost=(value,id)=>{
     console.log(id,"api");
     return empAxiosInstance.post(`/editPost/${id}`,value,{withCredentials:true})
+}
+const getActivePostData=()=>{
+    return empAxiosInstance.get("/getactivepostdata",{withCredentials:true})
 }
 const getPostData=()=>{
     return empAxiosInstance.get("/getpostdata",{withCredentials:true})
@@ -54,6 +60,23 @@ const getUserData=(userId)=>{
 const changeApplicationStatus=(postId,userId,newStatus)=>{
     return empAxiosInstance.get(`/changeapplicationstatus/${postId}/${userId}/${newStatus}`,{withCredentials:true})
 }
+const empChangeUserImage=(value)=>{
+    return empAxiosInstance.post(`/changeImage`,value,{withCredentials:true})
+}
+const empUpdateAbout=(value)=>{
+    return empAxiosInstance.post("/updateabout",value,{withCredentials:true})
+}
+const empUpdateBasic=(value)=>{
+    return empAxiosInstance.post("/updatebasicinfo",value,{withCredentials:true})
+}
+const empSearchUser=(value)=>{
+    return empAxiosInstance.post("/empsearchuser",value,{withCredentials:true})
+}
+const empInviteUser=(value)=>{
+    return empAxiosInstance.post("empinviteuser",value,{withCredentials:true})
+}
+
+
 export{
 empSignUp,
 empSignupWithGoogle,
@@ -68,5 +91,12 @@ editPost,
 deletePost,
 getSinglePostData,
 getUserData,
-changeApplicationStatus
+changeApplicationStatus,
+completePost,
+empChangeUserImage,
+empUpdateAbout,
+empUpdateBasic,
+getActivePostData,
+empSearchUser,
+empInviteUser
 }

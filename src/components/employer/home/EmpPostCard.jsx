@@ -1,25 +1,23 @@
 import React, { useState } from "react";
 import EditJobPost from "./EditJobPost";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
- faTrash
-} from "@fortawesome/free-solid-svg-icons";
-import { deletePost } from "../../../Services/EmpApi";
+import { faTrash ,faCircleCheck} from "@fortawesome/free-solid-svg-icons";
+import { deletePost,completePost} from "../../../Services/EmpApi";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-export default function EmpPostCard({ posts ,skills, citys ,setPosts }) {
+export default function EmpPostCard({ posts, skills, citys, setPosts }) {
   // const [postData,setPostData]=useState([])
-  
-  const navigate=useNavigate()
-  
+
+  const navigate = useNavigate();
+
   const [currentPage, setCurrentpage] = useState(1);
   const postPerPage = 3;
   const lastIndex = currentPage * postPerPage;
   const firstIndex = lastIndex - postPerPage;
   const records = posts.slice(firstIndex, lastIndex);
   const nPage = Math.ceil(posts.length / postPerPage);
-  const numbers = [...Array(nPage + 1).keys()].slice(1)
+  const numbers = [...Array(nPage + 1).keys()].slice(1);
 
   const nextPage = () => {
     if (currentPage !== nPage) {
@@ -35,92 +33,129 @@ export default function EmpPostCard({ posts ,skills, citys ,setPosts }) {
     setCurrentpage(id);
   };
 
-const deletePostt=(id)=>{
-deletePost({id:id}).then((res)=>{
-  setPosts(res.data.postData)
-  toast.success("deleted")
-}).catch((err)=>{
-  console.log(err);
-toast.error("something went wrong")
-})
-}
+  const deletePostt = (id) => {
+    deletePost({ id: id })
+      .then((res) => {
+        setPosts(res.data.postData);
+        toast.success("deleted");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("something went wrong");
+      });
+  };
+  const completePostt=(id)=>{
+    ({ id: id })
+    completePost({ id: id }).then((res) => {
+      setPosts(res.data.postData);
+      toast.success("updated");
+    })
+    .catch((err) => {
+      console.log(err);
+      toast.error("something went wrong");
+    });
+  }
 
-const navigateToApplicants = (postId) => {
-  
-  navigate(`/employer/applicants`,{state:{postId}});
-};
+  const navigateToApplicants = (postId) => {
+    navigate(`/employer/applicants`, { state: { postId } });
+  };
   return (
     <>
-    
-      {posts.length!=0 ?
-      records.map((post, index) => (
-        
-        <div
-          key={index}
-          className="bg-white md:mx-14 border grid md:grid-cols-2 m-3 md:p-4 p-3 shadow-xl border-gray-400 rounded-xl"
-        >
-          <div className="flex flex-col">
-            <div className="my-1">
-              <span className="md:text-3xl font-bold">Role : {post.role}</span>
-            </div>
-            <div className="my-1">
-              <span className="md:text-2xl text-blue-600  font-bold">
-                <span className="text-black">Company :</span>{" "}
-                {post.empId.cmpName}
-              </span>
-            </div>
-            <div className="my-1">
-              <span className="md:text-2xl  font-bold">
-                Location : {post.location}
-              </span>
-            </div>
-            <div className="my-1">
-              <span className="md:text-2xl  font-bold">
-                Total vacancy : {post.vacancy}
-              </span>
-            </div>
-            <div className="my-1">
-              <span className="md:text-xl  font-bold">
-                Required skills:
-                {post.skills.map((skill, i) => (
-                  <span
-                    key={i}
-                    className="bg-gray-400 ms-1 rounded-md text-white font-medium text-base px-1"
-                  >
-                    {" "}
-                    {skill}
+      {posts.length != 0 ? (
+        records.map((post, index) => (
+          <div
+            key={index}
+            className="bg-white md:mx-14 border grid md:grid-cols-3 m-3 md:p-4 p-3 shadow-xl border-gray-400 rounded-xl"
+          >
+            <div className="md:col-span-2">
+              <div className="flex flex-col">
+                <div className="my-1">
+                  <span className="md:text-3xl font-bold">
+                    Role : {post.role}
                   </span>
-                ))}
-              </span>
+                </div>
+                <div className="my-1">
+                  <span className="md:text-2xl text-blue-600  font-bold">
+                    <span className="text-black">Company :</span>{" "}
+                    {post.empId.cmpName}
+                  </span>
+                </div>
+                <div className="my-1">
+                  <span className="md:text-2xl  font-bold">
+                    Location : {post.location}
+                  </span>
+                </div>
+                <div className="my-1">
+                  <span className="md:text-2xl  font-bold">
+                    Total vacancy : {post.vacancy}
+                  </span>
+                </div>
+                <div className="my-1">
+                  <span className="md:text-xl  font-bold">
+                    Required skills:
+                    {post.skills.map((skill, i) => (
+                      <span
+                        key={i}
+                        className="bg-gray-400 ms-1 rounded-md text-white font-medium text-base px-1"
+                      >
+                        {" "}
+                        {skill}
+                      </span>
+                    ))}
+                  </span>
+                </div>
+                <div className="my-1">
+                  <span className="md:text-xl font-bold">
+                    Status :
+                    <span className="text-green-500">{post.status}</span>
+                  </span>
+                </div>
+              </div>
             </div>
-            <div className="my-1">
-              <span className="md:text-xl font-bold">
-                Status :<span className="text-green-500">{post.status}</span>
-              </span>
+            <div className="md:col-span-1">
+              <div className="flex flex-col">
+                <div className="flex justify-end">
+                
+                  <button
+                    onClick={() => navigateToApplicants(post._id)}
+                    className="bg-blue-900 text-sm md:text-lg text-white px-2  md:px-5 font-bold rounded-md"
+                  >
+                    VIEW
+                  </button>
+                  <EditJobPost
+                    post={post}
+                    skills={skills}
+                    citys={citys}
+                    setPosts={setPosts}
+                  />
+                  <button
+                    onClick={(id) => completePostt(post._id)}
+                    className=" text-xl md:text-4xl  ms-4 text-lime-600 font-semibold rounded-md"
+                  >
+                    <FontAwesomeIcon
+                      className="me-2 mt-1"
+                      color=""
+                      icon={faCircleCheck}
+                    />
+                  </button>
+                  <button
+                    onClick={(id) => deletePostt(post._id)}
+                    className=" text-lg md:text-2xl  ms-4 text-red-700 font-semibold rounded-md"
+                  >
+                    <FontAwesomeIcon
+                      className="me-2 mt-1"
+                      color=""
+                      icon={faTrash}
+                    />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="flex flex-col">
-            <div className="flex md:justify-end">
-              <button
-              onClick={() => navigateToApplicants(post._id)}
-               className="bg-blue-900 text-white   md:px-5 font-bold rounded-md">
-                VIEW
-              </button>
-              <EditJobPost post={post} skills={skills} citys={citys} setPosts={setPosts} />
-              <button
-              onClick={(id)=>deletePostt(post._id)}
-               className=" text-lg md:text-2xl  ms-4 text-red-700 font-semibold rounded-md">
-              <FontAwesomeIcon
-                className="me-2 mt-1"
-                color=""
-                icon={faTrash}
-              />
-              </button>
-
-            </div>
-          </div>
-        </div>
-      )):<div></div>}
+        ))
+      ) : (
+        <div></div>
+      )}
       <div className="flex justify-end  md:me-20 font-black">
         <nav aria-label="Page navigation example">
           <ul className="inline-flex -space-x-px m-5">

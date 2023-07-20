@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { empLogin,empLoginWithGoogle } from "../../Services/EmpApi";
 import { useGoogleLogin, googleLogout } from "@react-oauth/google";
+import { updateEmpDetails } from "../../Redux/employer/EmpSlice";
 
 export default function EmpLogin() {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ export default function EmpLogin() {
               dispatch(hideLoading());
               console.log(res);
               if (res.data.login) {
+                dispatch(updateEmpDetails(res.data.empData))
                 localStorage.setItem("empJwt", res.data.token);
                 navigate("/employer/");
                 toast.success(res.data.message);
@@ -72,9 +74,9 @@ export default function EmpLogin() {
       empLogin({ ...values })
         .then((res) => {
           dispatch(hideLoading());
-          console.log(res);
-          localStorage.setItem("empJwt", res.data.token);
           if (res.data.login) {
+            localStorage.setItem("empJwt", res.data.token);
+            dispatch(updateEmpDetails(res.data.empData))
             navigate("/employer");
             toast.success(res.data.message);
           }

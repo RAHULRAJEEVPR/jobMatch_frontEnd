@@ -140,7 +140,7 @@ let id=postData._id
       <div className="flex justify-end ">
       <button onClick={()=>{
         setShowModal(true)
-      }} className="bg-orange-500 ms-3 text-white text-lg  md:p-1 p-1 md:px-3 font-semibold rounded-md">
+      }} className="bg-orange-500 ms-3 text-white text-sm md:text-lg px-2 md:p-1 p-1 md:px-3 font-semibold rounded-md">
      EDIT
    </button>
         {showModal ? (

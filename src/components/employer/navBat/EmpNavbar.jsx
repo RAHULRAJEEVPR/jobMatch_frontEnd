@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 
 const links = [
-  { path: "employer/Profile", label: "Profile", key: "Profile"},
-  { path: "employer/logout", label: "Logout" ,key: "Logout" },
+  { path: "/employer/Profile", label: "Profile", key: "Profile"},
+  { path: "/employer/logout", label: "Logout" ,key: "Logout" },
  
 ];
 
@@ -43,7 +43,7 @@ export default function EmpNavbar() {
                     {({ active }) => (
                        <span
                        onClick={() => {
-                         link.path =="/employer/profile"?  navigate(link.path) : logout()
+                         link.path =="/employer/Profile"?  navigate(link.path) : logout()
                        }} // Wrap navigate in an arrow function or a callback function
                        className={`${
                          active && "bg-blue-900 text-white"

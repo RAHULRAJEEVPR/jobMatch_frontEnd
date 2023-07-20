@@ -1,23 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import success from "../../assets/success.png";
 import style from "./styles.module.css";
-import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import { showLoading, hideLoading } from "../../Redux/alertSlice";
+import { useDispatch } from "react-redux";
 
 export default function EmailVerify() {
+  const dispatch = useDispatch();
   const [validUrl, setValidUrl] = useState(false);
   const params = useParams();
 
   useEffect(() => {
+    dispatch(showLoading());
     const verifyEmailUrl = async () => {
       try {
         const url = `http://localhost:8000/user/${params.id}/verify/${params.token}`;
-        const { data } = await axios.get(url);
-        console.log(data);
-        setValidUrl(true);
+        const { data } = await axios
+          .get(url)
+          .then((res) => {
+            setValidUrl(true);
+            dispatch(hideLoading());
+          })
+          .catch((err) => {
+            console.log(err);
+            dispatch(hideLoading());
+          });
       } catch (error) {
         console.log(error);
-        setValidUrl(false);
       }
     };
     verifyEmailUrl();

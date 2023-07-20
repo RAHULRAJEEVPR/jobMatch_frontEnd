@@ -72,6 +72,15 @@ return userAxiosInstence.post("/changeUserPassword",data,{withCredentials:true})
 const changeUserImage=(data)=>{
 return userAxiosInstence.post("/changeUserImage",data,{withCredentials:true})
 }
+const userGetEmpDetails=(empId)=>{
+    return userAxiosInstence.post(`/userGetEmpDetails/${empId}`,{withCredentials:true})
+}
+const getUserApplications=(status)=>{
+    return userAxiosInstence.get(`/getUserApplications/${status}`,{withCredentials:true})
+}
+const invitedJobs=()=>{
+    return userAxiosInstence.get("/invitedjobs",{withCredentials:true})
+}
 
 export{
     userLogin,
@@ -93,6 +102,9 @@ export{
     dropUserEdu,
     updateUserBasicInfo,
     changeUserPassword,
-    changeUserImage
+    changeUserImage,
+    userGetEmpDetails,
+    getUserApplications,
+    invitedJobs
 }
 

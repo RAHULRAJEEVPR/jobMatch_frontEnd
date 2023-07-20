@@ -9,6 +9,8 @@ import EmpHome from "../pages/employer/EmpHome";
 import JobApplications from "../pages/employer/JobApplications";
 import UserProfileView from "../pages/employer/UserProfileView";
 import AllPost from "../pages/employer/AllPost";
+import EmpProfile from "../pages/employer/EmpProfile";
+import FindTalents from "../pages/employer/FindTalents";
 
 export default function EmpRoutes() {
   return (
@@ -22,6 +24,8 @@ export default function EmpRoutes() {
         <Route path="/applicants" element={<JobApplications/>}/>
         <Route path="/applicants/profile" element={<UserProfileView/>}/>
         <Route path="/allposts" element={<AllPost/>}/>
+        <Route path="/profile" element={<EmpProfile/>}/>
+        <Route path="/post/FindTalent" element={<FindTalents />} /> 
       </Route>
     </Routes>
   );

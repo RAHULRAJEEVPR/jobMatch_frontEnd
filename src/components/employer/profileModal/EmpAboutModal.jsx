@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
-import { updateUserAbout } from "../../../Services/userApi";
 import { useDispatch } from "react-redux";
-import { updateUserDetails } from "../../../Redux/user/userSlice";
+import { empUpdateAbout } from "../../../Services/EmpApi";
+import { updateEmpDetails } from "../../../Redux/employer/EmpSlice";
+import { toast } from "react-toastify";
 
-export default function AboutModal({ userAbout }) {
+export default function EmpAboutModal({ empAbout }) {
   const dispatch = useDispatch();
   const [about, setAbout] = useState();
   const [showModal, setShowModal] = useState(false);
   useEffect(() => {
-    setAbout(userAbout);
+    setAbout(empAbout);
   }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    updateUserAbout({ about })
-      .then((res) => {      
-        dispatch(updateUserDetails(res.data.userData));
-        console.log(res.data.userData, "hloooooooooo");
-        setShowModal(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+    empUpdateAbout({about}).then((res)=>{
+        dispatch(updateEmpDetails(res.data.empData))
+        toast.success("updated")
+        setShowModal(false)
+    }).catch((err)=>{
+        toast.success("something went wrong")
+        setShowModal(false)
 
+    })
+  };
   return (
     <>
       <div className="">
@@ -69,7 +69,7 @@ export default function AboutModal({ userAbout }) {
                         <textarea
                           id="about"
                           name="about"
-                          value={about} // Update this line
+                          value={about} 
                           className="mt-1 p-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-lg border-gray-300 rounded-md"
                           placeholder="Enter the about"
                           rows="3"

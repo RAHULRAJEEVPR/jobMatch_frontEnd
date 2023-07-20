@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function ViewAllPostTab() {
   return (
@@ -8,8 +9,10 @@ export default function ViewAllPostTab() {
       <h1 className='md:text-2xl text-center font-bold '>Your Active Posts</h1>
      </div>
      <div className=''>
+      <Link to={"/employer/allposts"}>
         <button className='md:text-2xl text-center font-extrabold text-blue-900'> View All  posts</button>
-     </div>
+        </Link>
+    </div>
     </div>
   )
 }

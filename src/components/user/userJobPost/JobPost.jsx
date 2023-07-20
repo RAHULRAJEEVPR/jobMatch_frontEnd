@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import ViewDetailsButton from "./ViewDetailsButton";
+import { useNavigate } from "react-router-dom";
 
 export default function JobPost({ posts }) {
+  const navigate=useNavigate()
   console.log(posts);
   const [currentPage, setCurrentpage] = useState(1);
   const postPerPage = 3;
@@ -24,6 +26,9 @@ if(currentPage!==1){
   const changeCPage=(id)=>{
 setCurrentpage(id)
   }
+  const navigateToProfile = (id) => {
+    navigate("/user/employer/profile",{state:{id}});
+  };
   
   return (
     <>
@@ -40,7 +45,7 @@ setCurrentpage(id)
               </span>
             </div>
             <div className="my-1">
-              <span className="md:text-2xl text-blue-600 cursor-pointer hover:text-blue-800 font-bold">
+              <span onClick={() => navigateToProfile (post.empId._id)} className="md:text-2xl text-blue-600 cursor-pointer hover:text-blue-800 font-bold">
                 <span className="text-black cursor-default">Company :</span>{" "}
                 {post.empId.cmpName}
               </span>
@@ -59,6 +64,15 @@ setCurrentpage(id)
               <span className="md:text-xl  font-bold">
                 Required skills:
                 {post.skills.map((skill, i) => (
+                  <span
+                    key={i}
+                    className="bg-gray-400 ms-1 rounded-md text-white font-medium text-base px-1"
+                  >
+                    {" "}
+                    {skill}
+                  </span>
+                ))}
+                {post.additionalSkills.map((skill, i) => (
                   <span
                     key={i}
                     className="bg-gray-400 ms-1 rounded-md text-white font-medium text-base px-1"

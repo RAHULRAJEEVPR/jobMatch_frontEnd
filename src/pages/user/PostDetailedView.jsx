@@ -4,8 +4,12 @@ import { jobDetailedView } from "../../Services/userApi";
 import { showLoading, hideLoading } from "../../Redux/alertSlice";
 import { useDispatch } from "react-redux";
 import ApplyJobModal from "../../components/user/userJobPost/ApplyJobModal";
+import { useSelector } from 'react-redux';
+
 
 export default function PostDetailedView() {
+    const userData = useSelector((state) => state.user.userData);
+
   const dispatch = useDispatch();
   const [postDetails, setPostDetails] = useState({});
   const location = useLocation();
@@ -23,9 +27,12 @@ export default function PostDetailedView() {
         console.log(err);
       });
   }, []);
+  console.log(postDetails);
+  
+
   if (Object.keys(postDetails).length === 0) return;
   return (
-    <div className="  flex justify-center  items-center">
+    <div className="   justify-center  items-center">
       <div className="bg-white text-gray-900 border border-gray-300 rounded-2xl shadow-2xl my-20 lg:my-28 lg:m-52  md:m-14">
         <div className="md:flex md:flex-wrap  p-6">
           <div className="md:w-4/6  ">
@@ -68,6 +75,14 @@ export default function PostDetailedView() {
                     {skill}
                   </span>
                 ))}
+                {postDetails.additionalSkills ? postDetails.additionalSkills.map((skill, i) => (
+                  <span
+                    key={i}
+                    className="text-sm bg-gray-700 text-gray-200 p-1 rounded-lg m-1"
+                  >
+                    {skill}
+                  </span>
+                )):<div></div>}
               </h2>
             </div>
             <div className="font-bold md:text-2xl ps-3 py-1">
@@ -88,9 +103,19 @@ export default function PostDetailedView() {
               </h2>
             </div>
           </div>
-          <div className="md:w-2/6   ">
-           <ApplyJobModal id={postDetails._id}/>
-          </div>
+            <div className="md:w-2/6   ">
+          { postDetails.applicants.some(applicant => applicant.applicant === userData._id) ? 
+           <div>
+           <button
+             
+             className="font-bold bg-blue-950 text-white md:text-xl rounded-lg flex mx-auto md:p-3 p-1 md:px-3"
+           >
+             ALREADY APPLIED
+           </button>
+         </div> : (
+              <ApplyJobModal id={postDetails._id}/>
+              )}
+            </div>
         </div>
       </div>
     </div>

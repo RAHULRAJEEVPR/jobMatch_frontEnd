@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import NewJobPost from "../../components/employer/home/NewJoBPost";
 import EmpPostCard from "../../components/employer/home/EmpPostCard";
 import ViewAllPostTab from "../../components/employer/home/ViewAllPostTab";
-import { skillData, cityData, getPostData } from "../../Services/EmpApi";
+import { skillData, cityData, getActivePostData } from "../../Services/EmpApi";
 import { showLoading, hideLoading } from "../../Redux/alertSlice";
 import { useDispatch } from "react-redux";
 
@@ -28,7 +28,7 @@ export default function EmpHome() {
       .catch((err) => {
         console.log(err);
       });
-      getPostData()
+      getActivePostData()
       .then((res) => {
         dispatch(hideLoading());
     
