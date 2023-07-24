@@ -13,6 +13,7 @@ import PostDetailedView from "../pages/user/PostDetailedView";
 import UserEmpProfileview from "../pages/user/UserEmpProfileview";
 import JobRequests from "../pages/user/JobRequests";
 import Invites from "../pages/user/Invites";
+import UserChat from "../pages/user/UserChat";
 
 
 export default function UserRoutes() {
@@ -32,6 +33,7 @@ export default function UserRoutes() {
           <Route path="/employer/profile" element={<UserEmpProfileview />} /> 
           <Route path="/jobrequests" element={<JobRequests />} /> 
           <Route path="/invites" element={<Invites/>}/>
+          <Route path="/userChat" element={<UserChat/>}/>
 
           
           

@@ -40,9 +40,12 @@ export default function ApplicantCard({ postData, status, set }) {
     textColor = "red-600";
   }
 
-  const changeStatus = (id, newStatus) => {
-    changeApplicationStatus(postData._id, id, newStatus)
+  const changeStatus = (id,userId, newStatus) => {
+    dispatch(showLoading())
+    changeApplicationStatus(postData._id, id, newStatus,userId)
       .then((res) => {
+        dispatch(hideLoading())
+
         set(res.data.postData);
 
         toast.success(newStatus);
@@ -50,6 +53,7 @@ export default function ApplicantCard({ postData, status, set }) {
       })
       .catch((err) => {
         console.log(err);
+        dispatch(hideLoading());
         toast.error("something went wrong");
       });
   };
@@ -114,7 +118,7 @@ export default function ApplicantCard({ postData, status, set }) {
                   <div className="me-2">
                     {status != "Selected" && (
                       <button
-                        onClick={() => changeStatus(post._id, "Selected")}
+                        onClick={() => changeStatus(post._id,post.applicant._id, "Selected")}
                         className="bg-green-700 text-white md:text-lg mb-2 rounded-lg font-bold py-1 px-4"
                       >
                         SELECT
@@ -124,7 +128,7 @@ export default function ApplicantCard({ postData, status, set }) {
                   <div>
                     {status != "Rejected" && (
                       <button
-                        onClick={() => changeStatus(post._id, "Rejected")}
+                        onClick={() => changeStatus(post._id,post.applicant._id, "Rejected")}
                         className="bg-red-800 text-white md:text-lg me-4 rounded-lg font-bold py-1 px-4"
                       >
                         REJECT

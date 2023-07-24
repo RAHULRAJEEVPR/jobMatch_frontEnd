@@ -35,6 +35,7 @@ export default function FindTalents() {
       })
       .catch((err) => {
         console.log(err);
+        dispatch(hideLoading())
         setIsLoading(false);
       });
   }, []);

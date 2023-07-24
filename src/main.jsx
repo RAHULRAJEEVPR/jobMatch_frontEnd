@@ -16,8 +16,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}> {/* Add PersistGate */}
       <GoogleOAuthProvider clientId={client_id}>
-        <ToastContainer />
-        <App />
+      <ToastContainer />  
+            <App />
       </GoogleOAuthProvider>
     </PersistGate>
   </Provider>,

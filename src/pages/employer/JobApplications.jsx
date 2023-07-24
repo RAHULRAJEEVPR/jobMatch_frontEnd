@@ -25,8 +25,7 @@ export default function JobApplications() {
       })
       .catch((err) => {
         dispatch(hideLoading())
-
-        console.log("something went wrong");
+        console.log(err);
       });
   }, [status]);
 

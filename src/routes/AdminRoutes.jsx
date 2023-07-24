@@ -22,7 +22,7 @@ export default function AdminRoutes() {
         <Route path="/" element={<Layout />}>
           <Route index element={<DashBoard />} />
           <Route path="/users" element={<User />} />
-          <Route path="/employers" element={<Employers />} />
+          <Route path="/employers" element={<Employers/>} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/city" element={<City />} />
         </Route>

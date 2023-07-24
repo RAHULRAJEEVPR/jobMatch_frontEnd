@@ -3,6 +3,7 @@ import { Menu, Transition } from "@headlessui/react";
 import {RxAvatar} from  "react-icons/rx"
 import {AiOutlineMessage} from  "react-icons/ai"
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const links = [
@@ -23,7 +24,9 @@ export default function EmpNavbar() {
       <div className="bg-blue-950 p-5 flex  items-center">
         <span onClick={()=>navigate("/employer/")} className="text-white font-black text-4xl">JobMatch</span>
         <div className="flex ml-auto me-4">
+          <Link to={"/employer/message"}>
           <div className="text-white text-4xl flex me-4 items-center"><AiOutlineMessage/></div>
+          </Link>
           <Menu>
             <Menu.Button>
               <div className="text-white text-4xl "><RxAvatar/></div>

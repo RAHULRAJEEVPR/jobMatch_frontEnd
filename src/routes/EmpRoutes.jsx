@@ -11,6 +11,7 @@ import UserProfileView from "../pages/employer/UserProfileView";
 import AllPost from "../pages/employer/AllPost";
 import EmpProfile from "../pages/employer/EmpProfile";
 import FindTalents from "../pages/employer/FindTalents";
+import EmpChat from "../pages/employer/EmpChat";
 
 export default function EmpRoutes() {
   return (
@@ -26,6 +27,7 @@ export default function EmpRoutes() {
         <Route path="/allposts" element={<AllPost/>}/>
         <Route path="/profile" element={<EmpProfile/>}/>
         <Route path="/post/FindTalent" element={<FindTalents />} /> 
+        <Route path="/message" element={<EmpChat/>}/>
       </Route>
     </Routes>
   );

@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { empInviteUser } from "../../../Services/EmpApi";
+import { empInviteUser,empCreateChat } from "../../../Services/EmpApi";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+
 
 
 
 export default function UserCard({ userData,postData,set }) {
+  const empData = useSelector((state) => state.emp.empData);
+
     const navigate = useNavigate();
   
     const navigateToProfile = ( id) => {
@@ -20,7 +24,18 @@ export default function UserCard({ userData,postData,set }) {
             console.log(err);
         })
     }
-   console.log(postData);
+
+    const newChat=(senderId,receiverId)=>{
+      
+      empCreateChat({senderId:senderId,receiverId:receiverId}).then((res)=>{
+console.log(res.data)
+let data=res.data.chatData
+console.log(data,"data avunindo");
+navigate("/employer/message",{state:{data}})
+      }).catch((err)=>{
+        toast.error("something wend wrong")
+      })
+    }
   return (
 
 
@@ -60,7 +75,7 @@ export default function UserCard({ userData,postData,set }) {
                   </button>
                 </div>
                 <div className="ms-auto md:my-2">
-                  <button className="bg-blue-950 hover:bg-blue-800 text-white px-6 py-1 rounded-md font-semibold md:text-lg">
+                  <button  onClick={()=>newChat(empData._id,user._id)} className="bg-blue-950 hover:bg-blue-800 text-white px-6 py-1 rounded-md font-semibold md:text-lg">
                     Chat
                   </button>
                 </div>

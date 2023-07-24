@@ -6,6 +6,7 @@ export default function EmpLayout() {
     <div className=" bg-main_bg h-full ">
      <EmpNavbar/> 
      <div>{<Outlet/>}</div>
+    
     </div>
   )
 }
