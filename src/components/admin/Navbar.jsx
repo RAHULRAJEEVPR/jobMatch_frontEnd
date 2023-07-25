@@ -12,7 +12,7 @@ export default function Navbar() {
   };
   return (
     <div className="bg-white h-16 px-4 shadow-md mb-4   flex justify-between items-center">
-      <div></div>
+      <div onClick={()=>a}>X</div>
       <div className=" flex flex-col items-center gap-2 mr-2">
         <Popover className="relative me-3 ">
           <Popover.Button className="font-black text-lg  focus:outline-none   active:bg-slate-400  bg">

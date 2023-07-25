@@ -12,6 +12,8 @@ import AllPost from "../pages/employer/AllPost";
 import EmpProfile from "../pages/employer/EmpProfile";
 import FindTalents from "../pages/employer/FindTalents";
 import EmpChat from "../pages/employer/EmpChat";
+import PremiumPlan from "../pages/employer/PremiumPlan";
+import PaymentSuccess from "../pages/employer/PaymentSuccess";
 
 export default function EmpRoutes() {
   return (
@@ -28,6 +30,8 @@ export default function EmpRoutes() {
         <Route path="/profile" element={<EmpProfile/>}/>
         <Route path="/post/FindTalent" element={<FindTalents />} /> 
         <Route path="/message" element={<EmpChat/>}/>
+        <Route path="/subscription" element={<PremiumPlan/>}/>
+        <Route path="/paymentSuccess/:empId" element={<PaymentSuccess/>}/>
       </Route>
     </Routes>
   );

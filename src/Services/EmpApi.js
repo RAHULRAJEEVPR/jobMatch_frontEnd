@@ -87,6 +87,12 @@ const empSendMessage=(value)=>{
 const empCreateChat=(value)=>{
     return empAxiosInstance.post("/createChat",value,{withCredentials:true})
 }
+const subscription=()=>{
+    return empAxiosInstance.post("/subscription",{withCredentials:true})
+}
+const paymentVerification=(value)=>{
+    return empAxiosInstance.post(`/verifypayment/${value}`,{withCredentials:true})
+}
 
 export{
 empSignUp,
@@ -113,5 +119,7 @@ empInviteUser,
 empChats,
 empGetMessages,
 empSendMessage,
-empCreateChat
+empCreateChat,
+subscription,
+paymentVerification
 }

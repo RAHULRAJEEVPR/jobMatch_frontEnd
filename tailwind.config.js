@@ -9,7 +9,8 @@ export default {
   theme: {
     extend: {
       colors:{
-        "main_bg":"#F2EFEF"
+        "main_bg":"#F2EFEF",
+        "bluegray":"#CED2E6"
       }
     },
   },

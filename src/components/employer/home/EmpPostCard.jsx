@@ -6,6 +6,7 @@ import { deletePost,completePost} from "../../../Services/EmpApi";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
+
 export default function EmpPostCard({ posts, skills, citys, setPosts }) {
   // const [postData,setPostData]=useState([])
 

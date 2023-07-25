@@ -1,19 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import SideBar from "../SideBar";
 import Navbar from "../Navbar";
 
 export default function Layout() {
+  const [showSideBar,setShowSideBar]=useState(true)
   return (
-    <div className="flex flex-row bg-neutral-100 h-screen  w-screen ">
-      
-
-      <SideBar />
-      
-      <div className="w-screen flex flex-col">
-        <Navbar />
-        <div className="overflow-auto">{<Outlet />}</div>
-      </div>
+    <div className="flex flex-row bg-neutral-100 min-h-screen">
+    <SideBar />
+    <div className="flex flex-col w-full">
+      <Navbar />
+      <div className="flex-grow overflow-y-auto">{<Outlet />}</div>
     </div>
+  </div>
   );
 }
