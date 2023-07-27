@@ -24,7 +24,7 @@ const empLogin=(value)=>{
     })
 }
 const isEmpAuth=()=>{
-    return empAxiosInstance.get("/empAuth",value,{withCredentials:true})
+    return empAxiosInstance.get("/empAuth",{withCredentials:true})
 }
 const skillData=()=>{
     return empAxiosInstance.get("/skillData",{withCredentials:true})

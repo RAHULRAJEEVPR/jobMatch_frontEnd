@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 import { getPostData,createPost } from "../../../Services/EmpApi"; 
+import { updateEmpDetails } from "../../../Redux/employer/EmpSlice";
+import { useDispatch } from "react-redux";
 
 export default function  NewJobPost({ skills, citys ,setPosts}) {
+  const dispatch=useDispatch()
   const [showModal, setShowModal] = useState(false);
   const [additionalSkills, setAdditionalSkills] = useState([]);
   const [newSkill, setNewSkill] = useState("");
@@ -92,6 +95,7 @@ export default function  NewJobPost({ skills, citys ,setPosts}) {
     // Perform form submission logic
     createPost({...jobData}).then((res)=>{
       console.log(res);
+      dispatch(updateEmpDetails(res.data.empData))
       getPostData().then((res)=>{
         setPosts(res.data.postData);
         setAdditionalSkills([]);

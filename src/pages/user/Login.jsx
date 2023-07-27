@@ -42,11 +42,15 @@ export default function Login() {
               // console.log(res);
               if (res.data.login) {
                 console.log(res.data.userData);
-                dispatch(updateUserDetails(res.data.userData))
+                if(res.data.userData.status==false){
+                 toast.error("your account has been blocked by the admin")
+                }else{
 
-                localStorage.setItem("userJwt", res.data.token);
-                navigate("/user");
-                toast.success(res.data.message);
+                  dispatch(updateUserDetails(res.data.userData))
+                  localStorage.setItem("userJwt", res.data.token);
+                  navigate("/user");
+                  toast.success(res.data.message);
+                }
               } else if (res.data.exists) {
                 toast.warn("account already exists");
               }
@@ -80,9 +84,15 @@ export default function Login() {
           console.log(res);
           localStorage.setItem("userJwt", res.data.token);
           if (res.data.login) {
-            toast.success(res.data.message);
-            navigate("/user");
+            if(res.data.userData.status==false){
+              toast.error("your account has been blocked by the admin")
+             }else{
 
+               dispatch(updateUserDetails(res.data.userData))
+               localStorage.setItem("userJwt", res.data.token);
+               navigate("/user");
+               toast.success(res.data.message);
+             }
           }
         })
         .catch((error) => {

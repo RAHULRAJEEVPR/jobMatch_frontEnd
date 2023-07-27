@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 
 import UserTable from '../../components/admin/UserTable'
-import { adminUserDetails } from '../../Services/adminApi'
+import { adminUserDetails,changeUserStaus } from '../../Services/adminApi'
 import { showLoading,hideLoading } from '../../Redux/alertSlice'
 
 export default function User() {
+  
 const [userData,setUserData]=useState([])
 const dispatch = useDispatch();
 
@@ -18,11 +19,18 @@ dispatch(showLoading())
     setUserData(res.data.userData)
   })
 },[])
-console.log(userData);
+
+const changeStatus=(id,status)=>{
+    changeUserStaus({id:id,status:status}).then((res)=>{
+      setUserData(res.data.userData)
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }
 
   return (
     <div className=''>
-     <UserTable userData={userData} />
+     <UserTable change={changeStatus} userData={userData} />
     </div>
   )
 }

@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faDownload } from "@fortawesome/free-solid-svg-icons";
 import UserProfileButton from "../UserProfileButton";
-import { changeApplicationStatus } from "../../../Services/EmpApi";
-
+import { useSelector } from "react-redux";
+import {
+  changeApplicationStatus,
+  empCreateChat,
+} from "../../../Services/EmpApi";
 import { showLoading, hideLoading } from "../../../Redux/alertSlice";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const openResume = (resumeUrl) => {
   window.open(resumeUrl, "_blank");
 };
@@ -25,10 +29,15 @@ const downloadResume = (resumeUrl) => {
       console.error("Error occurred while downloading the resume:", error);
     });
 };
+
 let textColor;
 
 export default function ApplicantCard({ postData, status, set }) {
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
+  const empData = useSelector((state) => state.emp.empData);
+
   const filteredApplicants = postData.applicants.filter(
     (applicant) => applicant.status === status
   );
@@ -40,11 +49,11 @@ export default function ApplicantCard({ postData, status, set }) {
     textColor = "red-600";
   }
 
-  const changeStatus = (id,userId, newStatus) => {
-    dispatch(showLoading())
-    changeApplicationStatus(postData._id, id, newStatus,userId)
+  const changeStatus = (id, userId, newStatus) => {
+    dispatch(showLoading());
+    changeApplicationStatus(postData._id, id, newStatus, userId)
       .then((res) => {
-        dispatch(hideLoading())
+        dispatch(hideLoading());
 
         set(res.data.postData);
 
@@ -55,6 +64,20 @@ export default function ApplicantCard({ postData, status, set }) {
         console.log(err);
         dispatch(hideLoading());
         toast.error("something went wrong");
+      });
+  };
+
+  const newChat = (senderId, receiverId) => {
+    empCreateChat({ senderId: senderId, receiverId: receiverId })
+      .then((res) => {
+        console.log(res.data);
+        let data = res.data.chatData;
+        console.log(data, "data avunindo");
+        navigate("/employer/message", { state: { data } });
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("something wend wrong");
       });
   };
 
@@ -76,7 +99,10 @@ export default function ApplicantCard({ postData, status, set }) {
                     <UserProfileButton id={post.applicant._id} />
                   </div>
                   <div>
-                    <button className="bg-blue-950 text-white mb:text-xl rounded-lg font-semibold py-1 px-4">
+                    <button
+                      onClick={() => newChat(empData._id, post.applicant._id)}
+                      className="bg-blue-950 text-white mb:text-xl rounded-lg font-semibold py-1 px-4"
+                    >
                       CHAT
                     </button>
                   </div>
@@ -118,7 +144,9 @@ export default function ApplicantCard({ postData, status, set }) {
                   <div className="me-2">
                     {status != "Selected" && (
                       <button
-                        onClick={() => changeStatus(post._id,post.applicant._id, "Selected")}
+                        onClick={() =>
+                          changeStatus(post._id, post.applicant._id, "Selected")
+                        }
                         className="bg-green-700 text-white md:text-lg mb-2 rounded-lg font-bold py-1 px-4"
                       >
                         SELECT
@@ -128,7 +156,9 @@ export default function ApplicantCard({ postData, status, set }) {
                   <div>
                     {status != "Rejected" && (
                       <button
-                        onClick={() => changeStatus(post._id,post.applicant._id, "Rejected")}
+                        onClick={() =>
+                          changeStatus(post._id, post.applicant._id, "Rejected")
+                        }
                         className="bg-red-800 text-white md:text-lg me-4 rounded-lg font-bold py-1 px-4"
                       >
                         REJECT

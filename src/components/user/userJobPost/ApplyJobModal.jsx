@@ -39,10 +39,10 @@ export default function ApplyJobModal({id}) {
   return (
     <>
       <div className="flex justify-center mx-4">
-        <div>
+        <div  className="">
           <button
             onClick={() => setShowModal(true)}
-            className="font-bold bg-blue-950 text-white md:text-xl rounded-lg hover:bg-blue-800 flex mx-auto md:p-3 p-1 md:px-3"
+            className="font-bold bg-blue-950 text-white md:text-xl rounded-lg hover:bg-blue-800 flex  mx-auto md:p-3 p-1 md:px-3"
           >
             APPLY NOW
           </button>

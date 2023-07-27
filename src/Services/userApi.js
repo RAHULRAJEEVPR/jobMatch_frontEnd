@@ -115,6 +115,9 @@ const userGetMessages = (chatid) => {
 const userSendMessage = (value) => {
   return userAxiosInstence.post("/addMessage", value, { withCredentials: true });
 };
+const userReportJob=(value)=>{
+  return userAxiosInstence.post("/reportjob",value,{withCredentials:true})
+}
 
 export {
   userLogin,
@@ -143,4 +146,5 @@ export {
   userChats,
   userGetMessages,
   userSendMessage,
+  userReportJob
 };

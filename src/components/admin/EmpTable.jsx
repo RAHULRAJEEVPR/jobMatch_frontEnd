@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export default function EmpTable({ empData }) {
+export default function EmpTable({ empData,change }) {
   return (
     <div className="flex flex-col">
       <div className="overflow-x-auto  ">
@@ -19,6 +19,9 @@ export default function EmpTable({ empData }) {
                   <th scope="col" className="py-3">
                  Email
                   </th>
+                  <th scope="col" className="py-3">
+                 Action
+                  </th>
                  
                 </tr>
               </thead>
@@ -30,7 +33,9 @@ export default function EmpTable({ empData }) {
                     </td>
                     <td className="whitespace-nowrap font-bold text-lg px-6 py-4">{emp.cmpName}</td>
                     <td className="whitespace-nowrap font-bold text-lg px-6 py-4">{emp.email}</td>
-                 
+                    <td className="whitespace-nowrap font-bold ">
+                      <button onClick={()=>change(emp._id,emp.status?"false":"true")} className={`${emp.status?"bg-red-700":"bg-green-600"} md:text-lg md:px-3 px-2 md:py-2 text-white rounded-md `}>{emp.status?"block":"UnBlock"}</button>
+                    </td>
                   </tr>
                 ))}
               </tbody>

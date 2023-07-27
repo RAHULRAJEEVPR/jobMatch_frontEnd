@@ -26,6 +26,16 @@
       key: 'city',
       label: 'CITY',
       path: '/admin/city',
+    },
+    {
+      key: 'posts',
+      label: 'POSTS',
+      path: '/admin/posts',
+    },
+    {
+      key: 'REPORTS',
+      label: 'REPORTS',
+      path: '/admin/Reports',
     }
   ];
   

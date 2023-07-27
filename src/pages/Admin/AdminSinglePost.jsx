@@ -1,26 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleExclamation} from "@fortawesome/free-solid-svg-icons";
-import { useLocation } from "react-router-dom";
-import { jobDetailedView } from "../../Services/userApi";
+import React,{useState,useEffect} from 'react'
+import { adminGetSinglePosts } from '../../Services/adminApi'
+import { useSelector } from 'react-redux';
 import { showLoading, hideLoading } from "../../Redux/alertSlice";
 import { useDispatch } from "react-redux";
-import ApplyJobModal from "../../components/user/userJobPost/ApplyJobModal";
-import { useSelector } from 'react-redux';
-import ReportModal from "../../components/user/report/ReportModal";
+import { useLocation } from "react-router-dom";
 
 
-export default function PostDetailedView() {
-    const userData = useSelector((state) => state.user.userData);
 
-  const dispatch = useDispatch();
-  const [postDetails, setPostDetails] = useState({});
-  const location = useLocation();
+export default function AdminSinglePost() {
+    const location = useLocation();
+    const dispatch = useDispatch();
+
   const { id } = location.state  || {};
+  const [postDetails, setPostDetails] = useState({});
 
   useEffect(() => {
     dispatch(showLoading());
-    jobDetailedView(id)
+    adminGetSinglePosts(id)
       .then((res) => {
         dispatch(hideLoading());
         setPostDetails(res.data.postData);
@@ -30,13 +26,11 @@ export default function PostDetailedView() {
         console.log(err);
       });
   }, []);
-  console.log(postDetails);
-  
-
   if (Object.keys(postDetails).length === 0) return;
+
   return (
     <div className="   justify-center  items-center">
-      <div className="bg-white text-gray-900 border border-gray-300 rounded-2xl shadow-2xl my-20 lg:my-28 lg:m-52  md:m-14">
+      <div className="bg-white text-gray-900 border border-gray-300 rounded-2xl shadow-2xl  lg:my-28 lg:m-52  md:m-14">
         <div className="md:flex md:flex-wrap  p-6">
           <div className="md:w-4/6  ">
             <div>
@@ -106,7 +100,7 @@ export default function PostDetailedView() {
               </h2>
             </div>
           </div>
-            <div className="md:w-2/6 flex flex-row justify-center  ">
+            {/* <div className="md:w-2/6   ">
           { postDetails.applicants.some(applicant => applicant.applicant === userData._id) ? 
            <div>
            <button
@@ -118,12 +112,9 @@ export default function PostDetailedView() {
          </div> : (
               <ApplyJobModal id={postDetails._id}/>
               )}
-            <div className="">
-              <ReportModal postId={postDetails._id}/>
-            </div>
-            </div>
+            </div> */}
         </div>
       </div>
     </div>
-  );
+  )
 }

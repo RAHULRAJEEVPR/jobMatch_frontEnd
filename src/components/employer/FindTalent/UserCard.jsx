@@ -33,6 +33,7 @@ let data=res.data.chatData
 console.log(data,"data avunindo");
 navigate("/employer/message",{state:{data}})
       }).catch((err)=>{
+        console.log(err);
         toast.error("something wend wrong")
       })
     }

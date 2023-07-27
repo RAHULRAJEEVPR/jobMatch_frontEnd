@@ -22,6 +22,7 @@ export default function PrivateRoutes({ role, route }) {
     } else if (role === "emp") {
         isEmpAuth()
         .then((res) => {
+          console.log("checkingggg");
           setVerify(res.data.success);
         })
         .catch((err) => {

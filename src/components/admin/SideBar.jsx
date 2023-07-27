@@ -8,9 +8,9 @@ export default function SideBar() {
  
   return (
    
-    <div className='bg-blue-950 text-white flex   flex-col w-60 p-3'>
+    <div className='bg-stone-600 text-white flex   flex-col w-60 p-3'>
  <div className=" flex items-center gap-2 px-2 py-3  ">
-    <h1 className='text-3xl font-black'>JobMATCH</h1>
+    <h1 className='md:text-3xl font-black'>JobMATCH</h1>
  </div>
  <div className=" flex-1 py-8 flex flex-col gap-1.5 ">{DASHBOARD_SIDEBAR_LINKS.map((item)=>(
 <SidebarLink key={item.key} item={item}/>

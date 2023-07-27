@@ -14,7 +14,7 @@ import FindTalents from "../pages/employer/FindTalents";
 import EmpChat from "../pages/employer/EmpChat";
 import PremiumPlan from "../pages/employer/PremiumPlan";
 import PaymentSuccess from "../pages/employer/PaymentSuccess";
-
+import PrivateRoutes from "../protectedRoutes/PrivateRoutes";
 export default function EmpRoutes() {
   return (
     <Routes>
@@ -22,6 +22,7 @@ export default function EmpRoutes() {
       <Route path="/register" element={<EmpRegister />} />
       <Route path="/login" element={<EmpLogin />} />
       <Route path="/:id/verify/:token" element={<EmpEmailVerify />} />
+      <Route element={<PrivateRoutes role={"emp"} route={"/employer/login"} />}>
       <Route path="/" element={<EmpLayout />}>
         <Route index element={<EmpHome />} />
         <Route path="/applicants" element={<JobApplications/>}/>
@@ -32,6 +33,7 @@ export default function EmpRoutes() {
         <Route path="/message" element={<EmpChat/>}/>
         <Route path="/subscription" element={<PremiumPlan/>}/>
         <Route path="/paymentSuccess/:empId" element={<PaymentSuccess/>}/>
+      </Route>
       </Route>
     </Routes>
   );

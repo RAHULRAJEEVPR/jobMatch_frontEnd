@@ -5,6 +5,8 @@ import { faTrash ,faCircleCheck} from "@fortawesome/free-solid-svg-icons";
 import { deletePost,completePost} from "../../../Services/EmpApi";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import CompleteModal from "./confirmation/CompleteModal";
+import DeleteModal from "../../conformartinModals/DeleteModal";
 
 
 export default function EmpPostCard({ posts, skills, citys, setPosts }) {
@@ -20,6 +22,7 @@ export default function EmpPostCard({ posts, skills, citys, setPosts }) {
   const nPage = Math.ceil(posts.length / postPerPage);
   const numbers = [...Array(nPage + 1).keys()].slice(1);
 
+
   const nextPage = () => {
     if (currentPage !== nPage) {
       setCurrentpage(currentPage + 1);
@@ -34,28 +37,8 @@ export default function EmpPostCard({ posts, skills, citys, setPosts }) {
     setCurrentpage(id);
   };
 
-  const deletePostt = (id) => {
-    deletePost({ id: id })
-      .then((res) => {
-        setPosts(res.data.postData);
-        toast.success("deleted");
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("something went wrong");
-      });
-  };
-  const completePostt=(id)=>{
-    ({ id: id })
-    completePost({ id: id }).then((res) => {
-      setPosts(res.data.postData);
-      toast.success("updated");
-    })
-    .catch((err) => {
-      console.log(err);
-      toast.error("something went wrong");
-    });
-  }
+
+
 
   const navigateToApplicants = (postId) => {
     navigate(`/employer/applicants`, { state: { postId } });
@@ -129,26 +112,10 @@ export default function EmpPostCard({ posts, skills, citys, setPosts }) {
                     citys={citys}
                     setPosts={setPosts}
                   />
-                  <button
-                    onClick={(id) => completePostt(post._id)}
-                    className=" text-xl md:text-4xl  ms-4 text-lime-600 font-semibold rounded-md"
-                  >
-                    <FontAwesomeIcon
-                      className="me-2 mt-1"
-                      color=""
-                      icon={faCircleCheck}
-                    />
-                  </button>
-                  <button
-                    onClick={(id) => deletePostt(post._id)}
-                    className=" text-lg md:text-2xl  ms-4 text-red-700 font-semibold rounded-md"
-                  >
-                    <FontAwesomeIcon
-                      className="me-2 mt-1"
-                      color=""
-                      icon={faTrash}
-                    />
-                  </button>
+                
+                  <CompleteModal setPosts={setPosts}  postId={post._id} />
+                  <DeleteModal setPosts={setPosts}  postId={post._id}/>
+              
                 </div>
               </div>
             </div>

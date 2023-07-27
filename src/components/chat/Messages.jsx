@@ -87,7 +87,7 @@ setMessages([...messages,receiveMessage])
               <div key={i} ref={scroll}>
                 {msg.senderId === empid ? (
                   <div className="flex justify-end mb-4 ">
-                    <div className="mr-2 py-3 px-4 w-2/4 bg-blue-900 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white">
+                    <div className="mr-2 py-3 px-4  bg-blue-900 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white">
                       {msg.text}
                     </div>
                     <img

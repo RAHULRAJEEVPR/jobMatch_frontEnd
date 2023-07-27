@@ -41,10 +41,15 @@ export default function EmpLogin() {
               dispatch(hideLoading());
               console.log(res);
               if (res.data.login) {
-                dispatch(updateEmpDetails(res.data.empData))
-                localStorage.setItem("empJwt", res.data.token);
-                navigate("/employer/");
-                toast.success(res.data.message);
+                if(res.data.empData.status==false){
+                  toast.error("your account has been blocked by user")
+                }else{
+
+                  dispatch(updateEmpDetails(res.data.empData))
+                  localStorage.setItem("empJwt", res.data.token);
+                  navigate("/employer/");
+                  toast.success(res.data.message);
+                }
               } else if (res.data.exists) {
                 toast.warn("account already exists");
               }
@@ -67,18 +72,22 @@ export default function EmpLogin() {
       return toast.warn("email should not be empty");
     } else if (values.password.trim() === "") {
       return toast.warn("password should not be empty");
-    }
-    console.log("kerunindo", values);
+    } 
     try {
       dispatch(showLoading());
       empLogin({ ...values })
         .then((res) => {
           dispatch(hideLoading());
           if (res.data.login) {
-            localStorage.setItem("empJwt", res.data.token);
+            console.log(res.data.empData);
+             if(res.data.empData.status===false){
+            toast.error("your account has been blocked by user")
+          }else{
             dispatch(updateEmpDetails(res.data.empData))
-            navigate("/employer");
+            localStorage.setItem("empJwt", res.data.token);
+            navigate("/employer/");
             toast.success(res.data.message);
+          }
           }
         })
         .catch((error) => {

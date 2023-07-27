@@ -6,6 +6,7 @@ import { skillData, cityData, getActivePostData } from "../../Services/EmpApi";
 import { showLoading, hideLoading } from "../../Redux/alertSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
 import PreModal from "../../components/employer/home/PreModal";
 
 export default function EmpHome() {
@@ -13,6 +14,7 @@ export default function EmpHome() {
   console.log(empData, "hai");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const [skills, setSkills] = useState([]);
   const [citys, setCitys] = useState([]);
   const [posts, setPosts] = useState([]);
@@ -44,6 +46,7 @@ export default function EmpHome() {
         console.log(err);
       });
   }, []);
+  
 
   return (
     <div>
@@ -63,7 +66,7 @@ export default function EmpHome() {
         <>
           <div>
             <EmpPostCard
-              posts={posts}
+              posts={posts.filter((post)=>post.status=="Active")}
               skills={skills}
               citys={citys}
               setPosts={setPosts}

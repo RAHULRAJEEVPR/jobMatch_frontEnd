@@ -6,10 +6,12 @@ import Navbar from "../Navbar";
 export default function Layout() {
   const [showSideBar,setShowSideBar]=useState(true)
   return (
-    <div className="flex flex-row bg-neutral-100 min-h-screen">
+    <div className="flex flex-row bg-neutral-100  min-h-screen ">
+      {showSideBar&&
     <SideBar />
-    <div className="flex flex-col w-full">
-      <Navbar />
+      }
+    <div className="flex flex-col  w-full">
+      <Navbar value={showSideBar} change={setShowSideBar} />
       <div className="flex-grow overflow-y-auto">{<Outlet />}</div>
     </div>
   </div>
