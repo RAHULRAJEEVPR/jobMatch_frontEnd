@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import EmpRegister from "../pages/employer/empRegister";
 import EmpEmailVerify from "../components/EmailVerify/EmpEmailVerify";
-import EmpLogin from "../pages/employer/empLogin";
+import EmpLogin from "../pages/employer/EmpLogin";
 import EmpLayout from "../pages/employer/EmpLayout";
 import NotFoundPage from "../pages/NotFoundPage";
 import EmpHome from "../pages/employer/EmpHome";

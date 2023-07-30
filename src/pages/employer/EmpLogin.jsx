@@ -8,6 +8,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { empLogin,empLoginWithGoogle } from "../../Services/EmpApi";
 import { useGoogleLogin, googleLogout } from "@react-oauth/google";
 import { updateEmpDetails } from "../../Redux/employer/EmpSlice";
+import logoo from "../../assets/logoo.png"; 
+
 
 export default function EmpLogin() {
   const dispatch = useDispatch();
@@ -107,6 +109,9 @@ export default function EmpLogin() {
     <div className="bg-white w-screen ">
       <div className="flex justify-center items-center h-screen  ">
         <div className="bg-white p-8  rounded-md  md:w-3/4 lg:w-2/6 shadow-xl  ">
+        <div className="flex justify-center">
+          <img className="w-40" src={logoo} alt="" />
+        </div>
           <h1 className="text-4xl text-blue-950 font-bold mb-10 text-center">
             Welcome on Board
           </h1>

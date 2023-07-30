@@ -7,6 +7,8 @@ import axios from "axios";
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 import { empSignUp,empSignupWithGoogle } from '../../Services/EmpApi';
 import { showLoading, hideLoading } from "../../Redux/alertSlice";
+import logoo from "../../assets/logoo.png"; 
+
 
 
 export default function EmpRegister() {
@@ -103,7 +105,10 @@ export default function EmpRegister() {
     <div className="bg-white">
     <div className="flex justify-center items-center h-screen">
       <div className="bg-white p-8 rounded-md  md:w-3/4 lg:w-2/6 shadow-xl">
-        <h1 className="text-4xl text-blue-950 font-bold mb-10 text-center">
+      <div className="flex justify-center">
+          <img className="w-40" src={logoo} alt="" />
+        </div>
+        <h1 className="text-4xl text-blue-950 font-bold mb-6 text-center">
           Welcome on Board
         </h1>
         <h3 className="font-bold text-xl mb-4">
@@ -119,7 +124,7 @@ export default function EmpRegister() {
               id="email"
               name="email"
               type="email"
-              className="w-full border border-gray-300 shadow-md px-3 py-2 rounded-md mb-3"
+              className="w-full border border-gray-300 shadow-md px-3 py-2 rounded-md mb-2"
               placeholder="Enter your email"
               onChange={(e) =>
                 setValues({ ...values, [e.target.name]: e.target.value })
@@ -134,7 +139,7 @@ export default function EmpRegister() {
               id="cmpName"
               name="cmpName"
               type="text"
-              className="w-full border border-gray-300 shadow-md px-3 py-2 rounded-md mb-3"
+              className="w-full border border-gray-300 shadow-md px-3 py-2 rounded-md mb-2"
               placeholder="Enter your Company Name"
               onChange={(e) =>
                 setValues({ ...values, [e.target.name]: e.target.value })
@@ -149,14 +154,14 @@ export default function EmpRegister() {
               id="password"
               name="password"
               type="password"
-              className="w-full border border-gray-300 px-3 py-2 rounded-md shadow-md mb-3"
+              className="w-full border border-gray-300 px-3 py-2 rounded-md shadow-md mb-2"
               placeholder="Enter your password"
               onChange={(e) =>
                 setValues({ ...values, [e.target.name]: e.target.value })
               }
             />
           </div>
-          <div className="w-full mb-3">
+          <div className="w-full mb-2">
             <div className="w-full">
               <button
                 type="submit"

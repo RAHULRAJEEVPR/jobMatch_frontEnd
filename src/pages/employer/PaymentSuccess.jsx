@@ -3,8 +3,13 @@ import { useParams,Link, useNavigate } from 'react-router-dom';
 // import { useSelector } from 'react-redux';
 import { paymentVerification } from '../../Services/EmpApi';
 import { toast } from 'react-toastify';
+import { updateEmpDetails } from '../../Redux/employer/EmpSlice';
+import { useDispatch } from "react-redux";
+
 
 export default function PaymentSuccess() {
+    const dispatch=useDispatch()
+
     const navigate=useNavigate()
     const [update,setUpdate]=useState(false)
     const params = useParams();
@@ -14,6 +19,8 @@ export default function PaymentSuccess() {
     useEffect(()=>{
 
 paymentVerification(empId).then((res)=>{
+    dispatch(updateEmpDetails(res.data.empData))
+
     setUpdate(true)
 }).catch((err)=>{
 navigate("/error")

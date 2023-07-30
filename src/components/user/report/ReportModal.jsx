@@ -29,7 +29,7 @@ userReportJob({reason,postId}).then((res)=>{
     <>
     <div className="flex justify-center mx-4">
       <div  className="">
-      <button onClick={()=>setShowModal(true)} className="p-2 text-3xl hover:text-4xl text-red-700">
+      <button onClick={()=>setShowModal(true)} className="p-2 text-3xl hover:text-4xl text-gray-500">
               <FontAwesomeIcon icon={faCircleExclamation} />
               </button>
       </div>

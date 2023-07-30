@@ -18,8 +18,8 @@ const {loading}=useSelector(state=>state.alerts)
   return (
     <>
    <BrowserRouter>
-   {loading&&( <Loaders/>  )}
  
+   {loading&&( <Loaders/>  )}
    <Routes>
     
     <Route path="/" element={<LandingPage/>}/>
@@ -35,3 +35,4 @@ const {loading}=useSelector(state=>state.alerts)
 }
 
 export default App
+ 

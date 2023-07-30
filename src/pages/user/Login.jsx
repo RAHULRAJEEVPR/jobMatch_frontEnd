@@ -8,6 +8,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { userLogin, userLoginWithGoogle } from "../../Services/userApi";
 import { useGoogleLogin, googleLogout } from "@react-oauth/google";
 import { updateUserDetails } from "../../Redux/user/userSlice";
+import logoo from "../../assets/logoo.png"; 
+
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -112,6 +114,9 @@ export default function Login() {
     <div className="bg-white ">
       <div className="flex justify-center items-center h-screen  ">
         <div className="bg-white p-8  rounded-md  md:w-3/4 lg:w-2/6 shadow-xl  ">
+        <div className="flex justify-center">
+          <img className="w-40" src={logoo} alt="" />
+        </div>
           <h1 className="text-4xl text-blue-950 font-bold mb-10 text-center">
             Welcome on Board
           </h1>

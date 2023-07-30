@@ -36,7 +36,7 @@ export default function EmpSearchuser({set}) {
           </div>
           <div className="w-full md:w-1/6">
             <button
-              type="submit"
+               type="button"
               className="bg-blue-950 rounded-md text-white w-full text-lg p-3 lg:ms-5 font-bold"
             >
               SEARCH
