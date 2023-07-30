@@ -24,6 +24,12 @@ export default function EmpRegister() {
         onError: (error) => console.log('Login Failed:', error)
     });
 
+    useEffect(()=>{
+      if (localStorage.getItem("empJwt")) {
+        navigate("/employer/");
+      }
+    })
+
     useEffect(
         () => {
             if (user) {

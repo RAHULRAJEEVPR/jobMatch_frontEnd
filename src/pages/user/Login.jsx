@@ -23,6 +23,12 @@ export default function Login() {
     onError: (error) => console.log("Login Failed:", error),
   });
 
+  useEffect(()=>{
+    if (localStorage.getItem("userJwt")) {
+      navigate("/user/");
+    }
+  })
+
   useEffect(() => {
     if (user) {
       axios

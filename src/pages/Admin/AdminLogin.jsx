@@ -1,5 +1,5 @@
 
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import { toast } from "react-toastify"
 import { showLoading,hideLoading } from "../../Redux/alertSlice";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,6 +16,12 @@ export default function AdminLogin() {
     const [values,setValues]=useState({
         email:"",
         password:""
+    })
+
+    useEffect(()=>{
+      if (localStorage.getItem("adminJwt")) {
+        navigate("/admin/");
+      }
     })
 
     const handleSubmit=async(e)=>{
