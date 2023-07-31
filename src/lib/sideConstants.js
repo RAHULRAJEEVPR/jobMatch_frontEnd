@@ -37,6 +37,12 @@
       label: 'REPORTS',
       path: '/admin/Reports',
     }
+    ,
+    {
+      key: 'SUBSCRIPTIONS',
+      label: 'SUBSCRIPTIONS',
+      path: '/admin/subscriptions'
+    }
   ];
   
 

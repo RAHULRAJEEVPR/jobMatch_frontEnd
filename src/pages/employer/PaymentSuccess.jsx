@@ -27,7 +27,7 @@ navigate("/error")
     console.log(err);
 })
 
- })
+ },[])
  if(!update) return
   return (
 

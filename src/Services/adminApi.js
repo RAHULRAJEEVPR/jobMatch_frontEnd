@@ -64,6 +64,9 @@ const adminGetReportdPosts=()=>{
 const changePostStatus=(value)=>{
   return adminAxiosInstence.post("/changepoststatus",value,{withCredentials:true})
 }
+const getSubscriptionDetails=(value)=>{
+  return adminAxiosInstence.get("/subscriptiondetails",{withCredentials:true})
+}
 export {
   adminLogin,
   adminUserDetails,
@@ -83,5 +86,6 @@ export {
   empCount,
   revenue,
   adminGetReportdPosts,
-  changePostStatus
+  changePostStatus,
+  getSubscriptionDetails
 };

@@ -13,6 +13,7 @@ import NotFoundPage from "../pages/NotFoundPage";
 import AdminAllPosts from "../pages/Admin/AdminAllPosts";
 import AdminSinglePostView from "../pages/Admin/AdminSinglePost";
 import ReportedPosts from "../pages/Admin/ReportedPosts";
+import Subscriptions from "../pages/Admin/Subscriptions";
 
 export default function AdminRoutes() {
   return (
@@ -31,6 +32,7 @@ export default function AdminRoutes() {
           <Route path="/posts" element={<AdminAllPosts />} />
           <Route path="/adminSinglePostView" element={<AdminSinglePostView />} />
           <Route path="/Reports" element={<ReportedPosts />} />
+          <Route path="/subscriptions" element={<Subscriptions />} />
         </Route>
       </Route>
     </Routes>
