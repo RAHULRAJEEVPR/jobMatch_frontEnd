@@ -7,7 +7,7 @@ export default function Layout() {
   const [showSideBar,setShowSideBar]=useState(true)
   return (
     <div className="flex flex-row bg-neutral-100  min-h-screen ">
-      {showSideBar&&
+      {showSideBar&&    
     <SideBar />
       }
     <div className="flex flex-col  w-full">

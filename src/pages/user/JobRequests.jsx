@@ -27,7 +27,7 @@ useEffect(()=>{
     {postData.length!=0 ?  <div>
 <UserApplicationCard posts={postData} status={status}/>
     </div>:<div className="flex justify-center mt-36">
-        <h1 className="text-4xl font-bold font-serif">You Have No {status} Applications </h1></div>}
+        <h1 className="md:text-4xl font-bold font-serif">You Have No {status} Applications </h1></div>}
    
     </div>
   )

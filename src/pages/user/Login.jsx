@@ -110,7 +110,6 @@ export default function Login() {
         });
     } catch (error) {
       dispatch(hideLoading());
-      // Handle any error that occurred during the request
       console.error(error);
       toast.error("An error occurred. Please try again.");
     }

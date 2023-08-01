@@ -23,7 +23,7 @@ export default function EmpHome() {
     dispatch(showLoading());
     skillData()
       .then((res) => {
-        setSkills(res.data.skillData);
+        setSkills(res.data.skillData);   
       })
       .catch((err) => {
         console.log(err);

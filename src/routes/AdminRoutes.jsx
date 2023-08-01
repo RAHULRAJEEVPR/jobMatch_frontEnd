@@ -23,7 +23,7 @@ export default function AdminRoutes() {
       <Route path="/login" element={<AdminLogin />} />
       <Route path="/home" element={<AdminHome />} />
       <Route element={<PrivateRoutes role={"admin"} route={"/admin/login"} />}>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout />}> 
           <Route index element={<DashBoard />} />
           <Route path="/users" element={<User />} />
           <Route path="/employers" element={<Employers/>} />
