@@ -15,20 +15,23 @@ const openResume = (resumeUrl) => {
   window.open(resumeUrl, "_blank");
 };
 
-const downloadResume = (resumeUrl) => {
-  fetch(resumeUrl)
-    .then((response) => response.blob())
-    .then((blob) => {
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "resume.pdf";
-      link.click();
-    })
-    .catch((error) => {
-      console.error("Error occurred while downloading the resume:", error);
-    });
+
+
+const downloadResume = async (resumeUrl, fileName) => {
+  try {
+    const response = await fetch(resumeUrl);
+    const blob = await response.blob();
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = fileName;
+    link.click();
+    URL.revokeObjectURL(link.href); 
+  } catch (error) {
+    console.error("Error downloading the file:", error);
+  }
 };
+
+
 
 let textColor;
 
@@ -130,7 +133,7 @@ export default function ApplicantCard({ postData, status, set }) {
                     icon={faEye}
                   />
                 </button>
-                <button onClick={() => downloadResume(post.resumeUrl)}>
+                <button onClick={() =>  downloadResume(post.resumeUrl, "resume.pdf")}>
                   <FontAwesomeIcon
                     className="font-bold text-xl text-blue-800 px-3 rounded-lg ms-2"
                     icon={faDownload}
