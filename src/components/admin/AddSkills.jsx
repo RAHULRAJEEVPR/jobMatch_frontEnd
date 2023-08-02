@@ -1,31 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { adminAddSkill } from "../../Services/adminApi";
-import { toast } from "react-toastify"
+import { toast } from "react-toastify";
 
-
-export default function AddSkills({fetchData}) {
+export default function AddSkills({ fetchData }) {
   const [showModal, setShowModal] = useState(false);
   const [skill, setSkill] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(skill);
-    
+
     try {
-        if(skill.trim()===""){
-            return toast.warn("skill should't be empty");
-        }
+      if (skill.trim() === "") {
+        return toast.warn("skill should't be empty");
+      }
       adminAddSkill({ skill })
         .then((res) => {
-            toast.success(res.data.message);
-            fetchData()
+          toast.success(res.data.message);
+          fetchData();
           console.log(res);
         })
         .catch((error) => {
-            toast.warn(error.response.data.message)
+          toast.warn(error.response.data.message);
           console.log(error);
         });
     } catch (error) {
-        console.log(error.message);
+      console.log(error.message);
     }
   };
 

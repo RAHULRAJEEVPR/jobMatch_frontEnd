@@ -5,11 +5,10 @@ import axios from "axios";
 import { showLoading, hideLoading } from "../../Redux/alertSlice";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
-import { empLogin,empLoginWithGoogle } from "../../Services/EmpApi";
+import { empLogin, empLoginWithGoogle } from "../../Services/EmpApi";
 import { useGoogleLogin, googleLogout } from "@react-oauth/google";
 import { updateEmpDetails } from "../../Redux/employer/EmpSlice";
-import logoo from "../../assets/logoo.png"; 
-
+import logoo from "../../assets/logoo.png";
 
 export default function EmpLogin() {
   const dispatch = useDispatch();
@@ -17,16 +16,16 @@ export default function EmpLogin() {
   const [values, setValues] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
-//.. goolge login
+  //.. goolge login
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => setUser(codeResponse),
     onError: (error) => console.log("Login Failed:", error),
   });
-  useEffect(()=>{
+  useEffect(() => {
     if (localStorage.getItem("empJwt")) {
       navigate("/employer/");
     }
-  })
+  });
 
   useEffect(() => {
     if (user) {
@@ -48,11 +47,10 @@ export default function EmpLogin() {
               dispatch(hideLoading());
               console.log(res);
               if (res.data.login) {
-                if(res.data.empData.status==false){
-                  toast.error("your account has been blocked by user")
-                }else{
-
-                  dispatch(updateEmpDetails(res.data.empData))
+                if (res.data.empData.status == false) {
+                  toast.error("your account has been blocked by user");
+                } else {
+                  dispatch(updateEmpDetails(res.data.empData));
                   localStorage.setItem("empJwt", res.data.token);
                   navigate("/employer/");
                   toast.success(res.data.message);
@@ -70,7 +68,7 @@ export default function EmpLogin() {
         .catch((err) => console.log(err));
     }
   }, [user]);
-//. email login
+  //. email login
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(values);
@@ -79,7 +77,7 @@ export default function EmpLogin() {
       return toast.warn("email should not be empty");
     } else if (values.password.trim() === "") {
       return toast.warn("password should not be empty");
-    } 
+    }
     try {
       dispatch(showLoading());
       empLogin({ ...values })
@@ -87,14 +85,14 @@ export default function EmpLogin() {
           dispatch(hideLoading());
           if (res.data.login) {
             console.log(res.data.empData);
-             if(res.data.empData.status===false){
-            toast.error("your account has been blocked by user")
-          }else{
-            dispatch(updateEmpDetails(res.data.empData))
-            localStorage.setItem("empJwt", res.data.token);
-            navigate("/employer/");
-            toast.success(res.data.message);
-          }
+            if (res.data.empData.status === false) {
+              toast.error("your account has been blocked by user");
+            } else {
+              dispatch(updateEmpDetails(res.data.empData));
+              localStorage.setItem("empJwt", res.data.token);
+              navigate("/employer/");
+              toast.success(res.data.message);
+            }
           }
         })
         .catch((error) => {
@@ -114,9 +112,9 @@ export default function EmpLogin() {
     <div className="bg-white w-screen ">
       <div className="flex justify-center items-center h-screen  ">
         <div className="bg-white p-8  rounded-md  md:w-3/4 lg:w-2/6 shadow-xl  ">
-        <div className="flex justify-center">
-          <img className="w-40" src={logoo} alt="" />
-        </div>
+          <div className="flex justify-center">
+            <img className="w-40" src={logoo} alt="" />
+          </div>
           <h1 className="text-4xl text-blue-950 font-bold mb-10 text-center">
             Welcome on Board
           </h1>

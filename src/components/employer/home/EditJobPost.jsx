@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { editPost } from "../../../Services/EmpApi"; 
+import { editPost } from "../../../Services/EmpApi";
 
 import { showLoading, hideLoading } from "../../../Redux/alertSlice";
 import { useDispatch } from "react-redux";
 
-
-export default function  EditJobPost({post, skills, citys ,setPosts}) {
-const dispatch=useDispatch()
-    const [postData,setPostData]=useState(post)
-    const [isChecked, setIsChecked] = useState(post.skills);
+export default function EditJobPost({ post, skills, citys, setPosts }) {
+  const dispatch = useDispatch();
+  const [postData, setPostData] = useState(post);
+  const [isChecked, setIsChecked] = useState(post.skills);
   const [showModal, setShowModal] = useState(false);
- 
-  const [additionalSkills, setAdditionalSkills] = useState([...post.additionalSkills]);
-  
+
+  const [additionalSkills, setAdditionalSkills] = useState([
+    ...post.additionalSkills,
+  ]);
+
   const [newSkill, setNewSkill] = useState("");
-let id=postData._id
-  useEffect(()=>{
-    setIsChecked(post.skills)
-    setPostData(post)
-    setAdditionalSkills(post.additionalSkills)
-    
-  },[post])
+  let id = postData._id;
+  useEffect(() => {
+    setIsChecked(post.skills);
+    setPostData(post);
+    setAdditionalSkills(post.additionalSkills);
+  }, [post]);
 
   const handleCheckboxChange = (event) => {
     const { value, checked } = event.target;
@@ -29,7 +29,9 @@ let id=postData._id
     if (checked) {
       setIsChecked((prevSkills) => [...prevSkills, value]);
     } else {
-      setIsChecked((prevSkills) => prevSkills.filter((skill) => skill !== value));
+      setIsChecked((prevSkills) =>
+        prevSkills.filter((skill) => skill !== value)
+      );
     }
   };
 
@@ -59,7 +61,6 @@ let id=postData._id
 
     // Form validation
     if (jobData.role === "") {
-
       toast.error("Please enter a job role");
       return;
     }
@@ -107,42 +108,47 @@ let id=postData._id
       document.querySelectorAll('input[name="skills"]:checked')
     ).map((checkbox) => checkbox.value);
     jobData.skills = selectedSkills;
-    jobData.additionalSkills=additionalSkills
-    jobData.id=postData._id
+    jobData.additionalSkills = additionalSkills;
+    jobData.id = postData._id;
     // jobData.additionalSkills = additionalSkills;
     if (jobData.skills.length === 0) {
       toast.error("Please select skill");
       return;
     }
-    
+
     // Perform form submission logic
-    editPost({...jobData,id: postData._id}).then((res)=>{ 
-      console.log(res);
-      dispatch(showLoading())
-     
+    editPost({ ...jobData, id: postData._id })
+      .then((res) => {
+        console.log(res);
+        dispatch(showLoading());
+
         setPosts(res.data.postData);
         console.log(res);
-        dispatch(hideLoading())
+        dispatch(hideLoading());
         setAdditionalSkills([]);
         setNewSkill("");
-        toast.success("updated")
-    }).catch((err)=>{
-      console.log(err);
-      toast.error("something went wrong")
-    })
+        toast.success("updated");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("something went wrong");
+      });
     console.log("Job data:", jobData);
-    e.target.reset(); 
+    e.target.reset();
     setShowModal(false);
   };
 
   return (
     <>
       <div className="flex justify-end ">
-      <button onClick={()=>{
-        setShowModal(true)
-      }} className="bg-orange-500 ms-3 text-white text-sm md:text-lg px-2 md:p-1 p-1 md:px-3 font-semibold rounded-md">
-     EDIT
-   </button>
+        <button
+          onClick={() => {
+            setShowModal(true);
+          }}
+          className="bg-orange-500 ms-3 text-white text-sm md:text-lg px-2 md:p-1 p-1 md:px-3 font-semibold rounded-md"
+        >
+          EDIT
+        </button>
         {showModal ? (
           <>
             <div className="justify-center pt-20   items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -179,8 +185,12 @@ let id=postData._id
                           defaultValue={postData.role}
                           className="mt-1 p-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-lg border-gray-300 rounded-md"
                           placeholder="Enter Job Role"
-                          onChange={(e) => setPostData((prevData) => ({ ...prevData, role: e.target.value }))}
-
+                          onChange={(e) =>
+                            setPostData((prevData) => ({
+                              ...prevData,
+                              role: e.target.value,
+                            }))
+                          }
                         />
                       </div>
 
@@ -196,7 +206,9 @@ let id=postData._id
                           name="location"
                           className="mt-1 p-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-lg border-gray-300 rounded-md"
                         >
-                          <option  value={postData.location}>{postData.location}</option>
+                          <option value={postData.location}>
+                            {postData.location}
+                          </option>
                           {citys.map((city, index) => (
                             <option key={index} value={city.city}>
                               {city.city}
@@ -217,7 +229,9 @@ let id=postData._id
                           name="jobType"
                           className="mt-1 p-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-lg border-gray-300 rounded-md"
                         >
-                          <option value={postData.jobtype}>{postData.jobtype}</option>
+                          <option value={postData.jobtype}>
+                            {postData.jobtype}
+                          </option>
                           <option value="Full Time">Full Time</option>
                           <option value="Part Time">Part Time</option>
                         </select>
@@ -230,14 +244,12 @@ let id=postData._id
                           CTC
                         </label>
                         <input
-                        
                           type="number"
                           id="ctc"
-                         defaultValue={postData.ctc}
+                          defaultValue={postData.ctc}
                           name="ctc"
                           className="mt-1 p-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-lg border-gray-300 rounded-md"
                           placeholder="Enter the ctc"
-                          
                         />
                       </div>
                       <div className="mb-2">
@@ -254,7 +266,6 @@ let id=postData._id
                           name="exp"
                           className="mt-1 p-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-lg border-gray-300 rounded-md"
                           placeholder="Enter the minimum expireance"
-                          
                         />
                       </div>
                       <div className="mb-2">
@@ -265,13 +276,12 @@ let id=postData._id
                           Vacancy
                         </label>
                         <input
-                        defaultValue={postData.vacancy}
+                          defaultValue={postData.vacancy}
                           type="number"
                           id="vacancy"
                           name="vacancy"
                           className="mt-1 p-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-lg border-gray-300 rounded-md"
                           placeholder="Enter the minimum expireance"
-                          
                         />
                       </div>
                       <div className="mb-2">
@@ -283,13 +293,11 @@ let id=postData._id
                         </label>
                         <textarea
                           id="description"
-                          defaultValue={postData. jobDescription}
-                       
+                          defaultValue={postData.jobDescription}
                           name="description"
                           className="mt-1 p-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-lg border-gray-300 rounded-md"
                           placeholder="Enter the job description"
                           rows="3" // Adjust the number of rows as needed
-                          
                         ></textarea>
                       </div>
                       <div className="mb-2">
@@ -311,8 +319,6 @@ let id=postData._id
                                 value={skill.skill}
                                 checked={isChecked.includes(skill.skill)}
                                 onChange={handleCheckboxChange} // Invoke the handleCheckboxChange function
-
-
                                 className="mr-1"
                               />
                               <label htmlFor={`skill${index + 1}`}>
@@ -324,49 +330,48 @@ let id=postData._id
                       </div>
 
                       <div className="mb-2">
-                <label
-                  htmlFor="additionalSkills"
-                  className="block text-xl font-bold text-gray-900"
-                >
-                  Additional Skills
-                </label>
-                <div className="flex items-center">
-                  <input
-                    type="text"
-                    id="additionalSkills"
-                    name="additionalSkills"
-                    value={newSkill}
-                    onChange={(e) => setNewSkill(e.target.value)}
-                    className="mt-1 p-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-lg border-gray-300 rounded-md"
-                    placeholder="Enter additional skills"
-                  />
-                  <button
-                    type="button"
-                    className="ml-2 bg-emerald-500 text-white font-bold px-3 py-2 rounded shadow hover:shadow-lg"
-                    onClick={handleAddSkill}
-                  >
-                    Add
-                  </button>
-                </div>
-                <div className="mt-2 flex flex-wrap">
-                  {additionalSkills.map((skill, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center mr-2 mb-2 bg-gray-100 p-1 rounded"
-                    >
-                      <span className="mr-1">{skill}</span>
-                      <button
-                        type="button"
-                        className="text-red-500 font-bold"
-                        onClick={() => handleRemoveSkill(index)}
-                      >
-                        x
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
+                        <label
+                          htmlFor="additionalSkills"
+                          className="block text-xl font-bold text-gray-900"
+                        >
+                          Additional Skills
+                        </label>
+                        <div className="flex items-center">
+                          <input
+                            type="text"
+                            id="additionalSkills"
+                            name="additionalSkills"
+                            value={newSkill}
+                            onChange={(e) => setNewSkill(e.target.value)}
+                            className="mt-1 p-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-lg border-gray-300 rounded-md"
+                            placeholder="Enter additional skills"
+                          />
+                          <button
+                            type="button"
+                            className="ml-2 bg-emerald-500 text-white font-bold px-3 py-2 rounded shadow hover:shadow-lg"
+                            onClick={handleAddSkill}
+                          >
+                            Add
+                          </button>
+                        </div>
+                        <div className="mt-2 flex flex-wrap">
+                          {additionalSkills.map((skill, index) => (
+                            <div
+                              key={index}
+                              className="flex items-center mr-2 mb-2 bg-gray-100 p-1 rounded"
+                            >
+                              <span className="mr-1">{skill}</span>
+                              <button
+                                type="button"
+                                className="text-red-500 font-bold"
+                                onClick={() => handleRemoveSkill(index)}
+                              >
+                                x
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
 
                       {/*footer*/}
                       <div className="flex items-center justify-end p-2 border-t border-solid border-slate-200 rounded-b">

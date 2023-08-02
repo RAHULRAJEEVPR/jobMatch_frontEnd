@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { skillData } from "../../../Services/EmpApi";
-export default function EmpSearchuser({set}) {
+export default function EmpSearchuser({ set }) {
   const [skills, setSkills] = useState([]);
   useEffect(() => {
     skillData()
@@ -23,7 +23,7 @@ export default function EmpSearchuser({set}) {
           <div className="w-full md:w-4/6 mb-3 md:mb-0">
             <select
               id="skill"
-              onChange={(e)=>set(e.target.value)}
+              onChange={(e) => set(e.target.value)}
               className="bg-white shadow-lg border border-gray-300 text-gray-950 text-lg rounded-lg w-full lg:ms-2 p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
             >
               <option value="">Choose a skill</option>
@@ -36,7 +36,7 @@ export default function EmpSearchuser({set}) {
           </div>
           <div className="w-full md:w-1/6">
             <button
-               type="button"
+              type="button"
               className="bg-blue-950 rounded-md text-white w-full text-lg p-3 lg:ms-5 font-bold"
             >
               SEARCH

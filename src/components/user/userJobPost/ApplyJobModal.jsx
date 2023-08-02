@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { showLoading,hideLoading } from "../../../Redux/alertSlice";
 import { useDispatch } from "react-redux";
 
-export default function ApplyJobModal({id}) {
+export default function ApplyJobModal({id,set}) {
   const dispatch=useDispatch()
   const [showModal, setShowModal] = useState(false);
   const [coverLetter, setCoverLetter] = useState("");
@@ -12,13 +12,16 @@ export default function ApplyJobModal({id}) {
 
   const handleFormSubmit =async (event) => {
     event.preventDefault();
+
     try {
     const formData = new FormData();
     formData.append("coverLetter", coverLetter);
     formData.append("resume", resume);
     formData.append("postId",id)
+    setShowModal(false)
     dispatch(showLoading())
     await applyJob(formData).then((res)=>{
+      set(res.data.post)
       dispatch(hideLoading())
         toast.success(res.data.message)
     }).catch((error)=>{

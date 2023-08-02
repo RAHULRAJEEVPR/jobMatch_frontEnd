@@ -1,77 +1,69 @@
-
-import React,{useState,useEffect} from "react";
-import { toast } from "react-toastify"
-import { showLoading,hideLoading } from "../../Redux/alertSlice";
+import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import { showLoading, hideLoading } from "../../Redux/alertSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { adminLogin } from "../../Services/adminApi";
-import { useSelector,useDispatch } from "react-redux";
-import logoo from "../../assets/logoo.png"; 
-
-
-
+import { useSelector, useDispatch } from "react-redux";
+import logoo from "../../assets/logoo.png";
 
 export default function AdminLogin() {
-  const dispatch=useDispatch()
-  const navigate=useNavigate()
-    const [values,setValues]=useState({
-        email:"",
-        password:""
-    })
-
-    useEffect(()=>{
-      if (localStorage.getItem("adminJwt")) {
-        navigate("/admin/");
-      }
-    })
-
-    const handleSubmit=async(e)=>{
-      e.preventDefault();
-try {
-  console.log("keriyo");
-  console.log(values);
-    let {email,password}=values
-
-if(email.trim()==""){
-    return toast.warn("email should not be empty");
-}  else if (password.trim() === "") {
-    return toast.warn("password should not be empty");
-}
-dispatch(showLoading());
-
-adminLogin({...values})
-.then((res)=>{
-  console.log("then");
-
-    dispatch(hideLoading());
-    console.log(res);
-    localStorage.setItem("adminJwt", res.data.token);
-    if (res.data.login) {
-        toast.success(res.data.message);
-        navigate("/admin");
-      }
-      
-
-}) .catch((error) => {
-  console.log("catch");
-
-    dispatch(hideLoading());
-    console.log(error);
-    toast.error(error.response.data.message);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
   });
-} catch (error) {
-    console.log(error.message);
-    
 
-}
-
+  useEffect(() => {
+    if (localStorage.getItem("adminJwt")) {
+      navigate("/admin/");
     }
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      console.log("keriyo");
+      console.log(values);
+      let { email, password } = values;
+
+      if (email.trim() == "") {
+        return toast.warn("email should not be empty");
+      } else if (password.trim() === "") {
+        return toast.warn("password should not be empty");
+      }
+      dispatch(showLoading());
+
+      adminLogin({ ...values })
+        .then((res) => {
+          console.log("then");
+
+          dispatch(hideLoading());
+          console.log(res);
+          localStorage.setItem("adminJwt", res.data.token);
+          if (res.data.login) {
+            toast.success(res.data.message);
+            navigate("/admin");
+          }
+        })
+        .catch((error) => {
+          console.log("catch");
+
+          dispatch(hideLoading());
+          console.log(error);
+          toast.error(error.response.data.message);
+        });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <div className="bg-white ">
       <div className="flex justify-center items-center h-screen  ">
         <div className="bg-white p-8  rounded-md  md:w-3/4 lg:w-2/6 shadow-xl  ">
-        <div className="flex justify-center">
-          <img className="w-40" src={logoo} alt="" />
-        </div>
+          <div className="flex justify-center">
+            <img className="w-40" src={logoo} alt="" />
+          </div>
           <h1 className="text-4xl text-blue-950 font-bold mb-10 text-center">
             Welcome on Board
           </h1>
@@ -120,7 +112,6 @@ adminLogin({...values})
                 </button>
               </div>
             </div>
-           
           </form>
         </div>
       </div>

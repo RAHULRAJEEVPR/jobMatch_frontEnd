@@ -5,11 +5,11 @@ import UserCard from "../../components/employer/FindTalent/UserCard";
 import { empSearchUser } from "../../Services/EmpApi";
 import { toast } from "react-toastify";
 import { getSinglePostData } from "../../Services/EmpApi";
-import { showLoading,hideLoading } from "../../Redux/alertSlice";
+import { showLoading, hideLoading } from "../../Redux/alertSlice";
 import { useDispatch } from "react-redux";
 
 export default function FindTalents() {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const location = useLocation();
   const { id } = location.state || {};
   const [postData, setPostData] = useState({});
@@ -26,22 +26,22 @@ export default function FindTalents() {
   }, [skill]);
 
   useEffect(() => {
-    dispatch(showLoading())
+    dispatch(showLoading());
     getSinglePostData(id)
       .then((res) => {
         setPostData(res.data.postData);
-        dispatch(hideLoading())
+        dispatch(hideLoading());
         setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
-        dispatch(hideLoading())
+        dispatch(hideLoading());
         setIsLoading(false);
       });
   }, []);
 
   if (isLoading) {
-    return 
+    return;
   }
 
   return (
@@ -50,7 +50,8 @@ export default function FindTalents() {
         <EmpSearchuser set={setSkill} />
       </div>
       <div className="bg-white h-3"></div>
-      {!isLoading && (userData.length !== 0 || Object.keys(postData).length !== 0) ? (
+      {!isLoading &&
+      (userData.length !== 0 || Object.keys(postData).length !== 0) ? (
         <div>
           <UserCard userData={userData} postData={postData} set={setPostData} />
         </div>

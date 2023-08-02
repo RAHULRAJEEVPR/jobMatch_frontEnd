@@ -14,4 +14,3 @@ export const empSlice = createSlice({
 
 export const { updateEmpDetails } = empSlice.actions;
 export default empSlice.reducer;
-

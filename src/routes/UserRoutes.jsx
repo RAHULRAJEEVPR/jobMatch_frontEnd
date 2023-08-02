@@ -15,8 +15,6 @@ import JobRequests from "../pages/user/JobRequests";
 import Invites from "../pages/user/Invites";
 import UserChat from "../pages/user/UserChat";
 
-
-
 export default function UserRoutes() {
   return (
     <Routes>
@@ -29,15 +27,12 @@ export default function UserRoutes() {
       <Route element={<PrivateRoutes role={"user"} route={"/user/login"} />}>
         <Route path="/" element={<Layout />}>
           <Route index element={<UserHome />} />
-          <Route path="/jobdetailedview" element={<PostDetailedView/>} /> 
-          <Route path="/profile" element={<UserProfile />} /> 
-          <Route path="/employer/profile" element={<UserEmpProfileview />} /> 
-          <Route path="/jobrequests" element={<JobRequests />} /> 
-          <Route path="/invites" element={<Invites/>}/>
-          <Route path="/userChat" element={<UserChat/>}/>
-
-          
-          
+          <Route path="/jobdetailedview" element={<PostDetailedView />} />
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/employer/profile" element={<UserEmpProfileview />} />
+          <Route path="/jobrequests" element={<JobRequests />} />
+          <Route path="/invites" element={<Invites />} />
+          <Route path="/userChat" element={<UserChat />} />
         </Route>
       </Route>
     </Routes>

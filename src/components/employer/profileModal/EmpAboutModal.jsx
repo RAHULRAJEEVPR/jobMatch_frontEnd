@@ -16,15 +16,16 @@ export default function EmpAboutModal({ empAbout }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    empUpdateAbout({about}).then((res)=>{
-        dispatch(updateEmpDetails(res.data.empData))
-        toast.success("updated")
-        setShowModal(false)
-    }).catch((err)=>{
-        toast.success("something went wrong")
-        setShowModal(false)
-
-    })
+    empUpdateAbout({ about })
+      .then((res) => {
+        dispatch(updateEmpDetails(res.data.empData));
+        toast.success("updated");
+        setShowModal(false);
+      })
+      .catch((err) => {
+        toast.success("something went wrong");
+        setShowModal(false);
+      });
   };
   return (
     <>
@@ -69,7 +70,7 @@ export default function EmpAboutModal({ empAbout }) {
                         <textarea
                           id="about"
                           name="about"
-                          value={about} 
+                          value={about}
                           className="mt-1 p-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-lg border-gray-300 rounded-md"
                           placeholder="Enter the about"
                           rows="3"

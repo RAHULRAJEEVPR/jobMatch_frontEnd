@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import success from "../../assets/success.png";
 import style from "./styles.module.css";
-import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 import { BaseUrl } from "../../constants/constants";
-
 
 export default function EmpEmailVerify() {
   const [validUrl, setValidUrl] = useState(false);

@@ -1,26 +1,29 @@
-import React,{useState} from 'react'
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { updateEmpDetails } from '../../../Redux/employer/EmpSlice';
-import { empUpdateBasic } from '../../../Services/EmpApi';
-import { toast } from 'react-toastify';
+import { updateEmpDetails } from "../../../Redux/employer/EmpSlice";
+import { empUpdateBasic } from "../../../Services/EmpApi";
+import { toast } from "react-toastify";
 
-export default function EmpBasicModal({empData}) {
-    const dispatch = useDispatch();
-  const [info, setInfo] = useState({ Location: empData.location ?empData.location:"", Phone: empData.phone ?empData.phone:null,name:empData.cmpName });
+export default function EmpBasicModal({ empData }) {
+  const dispatch = useDispatch();
+  const [info, setInfo] = useState({
+    Location: empData.location ? empData.location : "",
+    Phone: empData.phone ? empData.phone : null,
+    name: empData.cmpName,
+  });
   const [showModal, setShowModal] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-     setInfo((prevInfo) => ({ ...prevInfo, [name]: value }));
-    
+    setInfo((prevInfo) => ({ ...prevInfo, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     console.log(info);
     e.preventDefault();
-console.log("kerunindo");
+    console.log("kerunindo");
     if (info.name.trim() == "") {
       return toast.warn("location is needed");
     }
@@ -28,21 +31,21 @@ console.log("kerunindo");
       return toast.warn("location is needed");
     }
     if (!/^(\+\d{1,3})?\d{10}$/.test(info.Phone)) {
-        return toast.warn("Mobile number should be a valid 10-digit number");
-      }
-      empUpdateBasic ({...info}).then((res)=>{
+      return toast.warn("Mobile number should be a valid 10-digit number");
+    }
+    empUpdateBasic({ ...info })
+      .then((res) => {
         console.log(res.data);
-        dispatch(updateEmpDetails(res.data.empData))
-        toast.success("updated successfully")
-        
-     setShowModal(false)
-    }).catch((err)=>{
-        toast.error("something went wrong")
-        console.log(err,"error");
-        setShowModal(false)
-    })
-    
-   
+        dispatch(updateEmpDetails(res.data.empData));
+        toast.success("updated successfully");
+
+        setShowModal(false);
+      })
+      .catch((err) => {
+        toast.error("something went wrong");
+        console.log(err, "error");
+        setShowModal(false);
+      });
   };
   return (
     <>
@@ -148,5 +151,5 @@ console.log("kerunindo");
         ) : null}
       </div>
     </>
-  )
+  );
 }

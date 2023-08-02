@@ -7,30 +7,22 @@ import { showLoading, hideLoading } from "../../Redux/alertSlice";
 import { useDispatch } from "react-redux";
 import { BaseUrl } from "../../constants/constants";
 
-
 export default function EmailVerify() {
   const dispatch = useDispatch();
   const [validUrl, setValidUrl] = useState(false);
   const params = useParams();
 
   useEffect(() => {
- 
     const verifyEmailUrl = async () => {
       try {
-        
         const url = `${BaseUrl}/user/${params.id}/verify/${params.token}`;
         const { data } = await axios
           .get(url)
           .then((res) => {
             setValidUrl(true);
-            
-
           })
           .catch((err) => {
-           
-
             console.log(err);
-           
           });
       } catch (error) {
         console.log(error);

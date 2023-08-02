@@ -7,7 +7,7 @@ import DashBoard from "../components/admin/DashBoard";
 import User from "../pages/Admin/User";
 import Employers from "../pages/Admin/Employers";
 import Skills from "../pages/Admin/Skills";
-import City from "../pages/Admin/city";
+import City from "../pages/Admin/City";
 import PrivateRoutes from "../protectedRoutes/PrivateRoutes";
 import NotFoundPage from "../pages/NotFoundPage";
 import AdminAllPosts from "../pages/Admin/AdminAllPosts";
@@ -23,14 +23,17 @@ export default function AdminRoutes() {
       <Route path="/login" element={<AdminLogin />} />
       <Route path="/home" element={<AdminHome />} />
       <Route element={<PrivateRoutes role={"admin"} route={"/admin/login"} />}>
-        <Route path="/" element={<Layout />}> 
+        <Route path="/" element={<Layout />}>
           <Route index element={<DashBoard />} />
           <Route path="/users" element={<User />} />
-          <Route path="/employers" element={<Employers/>} />
+          <Route path="/employers" element={<Employers />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/city" element={<City />} />
           <Route path="/posts" element={<AdminAllPosts />} />
-          <Route path="/adminSinglePostView" element={<AdminSinglePostView />} />
+          <Route
+            path="/adminSinglePostView"
+            element={<AdminSinglePostView />}
+          />
           <Route path="/Reports" element={<ReportedPosts />} />
           <Route path="/subscriptions" element={<Subscriptions />} />
         </Route>

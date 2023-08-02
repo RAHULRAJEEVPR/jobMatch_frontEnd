@@ -1,7 +1,7 @@
-import React from 'react'
-import momemnt from "moment"
+import React from "react";
+import momemnt from "moment";
 
-export default function SubscriptionsTable({data}) {
+export default function SubscriptionsTable({ data }) {
   return (
     <div className="flex flex-col">
       <div className="overflow-x-auto ">
@@ -25,13 +25,14 @@ export default function SubscriptionsTable({data}) {
                   <th scope="col" className="py-3">
                     Date
                   </th>
-                 
-                  
                 </tr>
               </thead>
               <tbody>
                 {data.map((data, index) => (
-                  <tr key={index} className="border-b bg-white dark:border-neutral-500">
+                  <tr
+                    key={index}
+                    className="border-b bg-white dark:border-neutral-500"
+                  >
                     <td className="whitespace-nowrap md:px-6 md:py-4 px-2 py-2 font-bold md:text-lg">
                       {index + 1}
                     </td>
@@ -42,14 +43,14 @@ export default function SubscriptionsTable({data}) {
                       {data.pack}
                     </td>
                     <td className="whitespace-nowrap font-bold  md:text-lg md:px-6 px-2 md:py-4">
-                    <span className='font-mono'>  {data.orderId}   </span>
+                      <span className="font-mono"> {data.orderId} </span>
                     </td>
                     <td className="whitespace-nowrap font-bold  md:text-lg md:px-6 px-2 md:py-4">
-                    <span className='font-mono'>  {momemnt(data.createdAt).format("MMM Do YY")}   </span>
+                      <span className="font-mono">
+                        {" "}
+                        {momemnt(data.createdAt).format("MMM Do YY")}{" "}
+                      </span>
                     </td>
-                   
-                   
-                    
                   </tr>
                 ))}
               </tbody>
@@ -58,5 +59,5 @@ export default function SubscriptionsTable({data}) {
         </div>
       </div>
     </div>
-  )
+  );
 }

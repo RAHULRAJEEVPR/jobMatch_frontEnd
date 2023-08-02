@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-import { getPostData,createPost } from "../../../Services/EmpApi"; 
+import { getPostData, createPost } from "../../../Services/EmpApi";
 import { updateEmpDetails } from "../../../Redux/employer/EmpSlice";
 import { useDispatch } from "react-redux";
 
-export default function  NewJobPost({ skills, citys ,setPosts}) {
-  const dispatch=useDispatch()
+export default function NewJobPost({ skills, citys, setPosts }) {
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [additionalSkills, setAdditionalSkills] = useState([]);
   const [newSkill, setNewSkill] = useState("");
-
 
   const handleAddSkill = () => {
     if (newSkill.trim() !== "") {
@@ -37,7 +36,6 @@ export default function  NewJobPost({ skills, citys ,setPosts}) {
 
     // Form validation
     if (jobData.role === "") {
-
       toast.error("Please enter a job role");
       return;
     }
@@ -85,33 +83,34 @@ export default function  NewJobPost({ skills, citys ,setPosts}) {
       document.querySelectorAll('input[name="skills"]:checked')
     ).map((checkbox) => checkbox.value);
     jobData.skills = selectedSkills;
-    jobData.additionalSkills=[...additionalSkills]
+    jobData.additionalSkills = [...additionalSkills];
     // jobData.additionalSkills = additionalSkills;
     if (jobData.skills.length === 0) {
       toast.error("Please select skill");
       return;
     }
-    
+
     // Perform form submission logic
-    createPost({...jobData}).then((res)=>{
+    createPost({ ...jobData }).then((res) => {
       console.log(res);
-      dispatch(updateEmpDetails(res.data.empData))
-      getPostData().then((res)=>{
-        setPosts(res.data.postData);
-        setAdditionalSkills([]);
-        setNewSkill("");
-    
-      }).catch((err)=>{
-        toast.success("something went worng")
-      })
-    })
+      dispatch(updateEmpDetails(res.data.empData));
+      getPostData()
+        .then((res) => {
+          setPosts(res.data.postData);
+          setAdditionalSkills([]);
+          setNewSkill("");
+        })
+        .catch((err) => {
+          toast.success("something went worng");
+        });
+    });
     console.log("Job data:", jobData);
     // Reset form fields
     e.target.reset();
     // Close the modal
     setShowModal(false);
   };
- 
+
   return (
     <>
       <div className="flex justify-end ">
@@ -157,7 +156,6 @@ export default function  NewJobPost({ skills, citys ,setPosts}) {
                           name="role"
                           className="mt-1 p-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-lg border-gray-300 rounded-md"
                           placeholder="Enter Job Role"
-                          
                         />
                       </div>
 
@@ -212,7 +210,6 @@ export default function  NewJobPost({ skills, citys ,setPosts}) {
                           name="ctc"
                           className="mt-1 p-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-lg border-gray-300 rounded-md"
                           placeholder="Enter the ctc"
-                          
                         />
                       </div>
                       <div className="mb-2">
@@ -228,7 +225,6 @@ export default function  NewJobPost({ skills, citys ,setPosts}) {
                           name="exp"
                           className="mt-1 p-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-lg border-gray-300 rounded-md"
                           placeholder="Enter the minimum expireance"
-                          
                         />
                       </div>
                       <div className="mb-2">
@@ -244,7 +240,6 @@ export default function  NewJobPost({ skills, citys ,setPosts}) {
                           name="vacancy"
                           className="mt-1 p-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-lg border-gray-300 rounded-md"
                           placeholder="Enter the minimum expireance"
-                          
                         />
                       </div>
                       <div className="mb-2">
@@ -260,7 +255,6 @@ export default function  NewJobPost({ skills, citys ,setPosts}) {
                           className="mt-1 p-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-lg border-gray-300 rounded-md"
                           placeholder="Enter the job description"
                           rows="3" // Adjust the number of rows as needed
-                          
                         ></textarea>
                       </div>
                       <div className="mb-2">
@@ -291,49 +285,48 @@ export default function  NewJobPost({ skills, citys ,setPosts}) {
                       </div>
 
                       <div className="mb-2">
-                <label
-                  htmlFor="additionalSkills"
-                  className="block text-xl font-bold text-gray-900"
-                >
-                  Additional Skills
-                </label>
-                <div className="flex items-center">
-                  <input
-                    type="text"
-                    id="additionalSkills"
-                    name="additionalSkills"
-                    value={newSkill}
-                    onChange={(e) => setNewSkill(e.target.value)}
-                    className="mt-1 p-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-lg border-gray-300 rounded-md"
-                    placeholder="Enter additional skills"
-                  />
-                  <button
-                    type="button"
-                    className="ml-2 bg-emerald-500 text-white font-bold px-3 py-2 rounded shadow hover:shadow-lg"
-                    onClick={handleAddSkill}
-                  >
-                    Add
-                  </button>
-                </div>
-                <div className="mt-2 flex flex-wrap">
-                  {additionalSkills.map((skill, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center mr-2 mb-2 bg-gray-100 p-1 rounded"
-                    >
-                      <span className="mr-1">{skill}</span>
-                      <button
-                        type="button"
-                        className="text-red-500 font-bold"
-                        onClick={() => handleRemoveSkill(index)}
-                      >
-                        x
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
+                        <label
+                          htmlFor="additionalSkills"
+                          className="block text-xl font-bold text-gray-900"
+                        >
+                          Additional Skills
+                        </label>
+                        <div className="flex items-center">
+                          <input
+                            type="text"
+                            id="additionalSkills"
+                            name="additionalSkills"
+                            value={newSkill}
+                            onChange={(e) => setNewSkill(e.target.value)}
+                            className="mt-1 p-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-lg border-gray-300 rounded-md"
+                            placeholder="Enter additional skills"
+                          />
+                          <button
+                            type="button"
+                            className="ml-2 bg-emerald-500 text-white font-bold px-3 py-2 rounded shadow hover:shadow-lg"
+                            onClick={handleAddSkill}
+                          >
+                            Add
+                          </button>
+                        </div>
+                        <div className="mt-2 flex flex-wrap">
+                          {additionalSkills.map((skill, index) => (
+                            <div
+                              key={index}
+                              className="flex items-center mr-2 mb-2 bg-gray-100 p-1 rounded"
+                            >
+                              <span className="mr-1">{skill}</span>
+                              <button
+                                type="button"
+                                className="text-red-500 font-bold"
+                                onClick={() => handleRemoveSkill(index)}
+                              >
+                                x
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
 
                       {/*footer*/}
                       <div className="flex items-center justify-end p-2 border-t border-solid border-slate-200 rounded-b">

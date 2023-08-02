@@ -1,31 +1,32 @@
 import React, { useEffect, useRef, useState } from "react";
 import img from "../../assets/profileAvathar.png";
 
-
-
-
-export default function Messages({ chat, empid,empData, setSendMessage ,receiveMessage,getUserData, empSendMessage,empGetMessages}) {
-  
-
+export default function Messages({
+  chat,
+  empid,
+  empData,
+  setSendMessage,
+  receiveMessage,
+  getUserData,
+  empSendMessage,
+  empGetMessages,
+}) {
   const [userData, setUserData] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  const scroll=useRef()
+  const scroll = useRef();
 
-
-useEffect(()=>{
-if(receiveMessage!==null&&receiveMessage.chatId===chat._id){
-setMessages([...messages,receiveMessage])
-
-}
-},[receiveMessage])
+  useEffect(() => {
+    if (receiveMessage !== null && receiveMessage.chatId === chat._id) {
+      setMessages([...messages, receiveMessage]);
+    }
+  }, [receiveMessage]);
 
   useEffect(() => {
     if (chat !== null) {
       const userId = chat?.members?.find((id) => id !== empid);
       getUserData(userId).then((res) => {
-        setUserData(res.data.userData?res.data.userData:res.data.empData);
-        
+        setUserData(res.data.userData ? res.data.userData : res.data.empData);
       });
     }
   }, [chat, empid]);
@@ -54,16 +55,15 @@ setMessages([...messages,receiveMessage])
         console.log(messages, "msg");
       })
       .catch((err) => console.log(err));
-      // send message to socket server
-      const receiverId=chat?.members?.find((id) => id !== empid)
-      setSendMessage({...message,receiverId})
-      
+    // send message to socket server
+    const receiverId = chat?.members?.find((id) => id !== empid);
+    setSendMessage({ ...message, receiverId });
 
-      //alawys scrol to last msg
-    };
-    useEffect(()=>{
-      scroll.current?.scrollIntoView({behavior:"smooth"})
-    },[messages])
+    //alawys scrol to last msg
+  };
+  useEffect(() => {
+    scroll.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   return (
     <div className="col-span-6 md:col-span-7 border md:ms-2  shadow-2xl bg-white border-gray-400 rounded-xl w-full ">
@@ -71,7 +71,9 @@ setMessages([...messages,receiveMessage])
         <div className="flex flex-col ">
           <div className="flex items-center justify-end shadow-lg border bg-blue-950 border-gray-300  rounded-t-xl pe-7 ">
             <div className="text-xl  font-bold">
-              <h1 className="ms-3 text-white ">{userData?.name?userData.name:userData?.cmpName}</h1>
+              <h1 className="ms-3 text-white ">
+                {userData?.name ? userData.name : userData?.cmpName}
+              </h1>
             </div>
             <div className="ms-3 my-1">
               <img
@@ -81,9 +83,9 @@ setMessages([...messages,receiveMessage])
               />
             </div>
           </div>
-          
+
           <div className="overflow-y-auto mx-2 mt-3 h-[400px] max-h-[400px]">
-            {messages.map((msg,i) => (
+            {messages.map((msg, i) => (
               <div key={i} ref={scroll}>
                 {msg.senderId === empid ? (
                   <div className="flex justify-end mb-4 ">
@@ -99,7 +101,7 @@ setMessages([...messages,receiveMessage])
                 ) : (
                   <div className="flex justify-start me-5 mb-4">
                     <img
-                      src={userData?.image?userData.image:img}
+                      src={userData?.image ? userData.image : img}
                       className="object-cover h-8 w-8 rounded-full"
                       alt=""
                     />

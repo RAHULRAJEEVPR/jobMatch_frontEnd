@@ -38,8 +38,8 @@ export default function City() {
       }
       adminAddCity({ city })
         .then((res) => {
-          toast.success(res.data.message)
-          fetchData()
+          toast.success(res.data.message);
+          fetchData();
         })
         .catch((error) => {
           toast.warn(error.response.data.message);

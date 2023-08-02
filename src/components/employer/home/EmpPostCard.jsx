@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import EditJobPost from "./EditJobPost";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash ,faCircleCheck} from "@fortawesome/free-solid-svg-icons";
-import { deletePost,completePost} from "../../../Services/EmpApi";
+import { faTrash, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { deletePost, completePost } from "../../../Services/EmpApi";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import CompleteModal from "./confirmation/CompleteModal";
 import DeleteModal from "../../conformartinModals/DeleteModal";
-
 
 export default function EmpPostCard({ posts, skills, citys, setPosts }) {
   // const [postData,setPostData]=useState([])
@@ -22,7 +21,6 @@ export default function EmpPostCard({ posts, skills, citys, setPosts }) {
   const nPage = Math.ceil(posts.length / postPerPage);
   const numbers = [...Array(nPage + 1).keys()].slice(1);
 
-
   const nextPage = () => {
     if (currentPage !== nPage) {
       setCurrentpage(currentPage + 1);
@@ -36,9 +34,6 @@ export default function EmpPostCard({ posts, skills, citys, setPosts }) {
   const changeCPage = (id) => {
     setCurrentpage(id);
   };
-
-
-
 
   const navigateToApplicants = (postId) => {
     navigate(`/employer/applicants`, { state: { postId } });
@@ -99,7 +94,6 @@ export default function EmpPostCard({ posts, skills, citys, setPosts }) {
             <div className="md:col-span-1">
               <div className="flex flex-col">
                 <div className="flex justify-end">
-                
                   <button
                     onClick={() => navigateToApplicants(post._id)}
                     className="bg-blue-900 text-sm md:text-lg text-white px-2  md:px-5 font-bold rounded-md"
@@ -112,10 +106,9 @@ export default function EmpPostCard({ posts, skills, citys, setPosts }) {
                     citys={citys}
                     setPosts={setPosts}
                   />
-                
-                  <CompleteModal setPosts={setPosts}  postId={post._id} />
-                  <DeleteModal setPosts={setPosts}  postId={post._id}/>
-              
+
+                  <CompleteModal setPosts={setPosts} postId={post._id} />
+                  <DeleteModal setPosts={setPosts} postId={post._id} />
                 </div>
               </div>
             </div>

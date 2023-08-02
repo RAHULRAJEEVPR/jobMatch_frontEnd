@@ -1,17 +1,15 @@
-import React,{useState,useEffect} from 'react'
-import { adminGetSinglePosts } from '../../Services/adminApi'
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { adminGetSinglePosts } from "../../Services/adminApi";
+import { useSelector } from "react-redux";
 import { showLoading, hideLoading } from "../../Redux/alertSlice";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-
-
 export default function AdminSinglePost() {
-    const location = useLocation();
-    const dispatch = useDispatch();
+  const location = useLocation();
+  const dispatch = useDispatch();
 
-  const { id } = location.state  || {};
+  const { id } = location.state || {};
   const [postDetails, setPostDetails] = useState({});
 
   useEffect(() => {
@@ -72,14 +70,18 @@ export default function AdminSinglePost() {
                     {skill}
                   </span>
                 ))}
-                {postDetails.additionalSkills ? postDetails.additionalSkills.map((skill, i) => (
-                  <span
-                    key={i}
-                    className="text-sm bg-gray-700 text-gray-200 p-1 rounded-lg m-1"
-                  >
-                    {skill}
-                  </span>
-                )):<div></div>}
+                {postDetails.additionalSkills ? (
+                  postDetails.additionalSkills.map((skill, i) => (
+                    <span
+                      key={i}
+                      className="text-sm bg-gray-700 text-gray-200 p-1 rounded-lg m-1"
+                    >
+                      {skill}
+                    </span>
+                  ))
+                ) : (
+                  <div></div>
+                )}
               </h2>
             </div>
             <div className="font-bold md:text-2xl ps-3 py-1">
@@ -95,12 +97,11 @@ export default function AdminSinglePost() {
                 Job Description :{" "}
                 <span className="md:text-lg text-sm font-medium">
                   {postDetails.jobDescription}
-                 
                 </span>
               </h2>
             </div>
           </div>
-            {/* <div className="md:w-2/6   ">
+          {/* <div className="md:w-2/6   ">
           { postDetails.applicants.some(applicant => applicant.applicant === userData._id) ? 
            <div>
            <button
@@ -116,5 +117,5 @@ export default function AdminSinglePost() {
         </div>
       </div>
     </div>
-  )
+  );
 }

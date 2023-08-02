@@ -23,7 +23,7 @@ export default function EmpHome() {
     dispatch(showLoading());
     skillData()
       .then((res) => {
-        setSkills(res.data.skillData);   
+        setSkills(res.data.skillData);
       })
       .catch((err) => {
         console.log(err);
@@ -46,7 +46,6 @@ export default function EmpHome() {
         console.log(err);
       });
   }, []);
-  
 
   return (
     <div>
@@ -66,7 +65,7 @@ export default function EmpHome() {
         <>
           <div>
             <EmpPostCard
-              posts={posts.filter((post)=>post.status=="Active")}
+              posts={posts.filter((post) => post.status == "Active")}
               skills={skills}
               citys={citys}
               setPosts={setPosts}

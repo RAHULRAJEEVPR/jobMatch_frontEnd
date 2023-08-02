@@ -116,7 +116,7 @@ export default function PostDetailedView() {
                 </button>
               </div>
             ) : (
-              <ApplyJobModal id={postDetails._id} />
+              <ApplyJobModal set={setPostDetails} id={postDetails._id} />
             )}
             <div className="">
               <ReportModal postId={postDetails._id} />

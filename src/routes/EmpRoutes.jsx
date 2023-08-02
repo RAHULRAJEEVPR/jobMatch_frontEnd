@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import EmpRegister from "../pages/employer/empRegister";
+import EmpRegister from "../pages/employer/EmpRegister";
 import EmpEmailVerify from "../components/EmailVerify/EmpEmailVerify";
 import EmpLogin from "../pages/employer/EmpLogin";
 import EmpLayout from "../pages/employer/EmpLayout";
@@ -23,17 +23,17 @@ export default function EmpRoutes() {
       <Route path="/login" element={<EmpLogin />} />
       <Route path="/:id/verify/:token" element={<EmpEmailVerify />} />
       <Route element={<PrivateRoutes role={"emp"} route={"/employer/login"} />}>
-      <Route path="/" element={<EmpLayout />}>
-        <Route index element={<EmpHome />} />
-        <Route path="/applicants" element={<JobApplications/>}/>
-        <Route path="/applicants/profile" element={<UserProfileView/>}/>
-        <Route path="/allposts" element={<AllPost/>}/>
-        <Route path="/profile" element={<EmpProfile/>}/>
-        <Route path="/post/FindTalent" element={<FindTalents />} /> 
-        <Route path="/message" element={<EmpChat/>}/>
-        <Route path="/subscription" element={<PremiumPlan/>}/>
-        <Route path="/paymentSuccess/:empId" element={<PaymentSuccess/>}/>
-      </Route>
+        <Route path="/" element={<EmpLayout />}>
+          <Route index element={<EmpHome />} />
+          <Route path="/applicants" element={<JobApplications />} />
+          <Route path="/applicants/profile" element={<UserProfileView />} />
+          <Route path="/allposts" element={<AllPost />} />
+          <Route path="/profile" element={<EmpProfile />} />
+          <Route path="/post/FindTalent" element={<FindTalents />} />
+          <Route path="/message" element={<EmpChat />} />
+          <Route path="/subscription" element={<PremiumPlan />} />
+          <Route path="/paymentSuccess/:empId" element={<PaymentSuccess />} />
+        </Route>
       </Route>
     </Routes>
   );

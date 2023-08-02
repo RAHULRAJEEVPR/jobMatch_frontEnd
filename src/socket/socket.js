@@ -1,6 +1,6 @@
-import {io} from 'socket.io-client'
-import { BaseUrl } from '../constants/constants'
+import { io } from "socket.io-client";
+import { BaseUrl } from "../constants/constants";
 
-const socketInstance = io(BaseUrl)
+const socketInstance = io(BaseUrl);
 
-export default socketInstance
+export default socketInstance;

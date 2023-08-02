@@ -30,7 +30,7 @@ export default function UserProfileView() {
         console.log(err);
       });
   }, []);
-  if(!userData)return
+  if (!userData) return;
   return (
     <div className="grid lg:grid-cols-4 mt-6 lg:mx-9 mx-4 md:me-2   ">
       <div className="col-span-4 lg:col-span-1 ">
@@ -38,9 +38,9 @@ export default function UserProfileView() {
       </div>
       <div className="lg:col-span-3 col-span-4 lg:me-20">
         <EmpUserAbout userAbout={userData.about} />
-        <EmpUserExp userData={userData}/>
-        <EmpUserSkill userData={userData}/>
-        <EmpUserEdu userData={userData}/>
+        <EmpUserExp userData={userData} />
+        <EmpUserSkill userData={userData} />
+        <EmpUserEdu userData={userData} />
       </div>
     </div>
   );

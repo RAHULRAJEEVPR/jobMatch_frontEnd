@@ -4,19 +4,22 @@ import { useLocation } from "react-router-dom";
 import ChatList from "../../components/chat/ChatList";
 import Messages from "../../components/chat/Messages";
 import { useSelector } from "react-redux";
-import { empChats,getUserData, empSendMessage,empGetMessages} from "../../Services/EmpApi";
+import {
+  empChats,
+  getUserData,
+  empSendMessage,
+  empGetMessages,
+} from "../../Services/EmpApi";
 
 import socketInstance from "../../socket/socket";
-
-
 
 export default function EmpChat() {
   const location = useLocation();
 
-const { data } = location.state || {}
+  const { data } = location.state || {};
   const [chats, setChats] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
- 
+
   const empData = useSelector((state) => state.emp.empData);
   const [currentChat, setCurrentChat] = useState(null);
   const [sendMessage, setSendMessage] = useState(null);
@@ -32,10 +35,10 @@ const { data } = location.state || {}
   useEffect(() => {
     empChats(empData._id)
       .then((res) => {
-        setChats(res.data.chat)
+        setChats(res.data.chat);
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
       });
   }, []);
   useEffect(() => {
@@ -56,11 +59,11 @@ const { data } = location.state || {}
   //receiving message from socket server
   useEffect(() => {
     socket.current.on("receive-message", (data) => {
-      console.log(data,"socket");
+      console.log(data, "socket");
       setReceiveMessage(data);
     });
   }, []);
-    
+
   return (
     <div className="  ">
       <div className="grid grid-cols-9 md:mx-32 mt-14 ">
@@ -74,7 +77,11 @@ const { data } = location.state || {}
             <div className="overflow-y-hidden  max-h-[440px] p-2 mt-2">
               {chats.map((chat, i) => (
                 <div key={i} onClick={() => setCurrentChat(chat)}>
-                  <ChatList data={chat} empid={empData._id} getUserData={getUserData} />
+                  <ChatList
+                    data={chat}
+                    empid={empData._id}
+                    getUserData={getUserData}
+                  />
                 </div>
               ))}
             </div>

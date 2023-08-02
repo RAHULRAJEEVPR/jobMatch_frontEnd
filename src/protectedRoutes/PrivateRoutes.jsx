@@ -11,16 +11,16 @@ export default function PrivateRoutes({ role, route }) {
       isUserAuth()
         .then((res) => {
           setVerify(res.data.success);
-          console.log(res.data.success, "aaa")
+          console.log(res.data.success, "aaa");
         })
         .catch((err) => {
-          setVerify(false)
+          setVerify(false);
           localStorage.removeItem("userJwt");
 
-          console.log(err)
-        })
+          console.log(err);
+        });
     } else if (role === "emp") {
-        isEmpAuth()
+      isEmpAuth()
         .then((res) => {
           console.log("checkingggg");
           setVerify(res.data.success);
@@ -32,13 +32,12 @@ export default function PrivateRoutes({ role, route }) {
           console.log(err);
         });
     } else if (role === "admin") {
-        console.log("check")
+      console.log("check");
       isAdminAuth()
-      .then((res) => {
+        .then((res) => {
           setVerify(res.data.success);
         })
         .catch((err) => {
-
           setVerify(false);
           localStorage.removeItem("adminJwt");
 
