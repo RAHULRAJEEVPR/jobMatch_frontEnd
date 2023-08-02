@@ -85,7 +85,7 @@ useEffect(
         .then((res) => {
           dispatch(hideLoading());
 
-          console.log(res);
+          
           if (res.data.created) {
             toast.success(res.data.message);
              navigate("/user/login");
@@ -96,7 +96,6 @@ useEffect(
         .catch((error) => {
           dispatch(hideLoading());
 
-          console.log(error.message);
           toast.error(error.message);
         });
     } catch (error) {

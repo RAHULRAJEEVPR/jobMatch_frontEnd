@@ -5,6 +5,8 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { showLoading, hideLoading } from "../../Redux/alertSlice";
 import { useDispatch } from "react-redux";
+import { BaseUrl } from "../../constants/constants";
+
 
 export default function EmailVerify() {
   const dispatch = useDispatch();
@@ -12,19 +14,23 @@ export default function EmailVerify() {
   const params = useParams();
 
   useEffect(() => {
-    dispatch(showLoading());
+ 
     const verifyEmailUrl = async () => {
       try {
-        const url = `http://localhost:8000/user/${params.id}/verify/${params.token}`;
+        
+        const url = `${BaseUrl}/user/${params.id}/verify/${params.token}`;
         const { data } = await axios
           .get(url)
           .then((res) => {
             setValidUrl(true);
-            dispatch(hideLoading());
+            
+
           })
           .catch((err) => {
+           
+
             console.log(err);
-            dispatch(hideLoading());
+           
           });
       } catch (error) {
         console.log(error);

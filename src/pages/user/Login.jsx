@@ -8,8 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { userLogin, userLoginWithGoogle } from "../../Services/userApi";
 import { useGoogleLogin, googleLogout } from "@react-oauth/google";
 import { updateUserDetails } from "../../Redux/user/userSlice";
-import logoo from "../../assets/logoo.png"; 
-
+import logoo from "../../assets/logoo.png";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -17,17 +16,17 @@ export default function Login() {
   const [values, setValues] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
-//.. goolge login
+  //.. goolge login
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => setUser(codeResponse),
     onError: (error) => console.log("Login Failed:", error),
   });
 
-  useEffect(()=>{
+  useEffect(() => {
     if (localStorage.getItem("userJwt")) {
       navigate("/user/");
     }
-  })
+  });
 
   useEffect(() => {
     if (user) {
@@ -50,11 +49,10 @@ export default function Login() {
               // console.log(res);
               if (res.data.login) {
                 console.log(res.data.userData);
-                if(res.data.userData.status==false){
-                 toast.error("your account has been blocked by the admin")
-                }else{
-
-                  dispatch(updateUserDetails(res.data.userData))
+                if (res.data.userData.status == false) {
+                  toast.error("your account has been blocked by the admin");
+                } else {
+                  dispatch(updateUserDetails(res.data.userData));
                   localStorage.setItem("userJwt", res.data.token);
                   navigate("/user");
                   toast.success(res.data.message);
@@ -72,7 +70,7 @@ export default function Login() {
         .catch((err) => console.log(err));
     }
   }, [user]);
-//. email login
+  //. email login
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(values);
@@ -88,29 +86,28 @@ export default function Login() {
       userLogin({ ...values })
         .then((res) => {
           dispatch(hideLoading());
-          dispatch(updateUserDetails(res.data.userData))
-          console.log(res);
+          dispatch(updateUserDetails(res.data.userData));
+
           localStorage.setItem("userJwt", res.data.token);
           if (res.data.login) {
-            if(res.data.userData.status==false){
-              toast.error("your account has been blocked by the admin")
-             }else{
-
-               dispatch(updateUserDetails(res.data.userData))
-               localStorage.setItem("userJwt", res.data.token);
-               navigate("/user");
-               toast.success(res.data.message);
-             }
+            if (res.data.userData.status == false) {
+              toast.error("your account has been blocked by the admin");
+            } else {
+              dispatch(updateUserDetails(res.data.userData));
+              localStorage.setItem("userJwt", res.data.token);
+              navigate("/user");
+              toast.success(res.data.message);
+            }
           }
         })
         .catch((error) => {
           dispatch(hideLoading());
-          console.log(error);
+          // console.log(error);
           toast.error(error.response.data.message);
         });
     } catch (error) {
       dispatch(hideLoading());
-      console.error(error);
+      // console.error(error);
       toast.error("An error occurred. Please try again.");
     }
   };
@@ -119,9 +116,9 @@ export default function Login() {
     <div className="bg-white ">
       <div className="flex justify-center items-center h-screen  ">
         <div className="bg-white p-8  rounded-md  md:w-3/4 lg:w-2/6 shadow-xl  ">
-        <div className="flex justify-center">
-          <img className="w-40" src={logoo} alt="" />
-        </div>
+          <div className="flex justify-center">
+            <img className="w-40" src={logoo} alt="" />
+          </div>
           <h1 className="text-4xl text-blue-950 font-bold mb-10 text-center">
             Welcome on Board
           </h1>

@@ -3,6 +3,8 @@ import success from "../../assets/success.png";
 import style from "./styles.module.css";
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { BaseUrl } from "../../constants/constants";
+
 
 export default function EmpEmailVerify() {
   const [validUrl, setValidUrl] = useState(false);
@@ -11,7 +13,7 @@ export default function EmpEmailVerify() {
   useEffect(() => {
     const verifyEmailUrl = async () => {
       try {
-        const url = `http://localhost:8000/employer/${params.id}/verify/${params.token}`;
+        const url = `${BaseUrl}/employer/${params.id}/verify/${params.token}`;
         const { data } = await axios.get(url);
         console.log(data);
         setValidUrl(true);
