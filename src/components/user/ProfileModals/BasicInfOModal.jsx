@@ -13,7 +13,7 @@ export default function BasicInfOModal({userData}) {
 
 
   const dispatch = useDispatch();
-  const [info, setInfo] = useState({ Location: userData.location, Phone: userData.phone,name:userData.name });
+  const [info, setInfo] = useState({ Location: userData.location?userData.location:"", Phone: userData.phone,name:userData.name });
   const [showModal, setShowModal] = useState(false);
 
   const handleChange = (e) => {
@@ -25,7 +25,7 @@ export default function BasicInfOModal({userData}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (info.name.trim() == "") {
-      return toast.warn("location is needed");
+      return toast.warn("name is needed");
     }
     if (info.Location.trim() == "") {
       return toast.warn("location is needed");
