@@ -94,6 +94,7 @@ export default function ApplyJobModal({id,set}) {
                           className="border border-gray-300 w-full"
                           name="resume"
                           type="file"
+                          accept=".pdf, .doc, .docx"
                           onChange={(event) => setResume(event.target.files[0])}
                         />
                       </div>

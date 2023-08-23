@@ -53,6 +53,7 @@ export default function ProPicComp({ userData }) {
           type="file"
           id="new-image"
           className="hidden"
+          accept="image/*"
         />
         <label
           htmlFor="new-image"
