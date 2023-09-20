@@ -92,7 +92,7 @@ export default function NewJobPost({ skills, citys, setPosts }) {
 
     // Perform form submission logic
     createPost({ ...jobData }).then((res) => {
-      console.log(res);
+      // console.log(res);
       dispatch(updateEmpDetails(res.data.empData));
       getPostData()
         .then((res) => {
@@ -104,7 +104,7 @@ export default function NewJobPost({ skills, citys, setPosts }) {
           toast.success("something went worng");
         });
     });
-    console.log("Job data:", jobData);
+    // console.log("Job data:", jobData);
     // Reset form fields
     e.target.reset();
     // Close the modal

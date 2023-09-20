@@ -14,7 +14,7 @@ export default function EmpEmailVerify() {
       try {
         const url = `${BaseUrl}/employer/${params.id}/verify/${params.token}`;
         const { data } = await axios.get(url);
-        console.log(data);
+        // console.log(data);
         setValidUrl(true);
       } catch (error) {
         console.log(error);

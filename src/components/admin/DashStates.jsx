@@ -13,7 +13,6 @@ export default function DashStates() {
     revenue()
       .then((res) => {
         setRevenue(res.data.revenue);
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -21,7 +20,6 @@ export default function DashStates() {
     userCount()
       .then((res) => {
         setUserCount(res.data.count);
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -29,7 +27,6 @@ export default function DashStates() {
     empCount()
       .then((res) => {
         setEmpCount(res.data.count);
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);

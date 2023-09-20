@@ -34,7 +34,7 @@ export default function BasicInfOModal({userData}) {
         return toast.warn("Mobile number should be a valid 10-digit number");
       }
     updateUserBasicInfo({...info}).then((res)=>{
-        console.log(res.data);
+        // console.log(res.data);
         dispatch(updateUserDetails(res.data.userData))
         toast.success("updated successfully")
      setShowModal(false)

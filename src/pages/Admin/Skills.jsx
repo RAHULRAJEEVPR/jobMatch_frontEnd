@@ -24,7 +24,7 @@ export default function Skills() {
     dispatch(hideLoading());
   }, []);
 
-  console.log(skill);
+ 
   return (
     <div>
       <AddSkills fetchData={fetchData} />

@@ -46,7 +46,7 @@ export default function EmpChat() {
     socket.current.emit("add-new-user", empData._id);
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);
-      console.log(onlineUsers);
+      // console.log(onlineUsers);
     });
   }, [empData]);
   //send message to socket server

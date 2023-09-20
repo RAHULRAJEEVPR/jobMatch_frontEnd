@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 export default function UserProfile() {
   const navigate=useNavigate()
   const userData = useSelector((state) => state.user.userData);
-console.log(userData);
+// console.log(userData);
  
   if (userData == null) return;
   return (
@@ -48,4 +48,4 @@ console.log(userData);
       </div>
     </div>
   );
-}
+} 

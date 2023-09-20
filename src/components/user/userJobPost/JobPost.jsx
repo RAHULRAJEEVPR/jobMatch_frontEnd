@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function JobPost({ posts }) {
   const navigate=useNavigate()
-  console.log(posts);
+  // console.log(posts);
   const [currentPage, setCurrentpage] = useState(1);
   const postPerPage = 3;
   const lastIndex = currentPage * postPerPage;

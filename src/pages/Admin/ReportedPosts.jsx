@@ -10,7 +10,7 @@ export default function ReportedPosts() {
   useEffect(() => {
     adminGetReportdPosts().then((res) => {
       setPosts(res.data.reportedPosts);
-      console.log(res.data.reportedPosts, "aaaaaa");
+      
     });
   }, []);
   const changeStatus = (id, status) => {

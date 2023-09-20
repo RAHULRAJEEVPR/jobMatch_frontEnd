@@ -15,7 +15,6 @@ export default function CityTable({ CityData }) {
   const dropCity = (id) => {
     adminDropCity({ id })
       .then((res) => {
-        console.log(res);
         toast.success(res.data.message);
         setCitys((prevData) => prevData.filter((City) => City._id !== id));
       })

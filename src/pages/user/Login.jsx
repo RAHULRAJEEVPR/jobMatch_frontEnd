@@ -48,7 +48,6 @@ export default function Login() {
               dispatch(hideLoading());
               // console.log(res);
               if (res.data.login) {
-                console.log(res.data.userData);
                 if (res.data.userData.status == false) {
                   toast.error("your account has been blocked by the admin");
                 } else {
@@ -73,14 +72,12 @@ export default function Login() {
   //. email login
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(values);
 
     if (values.email.trim() === "") {
       return toast.warn("email should not be empty");
     } else if (values.password.trim() === "") {
       return toast.warn("password should not be empty");
     }
-    console.log("kerunindo", values);
     try {
       dispatch(showLoading());
       userLogin({ ...values })

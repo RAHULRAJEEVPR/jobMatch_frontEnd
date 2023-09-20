@@ -23,7 +23,7 @@ export default function UserProfileView() {
       .then((res) => {
         dispatch(hideLoading());
         setUserData(res.data.userData);
-        console.log(res.data.userData);
+        
       })
       .catch((err) => {
         dispatch(hideLoading());

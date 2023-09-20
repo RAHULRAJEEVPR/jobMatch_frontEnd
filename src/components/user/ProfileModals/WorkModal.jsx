@@ -17,7 +17,7 @@ export default function WorkModal({  }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(exp);
+    // console.log(exp);
     if(exp.role.trim()==""){
     return  toast.warn("role should't be empty")
     }else if(exp.company.trim()==""){

@@ -11,7 +11,7 @@ export default function PrivateRoutes({ role, route }) {
       isUserAuth()
         .then((res) => {
           setVerify(res.data.success);
-          console.log(res.data.success, "aaa");
+          console.log(res.data.success);
         })
         .catch((err) => {
           setVerify(false);
@@ -22,7 +22,7 @@ export default function PrivateRoutes({ role, route }) {
     } else if (role === "emp") {
       isEmpAuth()
         .then((res) => {
-          console.log("checkingggg");
+         
           setVerify(res.data.success);
         })
         .catch((err) => {
@@ -32,7 +32,7 @@ export default function PrivateRoutes({ role, route }) {
           console.log(err);
         });
     } else if (role === "admin") {
-      console.log("check");
+   
       isAdminAuth()
         .then((res) => {
           setVerify(res.data.success);

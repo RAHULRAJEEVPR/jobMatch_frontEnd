@@ -44,12 +44,12 @@ export default function EmpRegister() {
           }
         )
         .then((res) => {
-          console.log(res.data);
+       
           empSignupWithGoogle(res.data)
             .then((res) => {
               dispatch(hideLoading());
 
-              console.log(res);
+             
               if (res.data.created) {
                 toast.success("registered successfully, please login now");
                 navigate("/employer/login");

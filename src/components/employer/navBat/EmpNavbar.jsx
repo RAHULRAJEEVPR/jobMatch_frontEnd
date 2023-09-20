@@ -13,7 +13,7 @@ const links = [
 export default function EmpNavbar() {
   const navigate = useNavigate();
   const logout = () => {
-    console.log("logout called");
+    // console.log("logout called");
     localStorage.removeItem("empJwt");
     navigate("/employer/login");
   };

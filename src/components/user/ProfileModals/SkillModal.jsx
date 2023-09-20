@@ -16,7 +16,7 @@ const dispatch = useDispatch()
   useEffect(() => {
     userGetSkillsData()
       .then((res) => {
-        console.log(res.data.skillData);
+        // console.log(res.data.skillData);
         setSkills(res.data.skillData);
       })
       .catch((err) => {

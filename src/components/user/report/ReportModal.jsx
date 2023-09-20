@@ -14,14 +14,16 @@ if(reason.trim()==""){
     return toast.warn("reason should't be empty")
 }
 userReportJob({reason,postId}).then((res)=>{
+  setShowModal(false)
     if(res.reported){
-
         toast.success(res.data.message)
     }else{
         toast.warn(res.data.message)
     }
 }).catch((err)=>{
     console.log(err);
+    setShowModal(false)
+
     toast.error("something went wrong try again later")
 })
 }
@@ -61,7 +63,7 @@ userReportJob({reason,postId}).then((res)=>{
                         name="reason"
                         rows="2"
                         className="mt-1 p-2 focus:ring-gray-500 focus:border-gray-500 block w-full font-semibold shadow-sm md:text-lg border-gray-300 rounded-md"
-                        placeholder="Enter a skill"
+                        placeholder="Enter a reason"
                         value={reason}
                         onChange={(event) => setReason(event.target.value)}
                       ></textarea>

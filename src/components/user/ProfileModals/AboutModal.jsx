@@ -18,7 +18,7 @@ export default function AboutModal({ userAbout }) {
     updateUserAbout({ about })
       .then((res) => {      
         dispatch(updateUserDetails(res.data.userData));
-        console.log(res.data.userData, "hloooooooooo");
+        // console.log(res.data.userData, "hloooooooooo");
         setShowModal(false);
       })
       .catch((err) => {

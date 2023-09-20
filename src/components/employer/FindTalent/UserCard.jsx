@@ -27,9 +27,8 @@ export default function UserCard({ userData, postData, set }) {
   const newChat = (senderId, receiverId) => {
     empCreateChat({ senderId: senderId, receiverId: receiverId })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         let data = res.data.chatData;
-        console.log(data, "data avunindo");
         navigate("/employer/message", { state: { data } });
       })
       .catch((err) => {

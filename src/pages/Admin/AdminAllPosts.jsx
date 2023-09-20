@@ -8,7 +8,7 @@ export default function AdminAllPosts() {
     adminGetAllPosts()
       .then((res) => {
         setAllPost(res.data.postData);
-        console.log(res.data.postData);
+       
       })
       .catch((err) => {
         console.log(err);

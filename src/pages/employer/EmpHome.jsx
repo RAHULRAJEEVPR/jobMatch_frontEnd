@@ -11,7 +11,7 @@ import PreModal from "../../components/employer/home/PreModal";
 
 export default function EmpHome() {
   const empData = useSelector((state) => state.emp.empData);
-  console.log(empData, "hai");
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

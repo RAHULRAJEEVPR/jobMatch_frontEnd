@@ -35,7 +35,7 @@ export default function UserChat() {
       socket.current.emit("add-new-user", userData._id);
       socket.current.on("get-users", (users) => {
         setOnlineUsers(users);
-        console.log(onlineUsers);
+        // console.log(onlineUsers);
       });
     }, [userData]);
     //send message to socket server
@@ -48,7 +48,7 @@ export default function UserChat() {
     //receiving message from socket server
     useEffect(() => {
       socket.current.on("receive-message", (data) => {
-        console.log(data,"socket");
+        // console.log(data,"socket");
         setReceiveMessage(data);
       });
     }, []);

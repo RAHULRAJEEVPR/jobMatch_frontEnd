@@ -40,12 +40,12 @@ useEffect(
               })
               .then((res) => {
                   // setProfile(res.data);
-                  console.log(res.data);
+                  // console.log(res.data);
                   userSignupWithGoogle(res.data)
                   .then((res) => {
                     dispatch(hideLoading());
             
-                    console.log(res);
+                    // console.log(res);
                     if (res.data.created) {
                       toast.success("registered successfully, please login now");
                       navigate("/user/login");

@@ -6,7 +6,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { store, persistor } from "./Redux/store"; // Import the persisted store and persistor
-
 import App from "./App.jsx";
 import "./index.css";
 

@@ -5,7 +5,7 @@ export default function ChatList({ data, empid, getUserData }) {
   const [userData, setUserData] = useState(null);
   useEffect(() => {
     const userId = data.members.find((id) => id !== empid);
-    console.log(userId, "user");
+    // console.log(userId, "user");
     getUserData(userId)
       .then((res) => {
         setUserData(res.data.userData ? res.data.userData : res.data.empData);

@@ -52,7 +52,7 @@ export default function Messages({
       .then((res) => {
         setMessages([...messages, res.data.result]);
         setNewMessage("");
-        console.log(messages, "msg");
+        // console.log(messages, "msg");
       })
       .catch((err) => console.log(err));
     // send message to socket server

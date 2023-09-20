@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 export default function UserApplicationCard({ posts ,status}) {
   const userData = useSelector((state) => state.user.userData);
-console.log(userData);
+// console.log(userData);
      const navigate=useNavigate()
 
      const navigateToProfile = (id) => {

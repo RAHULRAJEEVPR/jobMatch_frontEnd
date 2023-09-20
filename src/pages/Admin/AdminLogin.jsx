@@ -23,8 +23,7 @@ export default function AdminLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("keriyo");
-      console.log(values);
+   
       let { email, password } = values;
 
       if (email.trim() == "") {

@@ -13,7 +13,7 @@ export default function UserEmpProfileview() {
     const dispatch=useDispatch()
   const location = useLocation();
   const { id } = location.state || {};
-  console.log(id);
+  // console.log(id);
   const [empData, setEmpData] = useState();
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function UserEmpProfileview() {
       .then((res) => {
         dispatch(hideLoading());
         setEmpData(res.data.empData);
-        console.log(res.data.empData);  
+        // console.log(res.data.empData);  
       
       })
       .catch((err) => {

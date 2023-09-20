@@ -41,11 +41,11 @@ export default function EmpLogin() {
         )
         .then((res) => {
           const userProfile = res.data;
-          console.log(userProfile);
+          
           empLoginWithGoogle(userProfile)
             .then((res) => {
               dispatch(hideLoading());
-              console.log(res);
+            
               if (res.data.login) {
                 if (res.data.empData.status == false) {
                   toast.error("your account has been blocked by user");
@@ -71,7 +71,7 @@ export default function EmpLogin() {
   //. email login
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(values);
+    
 
     if (values.email.trim() === "") {
       return toast.warn("email should not be empty");
@@ -84,7 +84,7 @@ export default function EmpLogin() {
         .then((res) => {
           dispatch(hideLoading());
           if (res.data.login) {
-            console.log(res.data.empData);
+          
             if (res.data.empData.status === false) {
               toast.error("your account has been blocked by user");
             } else {

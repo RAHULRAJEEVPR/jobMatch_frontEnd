@@ -16,7 +16,6 @@ export default function UserHome() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log(search);
 
     const filteredDocuments = allPosts.filter((post) => {
       const isCityMatch = search.city === "" || post.location === search.city;
@@ -26,7 +25,6 @@ export default function UserHome() {
       return isCityMatch && isSkillMatch;
     });
 
-    console.log(filteredDocuments);
     setPosts(filteredDocuments);
   };
 
@@ -37,7 +35,6 @@ export default function UserHome() {
         dispatch(hideLoading());
         setPosts(res.data.postData);
         setAllPost(res.data.postData);
-        console.log(res.data.postData);
       })
       .catch((err) => {
         dispatch(hideLoading());

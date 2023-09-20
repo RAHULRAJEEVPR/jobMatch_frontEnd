@@ -7,7 +7,6 @@ export default function AddSkills({ fetchData }) {
   const [skill, setSkill] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(skill);
 
     try {
       if (skill.trim() === "") {

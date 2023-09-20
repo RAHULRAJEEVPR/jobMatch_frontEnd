@@ -30,7 +30,7 @@ export default function City() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(city);
+   
 
     try {
       if (city.trim() === "") {

@@ -21,7 +21,7 @@ export default function JobApplications() {
       .then((res) => {
         dispatch(hideLoading());
         setPostData(res.data.postData);
-        console.log(res.data.postData);
+    
       })
       .catch((err) => {
         dispatch(hideLoading());

@@ -1,11 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faLocationDot,
-  faPhone,
-  faEnvelope,
-  faPencil,
-  faBriefcase,
+ 
   faCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import BasicInfOModal from '../ProfileModals/BasicInfOModal';

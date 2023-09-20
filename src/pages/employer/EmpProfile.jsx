@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export default function EmpProfile() {
   const navigate = useNavigate();
   const empData = useSelector((state) => state.emp.empData);
-  console.log(empData);
+  
 
   return (
     <div className="grid lg:grid-cols-4 mt-6 lg:mx-9 mx-4 md:me-2 mb-5 ">

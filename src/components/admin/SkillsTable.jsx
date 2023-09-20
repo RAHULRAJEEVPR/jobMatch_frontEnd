@@ -15,7 +15,6 @@ export default function SkillsTable({ skillData }) {
   const dropSkill = (id) => {
     adminDropSkill({ id })
       .then((res) => {
-        console.log(res);
         toast.success(res.data.message);
         setSkills((prevData) => prevData.filter((skill) => skill._id !== id));
       })

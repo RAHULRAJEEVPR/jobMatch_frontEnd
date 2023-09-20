@@ -21,7 +21,7 @@ export default function Employers() {
     changeEmpStaus({ id: id, status: status })
       .then((res) => {
         setEmpData(res.data.empData);
-        console.log(res.data.empData);
+        
       })
       .catch((err) => {
         console.log(err);

@@ -21,9 +21,9 @@ export default function EmpBasicModal({ empData }) {
   };
 
   const handleSubmit = (e) => {
-    console.log(info);
+
     e.preventDefault();
-    console.log("kerunindo");
+
     if (info.name.trim() == "") {
       return toast.warn("location is needed");
     }
@@ -35,7 +35,7 @@ export default function EmpBasicModal({ empData }) {
     }
     empUpdateBasic({ ...info })
       .then((res) => {
-        console.log(res.data);
+      
         dispatch(updateEmpDetails(res.data.empData));
         toast.success("updated successfully");
 
