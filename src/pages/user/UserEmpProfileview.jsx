@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { hideLoading, showLoading } from "../../Redux/alertSlice";
 import { userGetEmpDetails } from "../../Services/userApi";
 import { toast } from "react-toastify";
-import UserEmpPropic from "../../components/user/EmpProfile/userEmpPropic";
+import UserEmpPropic from "../../components/user/EmpProfile/UserEmpPropic";
 import UserViewEmpAbout from "../../components/user/EmpProfile/UserViewEmpAbout";
 import UserEmpBasicInfo from "../../components/user/EmpProfile/UserEmpBasicInfo";
 

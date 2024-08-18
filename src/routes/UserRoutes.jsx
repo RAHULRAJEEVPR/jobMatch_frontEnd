@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Register from "../pages/user/Register";
 import Login from "../pages/user/Login";
 import Layout from "../pages/user/UserLayout";
-import EmailVerify from "../components/EmailVerify/emailVerify";
+import EmailVerify from "../components/EmailVerify/EmailVerify";
 import PrivateRoutes from "../protectedRoutes/PrivateRoutes";
 import Formik from "../pages/user/Formik";
 import NotFoundPage from "../pages/NotFoundPage";
