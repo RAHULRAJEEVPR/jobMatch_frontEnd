@@ -5,9 +5,9 @@ import homeImg from "../assets/home logo.jpg";
 import seeker from "../assets/seeker.jpg";
 import cmp from "../assets/hire.jpg";
 
-import { FaUserCircle } from "react-icons/fa";
-import { HiSearchCircle } from "react-icons/Hi";
-import { MdOutlineWork } from "react-icons/Md";
+// import { FaUserCircle } from "react-icons/fa";
+// import { HiSearchCircle } from "react-icons/Hi";
+// import { MdOutlineWork } from "react-icons/Md";
 export default function LandingPage() {
   function scrollToSelectionDiv() {
     const element = document.getElementById("seletion_div");
@@ -56,7 +56,7 @@ export default function LandingPage() {
           <div className="flex justify-center">
             <div className="flex flex-col items-center text-green-500 shadow-xl  md:w-3/4 lg:w-3/4  p-5 rounded-3xl  border-gray-500  bg-white ">
               <h1 className="text-4xl">
-                <FaUserCircle />
+                {/* <FaUserCircle /> */}
               </h1>
               <h1 className="text-blue-950 font-bold text-center text-3xl">
                 Create Your Profile
@@ -66,7 +66,7 @@ export default function LandingPage() {
           <div className="flex justify-center">
             <div className="flex flex-col items-center text-yellow-500 shadow-xl  md:w-3/4 lg:w-3/4  p-5 rounded-3xl  border-gray-500  bg-white text-3xl">
               <h1 className="text-4xl">
-                <HiSearchCircle />
+                {/* <HiSearchCircle /> */}
               </h1>
               <h1 className="text-blue-950 text-center font-bold ">
                 Apply For Jobs
@@ -76,7 +76,7 @@ export default function LandingPage() {
           <div className="flex justify-center ">
             <div className="flex flex-col items-center shadow-xl   md:w-3/4 lg:w-3/4  p-5 rounded-3xl  border-gray-500  bg-white text-3xl">
               <h1 className="text-blue-600 text-5x">
-                <MdOutlineWork />
+                {/* <MdOutlineWork /> */}
               </h1>
               <h1 className="text-blue-950 text-center  font-bold">
                 Get Hired
